@@ -22,16 +22,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h1>Walter's Test Area</h1>
+
+      <paper-button raised id="dbTest" on-tap="dbTest">DB TRY</paper-button>
     </div>
   </template>
 
   <script>
     Polymer({
       is: 'my-view1',
+
+      dbTest: function(){
+         
+         var db = fb.database();
+         var email = "walter.miani@gmail.com";
+         var password = email;
+         fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+
+
+
+         db.ref().child('test/').push("prova");
+      }
     });
   </script>
 </dom-module>
