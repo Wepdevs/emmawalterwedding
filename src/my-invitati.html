@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-invitati">
@@ -24,6 +25,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h3>Invitati</h3>
       <div>Ciao Emma, inserisci qua gli invitati!</div>
+
+
+      <paper-input label="email"></paper-input>
+      <paper-input label="nome"></paper-input>
+      <paper-input label="lingua"></paper-input>
+      <paper-input label="invito"></paper-input>
 
       <div class="circle" on-tap="addInvitato">+</div>
     </div>
