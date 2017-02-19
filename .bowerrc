@@ -1,5 +1,0 @@
-{
-  "proxy"       : "http://eul0993:factorial99@proxyfull.servizi.ras:80",
-  "https-proxy" : "http://eul0993:factorial99@proxyfull.servizi.ras:80",
-  "strict-ssl"  : false
-} 

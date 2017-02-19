@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view2">
+<dom-module id="my-invitati">
   <template>
     <style include="shared-styles">
       :host {
@@ -22,16 +22,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">2</div>
-      <h1>View Two</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+      <h3>Invitati</h3>
+      <div>Ciao Emma, inserisci qua gli invitati!</div>
+
+      <div class="circle" on-tap="addInvitato">+</div>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view2',
+      is: 'my-invitati',
+
+      properties: {
+        invitati:{
+          type: Array
+        }
+
+      }, 
+
+      addInvitato: function(){
+
+        alert('asd');
+        var db = fb.database();
+         var email = "walter.miani@gmail.com";
+         var password = email;
+         fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
+
+         db.ref().child('invitati/').push("prova");
+      }
     });
   </script>
 </dom-module>
