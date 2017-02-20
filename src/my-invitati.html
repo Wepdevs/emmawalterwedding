@@ -24,6 +24,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+      td{
+        border-right: 1px solid grey;
+      }
     </style>
 
 
@@ -58,16 +62,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-item>Party</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
-      <div class="circle" on-tap="addInvitato">+</div>
+      <div>
+      <paper-button raised on-tap="addInvitato">+</paper-button>
+      </div>
+      <!--<div on-tap="prova">prova</div>-->
 
-      <div on-tap="prova">prova</div>
 
 
-
-      <h3>Lista Invitati</h3>
+      <h3>Lista Invitati ({{invitati.length}})</h3>
+        <table>
+          <tr>
+            <th>Nome</th><th>Email</th><th>Invito</th><th>Lingua</th><th>Password</th><th></th>
+          </tr>
         <template is="dom-repeat" items="{{invitati}}" as="invitato">
-        <div>{{invitato.nome}} {{invitato.email}} {{invitato.invito}} {{invitato.lingua}} {{invitato.password}} <p on-tap="deleteInvitato">X</p></div>
+          <tr>
+            <td>{{invitato.nome}}</td>
+            <td>{{invitato.email}}</td>
+            <td>{{invitato.invito}}</td>
+            <td>{{invitato.lingua}}</td>
+            <td>{{invitato.password}}</td>
+            <td><paper-button raised on-tap="deleteInvitato">X</paper-button></td>
+          </tr>
        </template>
+        </table>
 
     </div>
 
@@ -99,7 +116,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var passwordType = "";
 
-        if(this.$.invito.selectedItem.innerHTML == 'FULL'){
+        if(this.$.invito.selectedItem.innerHTML == 'Full'){
           passwordType = 'asd';
         } else{
           passwordType = 'dsa';
@@ -111,7 +128,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         lingua: this.$.lingua.selectedItem.innerHTML,
                         invito:  this.$.invito.selectedItem.innerHTML,
                         password: password}
-
 
          db.ref().child('invitati/').push(invitato);
       }, 
