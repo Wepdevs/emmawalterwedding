@@ -34,6 +34,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <!--<template is="dom-repeat" items="{{invitati}}" as="invitato">
             <div>{{invitato.nome}}</div>
        </template>-->
+      <div id="full" hidden$="{{!pranzoFormVisible}}">vieni al pranzo?</div>
+      <div id="party" hidden$="{{!partyFormVisible}}">vieni al party?</div>
+
+
   </template>
 
   <script>
@@ -45,7 +49,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array
         },
 
-        nome: String
+        nome: String,
+        pranzoFormVisible: {type: Boolean, value: false},
+        partyFormVisible: {type: Boolean, value: false}
       },
 
       validatePassword: function(){
@@ -53,6 +59,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         for( var i = 0; i< this.invitati.length; i++){
           if(this.invitati[i].password == this.$.password.value){
             this.nome = this.invitati[i].nome; 
+
+            if(this.invitati[i].password.includes("asd"))
+            {
+                this.pranzoFormVisible = true;
+                this.partyFormVisible = false;
+            } else{
+                this.partyFormVisible = true;
+                this.pranzoFormVisible = false;
+            }
           }
         }
 
