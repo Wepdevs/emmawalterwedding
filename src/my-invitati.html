@@ -10,6 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-invitati">
@@ -22,18 +26,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+
+    <firebase-app auth-domain="emmawalterwedding.firebaseapp.com"
+      database-url="https://emmawalterwedding.firebaseio.com"
+      api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc">
+    </firebase-app>
+
+
+     <firebase-query id="query"
+      path="/invitati"
+      data="{{invitati}}">
+    </firebase-query>
+
+
+
     <div class="card">
       <h3>Invitati</h3>
       <div>Ciao Emma, inserisci qua gli invitati!</div>
 
-
-      <paper-input label="email"></paper-input>
-      <paper-input label="nome"></paper-input>
-      <paper-input label="lingua"></paper-input>
-      <paper-input label="invito"></paper-input>
-
+      <paper-input label="nome" id="nome"></paper-input>
+      <paper-input label="email" id="email"></paper-input>
+      <paper-dropdown-menu label="Lingua">
+        <paper-listbox class="dropdown-content" selected="0" id="lingua">
+          <paper-item>ITA</paper-item>
+          <paper-item>ENG</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+       <paper-dropdown-menu label="Invito">
+        <paper-listbox class="dropdown-content" selected="0" id="invito">
+          <paper-item>Full</paper-item>
+          <paper-item>Party</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
       <div class="circle" on-tap="addInvitato">+</div>
+
+      <div on-tap="prova">prova</div>
+
+
+
+      <h3>Lista Invitati</h3>
+        <template is="dom-repeat" items="{{invitati}}" as="invitato">
+        <div>{{invitato.nome}} {{invitato.email}} {{invitato.invito}} {{invitato.lingua}} {{invitato.password}} <p on-tap="deleteInvitato">X</p></div>
+       </template>
+
     </div>
+
+
   </template>
 
   <script>
@@ -49,7 +87,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       addInvitato: function(){
 
-        alert('asd');
         var db = fb.database();
          var email = "walter.miani@gmail.com";
          var password = email;
@@ -60,7 +97,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             // ...
         });
 
-         db.ref().child('invitati/').push("prova");
+        var passwordType = "";
+
+        if(this.$.invito.selectedItem.innerHTML == 'FULL'){
+          passwordType = 'asd';
+        } else{
+          passwordType = 'dsa';
+        }
+        var password = (moment().format('L') + passwordType + moment().format('LTS')).trim().replace(' ','w').replace("/",'e').replace(':','s');
+
+        var invitato = {nome : this.$.nome.value,
+                        email : this.$.email.value,
+                        lingua: this.$.lingua.selectedItem.innerHTML,
+                        invito:  this.$.invito.selectedItem.innerHTML,
+                        password: password}
+
+
+         db.ref().child('invitati/').push(invitato);
+      }, 
+
+      deleteInvitato: function(e){
+        fb.database().ref().child('invitati/' + e.model.invitato.$key).remove();
+      },
+
+      prova: function(){
+        console.log(this.$.lingua.selectedItem.innerHTML);
       }
     });
   </script>
