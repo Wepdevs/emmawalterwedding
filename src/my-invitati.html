@@ -45,15 +45,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Invitati</h3>
       <div>Ciao Emma, inserisci qua gli invitati!</div>
 
-      <paper-input label="nome" id="nome"></paper-input>
-      <paper-input label="email" id="email"></paper-input>
-      <paper-dropdown-menu label="Lingua">
+      <paper-input label='{{calcString("nome", langPath, lingua)}}' id="nome"></paper-input>
+      <paper-input label="Email" id="email"></paper-input>
+      <paper-dropdown-menu label='{{calcString("lingua", langPath, lingua)}}'>
         <paper-listbox class="dropdown-content" selected="0" id="lingua">
           <paper-item>ITA</paper-item>
           <paper-item>ENG</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
-       <paper-dropdown-menu label="Invito">
+       <paper-dropdown-menu label='{{calcString("invito", langPath, lingua)}}'>
         <paper-listbox class="dropdown-content" selected="0" id="invito">
           <paper-item>Full</paper-item>
           <paper-item>Party</paper-item>
@@ -69,7 +69,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Lista Invitati ({{invitati.length}})</h3>
         <table>
           <tr>
-            <th>Nome</th><th>Email</th><th>Invito</th><th>Lingua</th><th>Password</th><th></th>
+            <th>{{calcString("nome", langPath, lingua)}}</th>
+            <th>Email</th>
+            <th>{{calcString("invito", langPath, lingua)}}</th>
+            <th>{{calcString("lingua", langPath, lingua)}}</th>
+            <th>Password</th><th></th>
           </tr>
         <template is="dom-repeat" items="{{invitati}}" as="invitato">
           <tr>
@@ -135,6 +139,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       deleteInvitato: function(e){
         fb.database().ref().child('invitati/' + e.model.invitato.$key).remove();
+      },
+
+      calcString: function(campo, path, lingua){
+
+        return this.lingua[path][campo];
       },
 
       prova: function(){

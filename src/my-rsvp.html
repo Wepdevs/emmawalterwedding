@@ -30,19 +30,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div>Ciao {{nome}}!</div>
+      <div>{{calcString("saluto", langPath, lingua)}} {{nome}}!</div>
 
 
-       <paper-input label="Inserisci Password" id="password"></paper-input> 
-       <div id="error" ></div>
+       <paper-input label='{{calcString("password", langPath, lingua)}}' id="password"></paper-input> 
+       <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>
 
       <!--<template is="dom-repeat" items="{{invitati}}" as="invitato">
             <div>{{invitato.nome}}</div>
        </template>-->
-      <div id="full" hidden$="{{!pranzoFormVisible}}">vieni al pranzo?</div>
-      <div id="party" hidden$="{{!partyFormVisible}}">vieni al party?</div>
-      <paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">GO</paper-button>
-      <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">INVIA</paper-button>
+      <div id="full" hidden$="{{!pranzoFormVisible}}">{{calcString("domandapranzo", langPath, lingua)}}</div>
+      <div id="party" hidden$="{{!partyFormVisible}}">{{calcString("domandaparty", langPath, lingua)}}</div>
+      <paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
+      <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>
 
   </template>
 
@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           if(this.invitati[i].password == this.$.password.value){
             trovato = true;
             this.nome = this.invitati[i].nome;
-            this.$.error.innerHTML = "";
+            this.$.error.hidden = true;
             this.loginBtnVisible = false;
             this.sendBtnVisible = true;
             this.$.password.hidden = true;
@@ -91,11 +91,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if(!trovato){
           this.pranzoFormVisible = false;
           this.partyFormVisible = false;
-          this.$.error.innerHTML ="Password errata"
+          this.$.error.hidden = false;
         }
 
         this.$.password.value = "";
 
+      },
+
+      calcString: function(campo, path, lingua){
+
+        return this.lingua[path][campo];
+      },
+
+      prova: function(){
+        console.log(this.lingua.ita.saluto + this.langPath)
       }
     });
   </script>

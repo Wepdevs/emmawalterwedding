@@ -1,0 +1,32 @@
+{
+            "ita": {
+                "quando": "Quando",
+                 "dove": "Dove",
+                 "invitati": "Invitati",
+                 "saluto": "Ciao",
+                 "entra": "Entra",
+                 "invia": "Invia",
+                 "domandapranzo" : "Vieni al pranzo?",
+                 "domandaparty" : "Vieni al party?",
+                 "nome" : "Nome",
+                 "invito" : "Tipo Invito",
+                 "lingua" : "Lingua",
+                 "password" : "Inserisci Password",
+                 "passworderror" : "Password errata"
+                 },
+            "eng": {
+                "quando": "When",
+                "dove": "Where",
+                "invitati": "Invitees",
+                "saluto": "Hi",
+                "entra": "Enter",
+                "invia": "Send",
+                "domandapranzo" : "Are you coming for lunch?",
+                "domandaparty" : "Are you enjoying the party?",
+                "nome" : "Name",
+                "invito" : "Invite Type",
+                "lingua" : "Language",
+                "password" : "Insert Password",
+                "passworderror" : "Wrong password"
+                }
+}
