@@ -31,18 +31,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
 
-    <firebase-app auth-domain="emmawalterwedding.firebaseapp.com"
+
+      <firebase-app auth-domain="emmawalterwedding.firebaseapp.com"
       database-url="https://emmawalterwedding.firebaseio.com"
       api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc">
     </firebase-app>
-
-
      <firebase-query id="query"
       path="/invitati"
       data="{{invitati}}">
     </firebase-query>
-
-
 
     <div class="card">
       <h3>Invitati</h3>
@@ -97,7 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
         invitati:{
-          type: Array
+          type: Array,
+          notify: true
         }
 
       }, 
@@ -130,6 +128,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         password: password}
 
          db.ref().child('invitati/').push(invitato);
+
+          this.$.nome.value = "";
+          this.$.email.value = "";
       }, 
 
       deleteInvitato: function(e){
