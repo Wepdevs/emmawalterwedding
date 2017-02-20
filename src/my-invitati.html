@@ -42,8 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </firebase-query>
 
     <div class="card">
-      <h3>Invitati</h3>
-      <div>Ciao Emma, inserisci qua gli invitati!</div>
+      <h3>{{calcString("invitati", langPath, lingua)}}</h3>
+      <div>{{calcString("emma", langPath, lingua)}}</div>
 
       <paper-input label='{{calcString("nome", langPath, lingua)}}' id="nome"></paper-input>
       <paper-input label="Email" id="email"></paper-input>

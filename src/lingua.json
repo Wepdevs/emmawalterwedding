@@ -12,7 +12,8 @@
                  "invito" : "Tipo Invito",
                  "lingua" : "Lingua",
                  "password" : "Inserisci Password",
-                 "passworderror" : "Password errata"
+                 "passworderror" : "Password errata",
+                 "emma" : "Ciao Emma, inserisci qua gli invitati!"
                  },
             "eng": {
                 "quando": "When",
@@ -27,6 +28,7 @@
                 "invito" : "Invite Type",
                 "lingua" : "Language",
                 "password" : "Insert Password",
-                "passworderror" : "Wrong password"
+                "passworderror" : "Wrong password",
+                "emma" : "Hi Emma, insert invitees from this page"
                 }
 }
