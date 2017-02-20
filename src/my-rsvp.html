@@ -22,6 +22,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+
+      #error{
+        color: red;
+      }
     </style>
 
     <div class="card">
@@ -29,14 +34,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
        <paper-input label="Inserisci Password" id="password"></paper-input> 
-       <paper-button on-tap="validatePassword">GO</paper-button>
+       <div id="error" ></div>
 
       <!--<template is="dom-repeat" items="{{invitati}}" as="invitato">
             <div>{{invitato.nome}}</div>
        </template>-->
       <div id="full" hidden$="{{!pranzoFormVisible}}">vieni al pranzo?</div>
       <div id="party" hidden$="{{!partyFormVisible}}">vieni al party?</div>
-
+      <paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">GO</paper-button>
+      <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">INVIA</paper-button>
 
   </template>
 
@@ -51,14 +57,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         nome: String,
         pranzoFormVisible: {type: Boolean, value: false},
-        partyFormVisible: {type: Boolean, value: false}
+        partyFormVisible: {type: Boolean, value: false},
+        loginBtnVisible: {type: Boolean, value: true},
+        sendBtnVisible: {type: Boolean, value: false}
       },
 
       validatePassword: function(){
 
+        var trovato = false;
+
         for( var i = 0; i< this.invitati.length; i++){
           if(this.invitati[i].password == this.$.password.value){
-            this.nome = this.invitati[i].nome; 
+            trovato = true;
+            this.nome = this.invitati[i].nome;
+            this.$.error.innerHTML = "";
+            this.loginBtnVisible = false;
+            this.sendBtnVisible = true;
+            this.$.password.hidden = true;
 
             if(this.invitati[i].password.includes("asd"))
             {
@@ -68,7 +83,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.partyFormVisible = true;
                 this.pranzoFormVisible = false;
             }
+            break;
           }
+        }
+
+
+        if(!trovato){
+          this.pranzoFormVisible = false;
+          this.partyFormVisible = false;
+          this.$.error.innerHTML ="Password errata"
         }
 
         this.$.password.value = "";
