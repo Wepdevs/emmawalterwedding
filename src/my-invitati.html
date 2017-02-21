@@ -63,29 +63,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-listbox>
       </paper-dropdown-menu>
       <div>
-      <paper-button raised on-tap="addInvitato">+</paper-button>
+      <button raised on-tap="addInvitato">+</button>
+      <button raised on-tap="toggleDelete">Show/Hidden Delete</button>
       </div>
       <!--<div on-tap="prova">prova</div>-->
 
 
 
       <h3>Lista Invitati ({{invitati.length}})</h3>
+      <div><span>Search </span><input value="{{searchString::input}}"></div>
         <table>
           <tr>
+            <th></th>
             <th>{{calcString("nome", langPath, lingua)}}</th>
             <th>Email</th>
             <th>{{calcString("invito", langPath, lingua)}}</th>
             <th>{{calcString("lingua", langPath, lingua)}}</th>
-            <th>Password</th><th></th>
+            <th>Password</th>
           </tr>
-        <template is="dom-repeat" items="{{invitati}}" as="invitato">
+        <template is="dom-repeat" items="{{invitati}}" as="invitato" filter="{{computeFilter(searchString)}}">
           <tr>
+            <td><button raised on-tap="deleteInvitato" hidden$={{!showDelete}}>X</button></td>
             <td>{{invitato.nome}}</td>
             <td>{{invitato.email}}</td>
             <td>{{invitato.invito}}</td>
             <td>{{invitato.lingua}}</td>
             <td>{{invitato.password}}</td>
-            <td><paper-button raised on-tap="deleteInvitato">X</paper-button></td>
           </tr>
        </template>
         </table>
@@ -103,7 +106,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         invitati:{
           type: Array,
           notify: true
-        }
+        },
+
+        showDelete: {type: Boolean, value: false}
 
       }, 
 
@@ -149,8 +154,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.lingua[path][campo];
       },
 
+      toggleDelete: function(){
+        this.showDelete = !this.showDelete;
+      },
+
       prova: function(){
         console.log(this.$.lingua.selectedItem.innerHTML);
+      },
+
+      computeFilter: function(string) {
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          return function(invitato) {
+            var nome = invitato.nome.toLowerCase();
+            return (nome.indexOf(string) != -1);
+          };
+        }
       }
     });
   </script>
