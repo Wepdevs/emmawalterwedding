@@ -8,12 +8,13 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
-<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">-->
+<!--<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">-->
+<!--<link rel="import" href="../bower_components/paper-item/paper-item.html">-->
+<!--<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">-->
+<!--<link rel="import" href="../bower_components/polymerfire/polymerfire.html">-->
+
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-invitati">
@@ -34,11 +35,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <firebase-app auth-domain="emmawalterwedding.firebaseapp.com"
       database-url="https://emmawalterwedding.firebaseio.com"
-      api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc">
+      api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc"
+      name="invitati">
     </firebase-app>
      <firebase-query id="query"
       path="/invitati"
-      data="{{invitati}}">
+      data="{{invitati}}"
+      app-name="invitati">
     </firebase-query>
 
     <div class="card">

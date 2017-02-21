@@ -11,6 +11,12 @@
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<script src="../bower_components/moment/moment.js"></script>
 <link rel="import" href="my-icons.html">
 
 
@@ -21,7 +27,7 @@
   <template>
     <style>
       :host {
-        --app-primary-color: purple;
+        --app-primary-color: #4c1c24;
         --app-secondary-color: black;
 
         display: block;
@@ -51,7 +57,13 @@
         color: black;
         font-weight: bold;
       }
+
+      .langBtn:hover{
+        cursor: pointer;
+      }
     </style>
+
+    <iron-ajax auto="" url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -61,10 +73,12 @@
       <app-drawer id="drawer">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">Test Area</a>
-          <a name="view3" href="/view3">Lista Nozze</a>
-          <a name="view2" href="/view2">Dove</a>
-          <a name="view3" href="/view3">RSVP</a>
+          
+          <a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>
+          <a name="rsvp" href="/rsvp">RSVP</a>
+          <a name="" href="" id="dove">{{calcString("dove", langPath, lingua)}}</a>
+          <a name="" href="">{{calcString("quando", langPath, lingua)}}</a>
+          <a name="" href="" on-tap="prova">Test</a>
         </iron-selector>
       </app-drawer>
 
@@ -75,21 +89,21 @@
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
             <div main-title="">Emma &amp; Walter Wedding Site</div>
-            <img src="../images/italy_flag.ico" width="40px">
-            <img src="../images/united_kingdom_flag.ico" width="40px">
+            <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="40px">
+            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="40px">
           </app-toolbar>
         </app-header>
 
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
           <my-view1 name="view1"></my-view1>
-          <my-view2 name="view2"></my-view2>
-          <my-view3 name="view3"></my-view3>
+          <my-invitati name="invitati" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"></my-invitati>
+          <my-rsvp name="rsvp" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"></my-rsvp>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
   </template>
 
-  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(e){this.page=e||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(e){var t=this.resolveUrl("my-"+e+".html");this.importHref(t,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"}});</script>
+  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},langPath:{value:"ita"}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var e=this.resolveUrl("my-"+t+".html");this.importHref(e,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log(this.lingua)},calcString:function(t,e,a){return this.lingua[e][t]}});</script>
 </dom-module>
 </body></html>
