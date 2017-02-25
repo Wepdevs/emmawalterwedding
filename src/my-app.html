@@ -19,12 +19,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <script src="../bower_components/moment/moment.js"></script>
 <link rel="import" href="my-icons.html">
@@ -81,6 +84,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .langBtn:hover{
         cursor: pointer;
       }
+
+      #login-fab{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--app-primary-color);
+      }
     </style>
 
     <iron-ajax auto url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
@@ -129,6 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
+      <paper-fab id="login-fab" mini icon="account-box"></paper-fab>
     </app-drawer-layout>
   </template>
 
