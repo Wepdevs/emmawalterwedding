@@ -31,7 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div>{{calcString("saluto", langPath, lingua)}} {{nome}}!</div>
 
-
+      <div id="full" hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
        <!--<paper-input label='{{calcString("password", langPath, lingua)}}' id="password"></paper-input> 
        <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>-->
 
@@ -114,6 +114,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.pranzoFormVisible = false;
           }
 
+      },
+
+      calcStatus: function(){
+        return this.statusKnown != 'UNKNOWN';
       },
 
       prova2: function(){
