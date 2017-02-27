@@ -1,0 +1,113 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">-->
+<!--<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">-->
+<!--<link rel="import" href="../bower_components/paper-item/paper-item.html">-->
+<!--<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">-->
+<!--<link rel="import" href="../bower_components/polymerfire/polymerfire.html">-->
+
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-login">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+      #error{
+        color: red !important;
+      }
+      
+
+      #loginDialog{
+        padding: 30px;
+        position: fixed;
+        bottom: 40px;
+        right: 40px; 
+      }
+    </style>
+
+
+    <paper-dialog modal id="loginDialog" entry-animation="scale-up-animation"
+              exit-animation="fade-out-animation">
+      <h2>Login</h2>
+      <div>Please insert the password provided in the invitation email you received</div>
+      <paper-dialog-scrollable>
+        <paper-input label="Password" id="password"></paper-input>
+        <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button autofocus on-tap="login">Accept</paper-button>
+      </div>
+    </paper-dialog>
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-login',
+
+      properties: {
+          invitati: {type: Array},
+          statusKnown: {type: String, value: "UNKNOWN", notify: true}
+        },
+
+      openDialog: function(){
+        
+          this.$.error.hidden = true;
+          this.$.loginDialog.open();
+        },
+
+      login: function(){
+
+           var trovato = false;
+
+          for( var i = 0; i< this.invitati.length; i++){
+            if(this.invitati[i].password == this.$.password.value){
+              trovato = true;
+              this.nome = this.invitati[i].nome;
+               this.$.error.hidden = true;
+               this.$.password.value = "";
+
+              if(this.invitati[i].password.includes("asd"))
+              {
+                this.statusKnown = "FULL";
+              } else{
+                this.statusKnown = "PARTY";
+              }
+              break;
+            }
+        }
+
+         if(!trovato){
+          this.$.error.hidden = false;
+        }
+        
+      },
+
+       calcString: function(campo, path, lingua){
+
+        return this.lingua[path][campo];
+      },
+
+      statusKnown: function(){
+        return this.statusKnown;
+      }
+      
+    });
+  </script>
+</dom-module>

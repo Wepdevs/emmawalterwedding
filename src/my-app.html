@@ -32,6 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="my-login.html">
 <script src="../bower_components/moment/moment.js"></script>
 <link rel="import" href="my-icons.html">
 
@@ -93,14 +94,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         bottom: 20px;
         right: 20px;
         background-color: var(--app-primary-color);
-      }
-
-      #loginDialog{
-        padding: 30px;
-        position: fixed;
-        bottom: 40px;
-        right: 40px;
-        
       }
     </style>
 
@@ -166,6 +159,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
     </paper-dialog>
 
+    <my-login id="login"
+     invitati="{{invitati}}"
+     lingua="{{lingua}}"
+     lang-path="{{langPath}}"
+     status-known="{{statusKnown}}"></my-login>
+
 
 
 
@@ -184,7 +183,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         invitati: {type: Array},
 
-        langPath:{value:"ita"}
+        langPath:{value:"ita"},
+
+        statusKnown:{type: String}
 
       },
 
@@ -228,7 +229,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       loginToggle: function(){
-        this.$.loginDialog.open();
+        // this.$.loginDialog.open();
+        console.log(this.statusKnown);
+        this.$.login.openDialog();
       }
     });
   </script>
