@@ -63,7 +63,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
           invitati: {type: Array},
-          statusKnown: {type: String, value: "UNKNOWN", notify: true}
+          statusKnown: {type: String, value: "UNKNOWN", notify: true},
+          nome: {type: String, notify: true}
         },
 
       openDialog: function(){
@@ -79,15 +80,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           for( var i = 0; i< this.invitati.length; i++){
             if(this.invitati[i].password == this.$.password.value){
               trovato = true;
-              this.nome = this.invitati[i].nome;
+               this.nome = this.invitati[i].nome;
                this.$.error.hidden = true;
                this.$.password.value = "";
 
               if(this.invitati[i].password.includes("asd"))
               {
-                this.statusKnown = "FULL";
+                // this.statusKnown = "FULL";
+                this.set("statusKnown", "FULL");
               } else{
-                this.statusKnown = "PARTY";
+                // this.statusKnown = "PARTY";
+                this.set("statusKnown", "PARTY");
               }
               break;
             }

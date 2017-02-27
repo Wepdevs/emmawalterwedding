@@ -32,16 +32,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div>{{calcString("saluto", langPath, lingua)}} {{nome}}!</div>
 
 
-       <paper-input label='{{calcString("password", langPath, lingua)}}' id="password"></paper-input> 
-       <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>
+       <!--<paper-input label='{{calcString("password", langPath, lingua)}}' id="password"></paper-input> 
+       <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>-->
 
       <!--<template is="dom-repeat" items="{{invitati}}" as="invitato">
             <div>{{invitato.nome}}</div>
        </template>-->
       <div id="full" hidden$="{{!pranzoFormVisible}}">{{calcString("domandapranzo", langPath, lingua)}}</div>
       <div id="party" hidden$="{{!partyFormVisible}}">{{calcString("domandaparty", langPath, lingua)}}</div>
-      <paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
-      <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>
+      <!--<paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
+      <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>-->
 
   </template>
 
@@ -53,6 +53,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         invitati:{
           type: Array
         },
+
+        statusKnown: {type: String, observer: '_statusKnownHandler'},
 
         nome: String,
         pranzoFormVisible: {type: Boolean, value: false},
@@ -102,8 +104,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.lingua[path][campo];
       },
 
-      prova: function(){
-        console.log(this.lingua.ita.saluto + this.langPath)
+      _statusKnownHandler: function(newValue, oldValue){
+
+          if(newValue == "FULL"){
+                this.pranzoFormVisible = true;
+                this.partyFormVisible = false;
+          } else if(newValue == "PARTY"){
+                this.partyFormVisible = true;
+                this.pranzoFormVisible = false;
+          }
+
+      },
+
+      prova2: function(){
+        console.log(this.statusKnown)
       }
     });
   </script>
