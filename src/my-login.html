@@ -83,6 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                this.nome = this.invitati[i].nome;
                this.$.error.hidden = true;
                this.$.password.value = "";
+               this.$.loginDialog.close();
 
               if(this.invitati[i].password.includes("asd"))
               {

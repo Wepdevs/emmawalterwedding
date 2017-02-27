@@ -7,15 +7,22 @@
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="my-login.html">
 <script src="../bower_components/moment/moment.js"></script>
 <link rel="import" href="my-icons.html">
 
@@ -61,7 +68,22 @@
       .langBtn:hover{
         cursor: pointer;
       }
+
+      #login-fab{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--app-primary-color);
+      }
     </style>
+
+
+        <firebase-app auth-domain="emmawalterwedding.firebaseapp.com" database-url="https://emmawalterwedding.firebaseio.com" api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc" name="invitati">
+    </firebase-app>
+     <firebase-query id="query" path="/invitati" data="{{invitati}}" app-name="invitati">
+    </firebase-query>
+
+
 
     <iron-ajax auto="" url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
@@ -97,13 +119,32 @@
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
           <my-view1 name="view1"></my-view1>
           <my-invitati name="invitati" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"></my-invitati>
-          <my-rsvp name="rsvp" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"></my-rsvp>
+          <my-rsvp name="rsvp" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-rsvp>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
+      <paper-fab id="login-fab" mini="" icon="account-box" on-tap="loginToggle"></paper-fab>
     </app-drawer-layout>
+
+    <paper-dialog modal="" id="loginDialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+      <h2>Login</h2>
+      <div>Please insert the password provided in the invitation email you received</div>
+      <paper-dialog-scrollable>
+        <paper-input label="Password"></paper-input>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-dismiss="">Cancel</paper-button>
+        <paper-button dialog-confirm="" autofocus="">Accept</paper-button>
+      </div>
+    </paper-dialog>
+
+    <my-login id="login" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-login>
+
+
+
+
   </template>
 
-  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},langPath:{value:"ita"}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var e=this.resolveUrl("my-"+t+".html");this.importHref(e,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log(this.lingua)},calcString:function(t,e,a){return this.lingua[e][t]}});</script>
+  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},langPath:{value:"ita"},statusKnown:{type:String}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var e=this.resolveUrl("my-"+t+".html");this.importHref(e,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log("observer da padre")},calcString:function(t,e,a){return this.lingua[e][t]},loginToggle:function(){this.$.login.openDialog()}});</script>
 </dom-module>
 </body></html>
