@@ -17,6 +17,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
@@ -28,6 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <script src="../bower_components/moment/moment.js"></script>
 <link rel="import" href="my-icons.html">
@@ -91,6 +94,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         right: 20px;
         background-color: var(--app-primary-color);
       }
+
+      #loginDialog{
+        padding: 30px;
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        
+      }
     </style>
 
     <iron-ajax auto url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
@@ -139,8 +150,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
-      <paper-fab id="login-fab" mini icon="account-box"></paper-fab>
+      <paper-fab id="login-fab" mini icon="account-box" on-tap="loginToggle"></paper-fab>
     </app-drawer-layout>
+
+    <paper-dialog modal id="loginDialog" entry-animation="scale-up-animation"
+              exit-animation="fade-out-animation">
+      <h2>Login</h2>
+      <div>Please insert the password provided in the invitation email you received</div>
+      <paper-dialog-scrollable>
+        <paper-input label="Password"></paper-input>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm autofocus>Accept</paper-button>
+      </div>
+    </paper-dialog>
+
+
+
+
   </template>
 
   <script>
@@ -197,6 +225,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       calcString: function(campo, path, lingua){
 
         return this.lingua[path][campo];
+      },
+
+      loginToggle: function(){
+        this.$.loginDialog.open();
       }
     });
   </script>
