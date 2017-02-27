@@ -97,6 +97,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+
+        <firebase-app auth-domain="emmawalterwedding.firebaseapp.com"
+      database-url="https://emmawalterwedding.firebaseio.com"
+      api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc"
+      name="invitati">
+    </firebase-app>
+     <firebase-query id="query"
+      path="/invitati"
+      data="{{invitati}}"
+      app-name="invitati">
+    </firebase-query>
+
+
+
     <iron-ajax auto url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
     <app-location route="{{route}}"></app-location>
