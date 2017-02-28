@@ -62,6 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <th>cibo</th>
             <th>hotel</th>
             <th>altro</th>
+            <th>password</th>
           </tr>
         <template is="dom-repeat" items="{{risposte}}" as="risposta" filter="{{computeFilter(searchString)}}">
           <tr>
@@ -72,6 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <td>{{risposta.cibo}}</td>
             <td>{{risposta.hotel}}</td>
             <td>{{risposta.altro}}</td>
+            <td>{{risposta.password}}</td>
           </tr>
        </template>
         </table>
@@ -95,40 +97,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       }, 
 
-      addInvitato: function(){
-
-        var db = fb.database();
-         var email = "walter.miani@gmail.com";
-         var password = email;
-         fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-        });
-
-        var passwordType = "";
-
-        if(this.$.invito.selectedItem.innerHTML == 'Full'){
-          passwordType = 'asd';
-        } else{
-          passwordType = 'dsa';
-        }
-        var password = (moment().format('L') + passwordType + moment().format('LTS')).trim().replace(' ','w').replace("/",'e').replace(':','s');
-
-        var invitato = {nome : this.$.nome.value,
-                        email : this.$.email.value,
-                        lingua: this.$.lingua.selectedItem.innerHTML,
-                        invito:  this.$.invito.selectedItem.innerHTML,
-                        password: password}
-
-         db.ref().child('invitati/').push(invitato);
-
-          this.$.nome.value = "";
-          this.$.email.value = "";
-      }, 
+      
 
       deleteRisposta: function(e){
+
+        this.statusKnown = "UNKNOWN";
+
         fb.database().ref().child('risposte/' + e.model.risposta.$key).remove();
       },
 

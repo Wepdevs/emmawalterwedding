@@ -136,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             role="main">
           <my-view1 name="view1" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-view1>
           <my-invitati name="invitati" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-invitati>
-          <my-rsvp name="rsvp" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-rsvp>
+          <my-rsvp name="rsvp"  invitati="{{invitati}}" risposte="{{risposte}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-rsvp>
           <my-where name="where" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-where>
           <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-where>
           <my-view404 name="view404"></my-view404>
@@ -163,7 +163,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      lingua="{{lingua}}"
      lang-path="{{langPath}}"
      status-known="{{statusKnown}}"
-     nome="{{nome}}"></my-login>
+     nome="{{nome}}"
+     password="{{password}}"></my-login>
 
 
 

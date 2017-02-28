@@ -34,33 +34,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
        <!--<paper-input label='{{calcString("password", langPath, lingua)}}' id="password"></paper-input> 
        <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>-->
-       
+      <div hidden$="{{!alreadyAnswered}}"><h3>hai già risposto al form, vuoi modificare?</h3></div>
+      <paper-button raised hidden$="{{!alreadyAnswered}}" on-tap="toggleEdit">Modifica!</paper-button>
       <div id="full" hidden$="{{!pranzoFormVisible}}">
         <div>You’re invited to our wedding celebration! Please RSVP by xx June 2017.</div>
 
         <div>Will you be attending?</div>
         <div>{{calcString("domandapranzo", langPath, lingua)}}</div>
-         <paper-radio-group id="risposta" selected="small">
+         <paper-radio-group id="risposta" required selected="yes" disabled="{{alreadyAnswered}}">
             <paper-radio-button name="yes">Yes</paper-radio-button>
             <paper-radio-button name="no">No</paper-radio-button>
          </paper-radio-group>
          <paper-input hidden id="tipoform" value="FULL"></paper-input>
-         <paper-input id="nomeform" label="Full name of guest/s"></paper-input>
-         <paper-input id="hotelform" label="Accomodation/Hotel/B&B"></paper-input>
-         <paper-input id="ciboform" label="Dietary requirements/restrictions"></paper-input>
-         <paper-textarea id="altroform" label="Comments/Questions/Other"></paper-textarea>
-         <paper-button raised on-tap="saveFullAnswer">SEND</paper-button>
+         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform" label="Full name of guest/s"></paper-input>
+         <paper-input disabled="{{alreadyAnswered}}" id="hotelform" label="Accomodation/Hotel/B&B"></paper-input>
+         <paper-input disabled="{{alreadyAnswered}}" id="ciboform" label="Dietary requirements/restrictions"></paper-input>
+         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform" label="Comments/Questions/Other"></paper-textarea>
+         <paper-button disabled="{{alreadyAnswered}}" raised on-tap="saveFullAnswer">SEND</paper-button>
       </div>
       <div id="party" hidden$="{{!partyFormVisible}}">
         <div>{{calcString("domandaparty", langPath, lingua)}}</div>
-        <paper-radio-group id="risposta2" selected="small">
+        <paper-radio-group disabled="{{alreadyAnswered}}" id="risposta2" selected="yes">
             <paper-radio-button name="yes">Yes</paper-radio-button>
             <paper-radio-button name="no">No</paper-radio-button>
          </paper-radio-group>
          <paper-input hidden id="tipoform2" value="PARTY"></paper-input>
-         <paper-input id="nomeform2" label="Full name of guest/s"></paper-input>
-         <paper-textarea id="altroform2" label="Comments/Questions/Other"></paper-textarea>
-         <paper-button raised on-tap="savePartyAnswer">SEND</paper-button>
+         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform2" label="Full name of guest/s"></paper-input>
+         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform2" label="Comments/Questions/Other"></paper-textarea>
+         <paper-button disabled="{{alreadyAnswered}}" raised on-tap="savePartyAnswer">SEND</paper-button>
         </div>
       <!--<paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
       <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>-->
@@ -82,43 +83,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pranzoFormVisible: {type: Boolean, value: false},
         partyFormVisible: {type: Boolean, value: false},
         loginBtnVisible: {type: Boolean, value: true},
-        sendBtnVisible: {type: Boolean, value: false}
-      },
-
-      validatePassword: function(){
-
-        var trovato = false;
-
-        for( var i = 0; i< this.invitati.length; i++){
-          if(this.invitati[i].password == this.$.password.value){
-            trovato = true;
-            this.nome = this.invitati[i].nome;
-            this.$.error.hidden = true;
-            this.loginBtnVisible = false;
-            this.sendBtnVisible = true;
-            this.$.password.hidden = true;
-
-            if(this.invitati[i].password.includes("asd"))
-            {
-                this.pranzoFormVisible = true;
-                this.partyFormVisible = false;
-            } else{
-                this.partyFormVisible = true;
-                this.pranzoFormVisible = false;
-            }
-            break;
-          }
-        }
-
-
-        if(!trovato){
-          this.pranzoFormVisible = false;
-          this.partyFormVisible = false;
-          this.$.error.hidden = false;
-        }
-
-        this.$.password.value = "";
-
+        sendBtnVisible: {type: Boolean, value: false},
+        alreadyAnswered: {type: Boolean, value: false},
+        rispostaKey: String,
+        onEdit: {type: Boolean, value: false}
       },
 
       calcString: function(campo, path, lingua){
@@ -129,7 +97,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.lingua[path][campo];
       },
 
+      toggleEdit: function(){
+        this.alreadyAnswered = false;
+        this.onEdit = true;
+      },
+
       _statusKnownHandler: function(newValue, oldValue){
+
+        this.alreadyAnswered = false;
 
           if(newValue == "FULL"){
                 this.pranzoFormVisible = true;
@@ -139,36 +114,82 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.pranzoFormVisible = false;
           }
 
+        for(var i = 0; i< this.risposte.length; i++){
+          if(this.risposte[i].password == this.password){
+            this.alreadyAnswered = true;
+            this.showAnswer(this.risposte[i], this.statusKnown);
+            break;
+          }
+        }
+      },
+
+
+      showAnswer: function(risposta, status){
+
+        this.rispostaKey = risposta.$key;
+
+        if(status == "FULL"){
+            this.$.risposta.selectedItem.name = risposta.risposta;
+            this.$.nomeform.value = risposta.nome;
+            this.$.ciboform.value = risposta.cibo;
+            this.$.hotelform.value = risposta.hotel;
+            this.$.altroform.value = risposta.altro;
+        } else if(status == "PARTY"){
+            this.$.risposta2.selectedItem.name = risposta.risposta;
+            this.$.nomeform2.value = risposta.nome;
+            // this.$.ciboform2.value = risposta.cibo;
+            // this.$.hotelform2.value = risposta.hotel;
+            this.$.altroform2.value = risposta.altro;
+        }
       },
 
       saveFullAnswer: function(){
 
-          var risposta = this.$.risposta.selectedItem.name;
-          var nomeform = this.$.nomeform.value; 
-          var ciboform = this.$.ciboform.value; 
-          var hotelform = this.$.hotelform.value;
-          var altroform = this.$.altroform.value; 
-          var tipoform = this.$.tipoform.value;
+        if(this.$.nomeform.validate()){
+            var risposta = this.$.risposta.selectedItem.name;
+            var nomeform = this.$.nomeform.value; 
+            var ciboform = this.$.ciboform.value; 
+            ciboform = ciboform == null? "" : ciboform; 
+            var hotelform = this.$.hotelform.value;
+            hotelform = hotelform == null? "" : hotelform; 
+            var altroform = this.$.altroform.value; 
+            altroform = altroform == null? "" : altroform; 
+            var tipoform = this.$.tipoform.value;
+            var password = this.password;
 
-          var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform}
+            var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform, password: password}
 
-          fb.database().ref().child('risposte/').push(risposta);
+            if(!this.onEdit)
+              fb.database().ref().child('risposte/').push(risposta);
+            else
+              fb.database().ref().child('risposte/' + this.rispostaKey).update(risposta);
 
+            this.alreadyAnswered = true;
+        }
       },
 
       savePartyAnswer: function(){
 
+
+        if(this.$.nomeform2.validate()){
           var risposta = this.$.risposta2.selectedItem.name;
           var nomeform = this.$.nomeform2.value; 
           var ciboform = "";
           var hotelform = "";
-          var altroform = this.$.altroform2.value; 
+          var altroform = this.$.altroform2.value;
+          altroform = altroform == null? "" : altroform; 
           var tipoform = this.$.tipoform2.value;
+          var password = this.password;
 
-          var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform}
+          var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform, password: password}
 
-          fb.database().ref().child('risposte/').push(risposta);
+          if(!this.onEdit)
+              fb.database().ref().child('risposte/').push(risposta);
+            else
+              fb.database().ref().child('risposte/' + this.rispostaKey).update(risposta);
 
+          this.alreadyAnswered = true;
+        }
       },
 
       calcStatus: function(){
@@ -176,7 +197,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       prova2: function(){
-        console.log(this.statusKnown)
+        console.log(this.password);
+        
       }
     });
   </script>
