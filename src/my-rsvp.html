@@ -39,6 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div>You’re invited to our wedding celebration! Please RSVP by xx June 2017.</div>
 
         <div>Will you be attending?</div>
+        <div>{{calcString("domandapranzo", langPath, lingua)}}</div>
          <paper-radio-group id="risposta" selected="small">
             <paper-radio-button name="yes">Yes</paper-radio-button>
             <paper-radio-button name="no">No</paper-radio-button>
@@ -50,7 +51,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          <paper-textarea id="altroform" label="Comments/Questions/Other"></paper-textarea>
          <paper-button raised on-tap="saveFullAnswer">SEND</paper-button>
       </div>
-      <div id="party" hidden$="{{!partyFormVisible}}">{{calcString("domandaparty", langPath, lingua)}}</div>
+      <div id="party" hidden$="{{!partyFormVisible}}">
+        <div>{{calcString("domandaparty", langPath, lingua)}}</div>
+        <paper-radio-group id="risposta2" selected="small">
+            <paper-radio-button name="yes">Yes</paper-radio-button>
+            <paper-radio-button name="no">No</paper-radio-button>
+         </paper-radio-group>
+         <paper-input hidden id="tipoform2" value="PARTY"></paper-input>
+         <paper-input id="nomeform2" label="Full name of guest/s"></paper-input>
+         <paper-textarea id="altroform2" label="Comments/Questions/Other"></paper-textarea>
+         <paper-button raised on-tap="savePartyAnswer">SEND</paper-button>
+        </div>
       <!--<paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
       <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>-->
     </div>
@@ -138,6 +149,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var hotelform = this.$.hotelform.value;
           var altroform = this.$.altroform.value; 
           var tipoform = this.$.tipoform.value;
+
+          var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform}
+
+          fb.database().ref().child('risposte/').push(risposta);
+
+      },
+
+      savePartyAnswer: function(){
+
+          var risposta = this.$.risposta2.selectedItem.name;
+          var nomeform = this.$.nomeform2.value; 
+          var ciboform = "";
+          var hotelform = "";
+          var altroform = this.$.altroform2.value; 
+          var tipoform = this.$.tipoform2.value;
 
           var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform}
 
