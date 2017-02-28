@@ -43,14 +43,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-dialog modal id="loginDialog" entry-animation="scale-up-animation"
               exit-animation="fade-out-animation">
       <h2>Login</h2>
-      <div>Please insert the password provided in the invitation email you received</div>
+      <div>{{calcString("richiestapassword", langPath, lingua)}}</div>
       <paper-dialog-scrollable>
-        <paper-input label="Password" id="password"></paper-input>
+        <paper-input label="Password" id="password" value="02e20/2017asd7s18:04wPM"></paper-input>
         <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>
       </paper-dialog-scrollable>
       <div class="buttons">
-        <paper-button dialog-dismiss>Cancel</paper-button>
-        <paper-button autofocus on-tap="login">Accept</paper-button>
+        <paper-button dialog-dismiss>{{calcString("pulsantechiudi", langPath, lingua)}}</paper-button>
+        <paper-button autofocus on-tap="login">{{calcString("pulsanteok", langPath, lingua)}}</paper-button>
       </div>
     </paper-dialog>
 
@@ -104,6 +104,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
        calcString: function(campo, path, lingua){
+
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
 
         return this.lingua[path][campo];
       },

@@ -13,8 +13,35 @@
                  "lingua" : "Lingua",
                  "password" : "Inserisci Password",
                  "passworderror" : "Password errata",
+                 "richiestapassword": "Prego inserire la password fornita nell'email d'invito",
+                 "pulsantechiudi": "Chiudi",
+                 "pulsanteok": "Ok",
                  "emma" : "Ciao Emma, inserisci qua gli invitati!",
-                 "farelogin" : "Per loggarsi cliccare sul pulsante in basso a destra e inserire la password"
+                 "farelogin" : "Per loggarsi cliccare sul pulsante in basso a destra e inserire la password",
+                 "dovetitolo1" : "The venue",
+                "dovetitolo1cont1" : "The ceremony and wedding celebrations will take place at Villa Elodia, Historical Residence in Trivignano Udinese (UD).",
+                "dovetitolo1cont2" : "Please see RSVP section for further details",
+                "dovetitolo2":"How to get to Villa Elodia",
+                "dovetitolo2cont1":"Via Roma 74, Trivignano Udinese.",
+                "dovetitolo2cont2":"Follow the A4 highway and take the exit for Palmanova.",
+                "dovetitolo2cont3":"Turn left after the toll and follow the SP352 into the old town of Palmanova.",
+                "dovetitolo2cont4":"Exit Palmanova on Via Ponte degli Speroni; follow the SP33 across Sottoselva and Clauiano.",
+                "dovetitolo2cont5":"You will reach Trivignano in less than 10 kms.",
+                "dovetitolo3":"Historical background",
+                "dovetitolo3cont1": "The Villa dates back to the second half of the 17th century.",
+                "dovetitolo3cont2": "In 1811 it was owned by the Redolfi family, landowners in Trivignano, at the time it was very different from today.",
+                "dovetitolo3cont3": "In 1821 Francesco Redolfi sold the whole property to the Venetian nobleman Domenico Rubini, from an ancient patrician family who had settled in Friuli in the middle of the 18th century. They owned mills and traded in precious silk fabrics that were exported to Vienna.",
+                "dovetitolo3cont4": "Domenico expanded and beautified the villa according to the aesthetic and architectural dictates of the Venetian Villas established by Palladio in the 16th century: neo-classical features on the main façade, doric pillars in the central body, the central rose window crowned by three beautiful statues, the stone staircase with a double ramp that leads to the first floor, to name a few. ",
+                "dovetitolo3cont5": "Ionic columns and a fine statue from the “workshop” of Canova adorn the central hall, which is characterized by the so-called Empire style (second phase of Neoclassicism). Murano chandeliers and original pieces of furniture complete the villa’s Venitian style.",
+                "dovetitolo3cont6": "The farm buildings, for the pressing of grapes and winemaking, the storage of wheat and the breeding of silkworms, were no less important.",
+                "dovetitolo3cont7":"In 1848, the property was inherited by Carlo Rubini (one of Domenico’s sons), who lived there with his English wife Emma Forbes and their three daughters (the surrounding park had a strong English influence over the years).",
+                "dovetitolo3cont8":"During the First World War, Trivignano was right in the war zone, and the villa was used as a military hospital.",
+                "dovetitolo3cont9":"In 1954 Elodia Orgnani Martina bought the property and it has remained in the family ever since and hosts events of all kinds, all year round.",
+                "hometitolo1":"Emma & Walter",
+                "hometitolo2":"23 Settembre, 2017",
+                "hometitolo3":"Trivignano Udinese (UD), Italia",
+                "homecont1":"“We are so grateful to have you all in our lives. Thank you for your love, friendship and support. ",
+                "homecont2":"Siamo felicissimi di condividere il nostro grande giorno con voi” – E&W"
                  },
             "eng": {
                 "quando": "When",
@@ -30,7 +57,60 @@
                 "lingua" : "Language",
                 "password" : "Insert Password",
                 "passworderror" : "Wrong password",
+                "richiestapassword": "Please insert the password provided in the invitation email you received",
+                "pulsantechiudi": "Cancel",
+                "pulsanteok": "Ok",
                 "emma" : "Hi Emma, insert invitees from this page",
-                "farelogin" : "To login click on the button on the right-bottom part of the screen and insert password"
+                "farelogin" : "To login click on the button on the right-bottom part of the screen and insert password",
+                "dovetitolo1" : "The venue",
+                "dovetitolo1cont1" : "The ceremony and wedding celebrations will take place at Villa Elodia, Historical Residence in Trivignano Udinese (UD).",
+                "dovetitolo1cont2" : "Please see RSVP section for further details",
+                "dovetitolo2":"How to get to Villa Elodia",
+                "dovetitolo2cont1":"Via Roma 74, Trivignano Udinese.",
+                "dovetitolo2cont2":"Follow the A4 highway and take the exit for Palmanova.",
+                "dovetitolo2cont3":"Turn left after the toll and follow the SP352 into the old town of Palmanova.",
+                "dovetitolo2cont4":"Exit Palmanova on Via Ponte degli Speroni; follow the SP33 across Sottoselva and Clauiano.",
+                "dovetitolo2cont5":"You will reach Trivignano in less than 10 kms.",
+                "dovetitolo3":"Historical background",
+                "dovetitolo3cont1": "The Villa dates back to the second half of the 17th century.",
+                "dovetitolo3cont2": "In 1811 it was owned by the Redolfi family, landowners in Trivignano, at the time it was very different from today.",
+                "dovetitolo3cont3": "In 1821 Francesco Redolfi sold the whole property to the Venetian nobleman Domenico Rubini, from an ancient patrician family who had settled in Friuli in the middle of the 18th century. They owned mills and traded in precious silk fabrics that were exported to Vienna.",
+                "dovetitolo3cont4": "Domenico expanded and beautified the villa according to the aesthetic and architectural dictates of the Venetian Villas established by Palladio in the 16th century: neo-classical features on the main façade, doric pillars in the central body, the central rose window crowned by three beautiful statues, the stone staircase with a double ramp that leads to the first floor, to name a few. ",
+                "dovetitolo3cont5": "Ionic columns and a fine statue from the “workshop” of Canova adorn the central hall, which is characterized by the so-called Empire style (second phase of Neoclassicism). Murano chandeliers and original pieces of furniture complete the villa’s Venitian style.",
+                "dovetitolo3cont6": "The farm buildings, for the pressing of grapes and winemaking, the storage of wheat and the breeding of silkworms, were no less important.",
+                "dovetitolo3cont7":"In 1848, the property was inherited by Carlo Rubini (one of Domenico’s sons), who lived there with his English wife Emma Forbes and their three daughters (the surrounding park had a strong English influence over the years).",
+                "dovetitolo3cont8":"During the First World War, Trivignano was right in the war zone, and the villa was used as a military hospital.",
+                "dovetitolo3cont9":"In 1954 Elodia Orgnani Martina bought the property and it has remained in the family ever since and hosts events of all kinds, all year round.",
+                "hometitolo1":"Emma & Walter",
+                "hometitolo2":"23rd September, 2017",
+                "hometitolo3":"Trivignano Udinese (UD), Italy",
+                "homecont1":"“We are so grateful to have you all in our lives. Thank you for your love, friendship and support. ",
+                "homecont2":"We are so excited about sharing our big day with you” – E&W"
                 }
 }
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+

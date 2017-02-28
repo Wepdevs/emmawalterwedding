@@ -17,7 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-invitati">
+<dom-module id="my-risposte">
   <template>
     <style include="shared-styles">
       :host {
@@ -45,50 +45,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </firebase-query>-->
 
     <div class="card">
-      <h3>{{calcString("invitati", langPath, lingua)}}</h3>
-      <div>{{calcString("emma", langPath, lingua)}}</div>
-
-      <paper-input label='{{calcString("nome", langPath, lingua)}}' id="nome"></paper-input>
-      <paper-input label="Email" id="email"></paper-input>
-      <paper-dropdown-menu label='{{calcString("lingua", langPath, lingua)}}'>
-        <paper-listbox class="dropdown-content" selected="0" id="lingua">
-          <paper-item>ITA</paper-item>
-          <paper-item>ENG</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-       <paper-dropdown-menu label='{{calcString("invito", langPath, lingua)}}'>
-        <paper-listbox class="dropdown-content" selected="0" id="invito">
-          <paper-item>Full</paper-item>
-          <paper-item>Party</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-      <div>
-      <button raised on-tap="addInvitato">+</button>
-      <button raised on-tap="toggleDelete">Show/Hidden Delete</button>
-      </div>
+      <h2>Risposte</h2>
       <!--<div on-tap="prova">prova</div>-->
 
 
 
-      <h3>Lista Invitati ({{invitati.length}})</h3>
+      <h3>Lista Risposte ({{risposte.length}})</h3>
+       <button raised on-tap="toggleDelete">Show/Hidden Delete</button>
       <div><span>Search </span><input value="{{searchString::input}}"></div>
         <table>
           <tr>
             <th></th>
             <th>{{calcString("nome", langPath, lingua)}}</th>
-            <th>Email</th>
-            <th>{{calcString("invito", langPath, lingua)}}</th>
-            <th>{{calcString("lingua", langPath, lingua)}}</th>
-            <th>Password</th>
+            <th>risposta</th>
+            <th>tipo</th>
+            <th>cibo</th>
+            <th>hotel</th>
+            <th>altro</th>
           </tr>
-        <template is="dom-repeat" items="{{invitati}}" as="invitato" filter="{{computeFilter(searchString)}}">
+        <template is="dom-repeat" items="{{risposte}}" as="risposta" filter="{{computeFilter(searchString)}}">
           <tr>
-            <td><button raised on-tap="deleteInvitato" hidden$={{!showDelete}}>X</button></td>
-            <td>{{invitato.nome}}</td>
-            <td>{{invitato.email}}</td>
-            <td>{{invitato.invito}}</td>
-            <td>{{invitato.lingua}}</td>
-            <td>{{invitato.password}}</td>
+            <td><button raised on-tap="deleteRisposta" hidden$={{!showDelete}}>X</button></td>
+            <td>{{risposta.nome}}</td>
+            <td>{{risposta.risposta}}</td>
+            <td>{{risposta.tipo}}</td>
+            <td>{{risposta.cibo}}</td>
+            <td>{{risposta.hotel}}</td>
+            <td>{{risposta.altro}}</td>
           </tr>
        </template>
         </table>
@@ -100,10 +83,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     Polymer({
-      is: 'my-invitati',
+      is: 'my-risposte',
 
       properties: {
-        invitati:{
+        risposte:{
           type: Array,
           notify: true
         },
@@ -145,8 +128,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.email.value = "";
       }, 
 
-      deleteInvitato: function(e){
-        fb.database().ref().child('invitati/' + e.model.invitato.$key).remove();
+      deleteRisposta: function(e){
+        fb.database().ref().child('risposte/' + e.model.risposta.$key).remove();
       },
 
     calcString: function(campo, path, lingua){

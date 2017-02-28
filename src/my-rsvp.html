@@ -31,18 +31,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <div>{{calcString("saluto", langPath, lingua)}} {{nome}}!</div>
 
-      <div id="full" hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
+      <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
        <!--<paper-input label='{{calcString("password", langPath, lingua)}}' id="password"></paper-input> 
        <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>-->
+       
+      <div id="full" hidden$="{{!pranzoFormVisible}}">
+        <div>You’re invited to our wedding celebration! Please RSVP by xx June 2017.</div>
 
-      <!--<template is="dom-repeat" items="{{invitati}}" as="invitato">
-            <div>{{invitato.nome}}</div>
-       </template>-->
-      <div id="full" hidden$="{{!pranzoFormVisible}}">{{calcString("domandapranzo", langPath, lingua)}}</div>
+        <div>Will you be attending?</div>
+         <paper-radio-group id="risposta" selected="small">
+            <paper-radio-button name="yes">Yes</paper-radio-button>
+            <paper-radio-button name="no">No</paper-radio-button>
+         </paper-radio-group>
+         <paper-input hidden id="tipoform" value="FULL"></paper-input>
+         <paper-input id="nomeform" label="Full name of guest/s"></paper-input>
+         <paper-input id="hotelform" label="Accomodation/Hotel/B&B"></paper-input>
+         <paper-input id="ciboform" label="Dietary requirements/restrictions"></paper-input>
+         <paper-textarea id="altroform" label="Comments/Questions/Other"></paper-textarea>
+         <paper-button raised on-tap="saveFullAnswer">SEND</paper-button>
+      </div>
       <div id="party" hidden$="{{!partyFormVisible}}">{{calcString("domandaparty", langPath, lingua)}}</div>
       <!--<paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
       <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>-->
-
+    </div>
   </template>
 
   <script>
@@ -101,6 +112,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       calcString: function(campo, path, lingua){
 
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
+
         return this.lingua[path][campo];
       },
 
@@ -113,6 +127,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 this.partyFormVisible = true;
                 this.pranzoFormVisible = false;
           }
+
+      },
+
+      saveFullAnswer: function(){
+
+          var risposta = this.$.risposta.selectedItem.name;
+          var nomeform = this.$.nomeform.value; 
+          var ciboform = this.$.ciboform.value; 
+          var hotelform = this.$.hotelform.value;
+          var altroform = this.$.altroform.value; 
+          var tipoform = this.$.tipoform.value;
+
+          var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform}
+
+          fb.database().ref().child('risposte/').push(risposta);
 
       },
 
