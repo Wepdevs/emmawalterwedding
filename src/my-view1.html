@@ -24,6 +24,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       h1, h2, h3, .text{
         text-align: center;
       }
+
+      .countdown{
+        padding-top: 30px;
+        font-size: 1.2rem;
+      }
     </style>
 
     <div class="card">
@@ -33,6 +38,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <div class="text">{{calcString("homecont1", langPath, lingua)}}</div>
       <div class="text">{{calcString("homecont2", langPath, lingua)}}</div>
+
+
+        <div class="text countdown">
+        {{countDown(trigger)}}
+        </div>
     </div>
   </template>
 
@@ -40,6 +50,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'my-view1',
 
+       properties: {
+          trigger: {type: String, value: "asd",notify: true}
+        },
 
       calcString: function(campo, path, lingua){
 
@@ -49,22 +62,77 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.lingua[path][campo];
       },
 
-      dbTest: function(){
+      countDown: function(momento){
+
+        setInterval(function(){    
+          this.trigger = moment(); 
+        
+        }.bind(this), 1000);
+
+        var weddingDate = moment('2017-09-23 13:00:00');
+        var now = moment();
+
+        var monthNow = now.format('M');
+        var dayNow = now.format('D');
+        var hourNow = now.format('H');
+        var minuteNow = now.format('m');
+        var secondsNow = now.format('s');
+
+        var diffMonths = weddingDate.format('M') - monthNow;
+        var diffDays = weddingDate.format('D') - dayNow;
+        var diffHours = weddingDate.format('H') - hourNow;
+        var diffMinutes = weddingDate.format('m') - minuteNow;
+        var diffSeconds = weddingDate.format('s') - secondsNow;
+
+        if(diffSeconds < 0){
+          diffSeconds = 60 + diffSeconds;
+          diffMinutes--;
+        }
+
+        if(diffMinutes < 0){
+          diffMinutes = 60 + diffMinutes;
+          diffHours--;
+        }
+
+        if(diffHours < 0){
+          diffHours = 24 + diffHours;
+          diffDays--;
+        }
+
+        if(diffDays < 0){
+          diffDays = 31 + diffDays;
+          diffMonths--;
+        }
+        var stringMonth = '';;
+        var stringDay = '';;
+        var stringHour = '';
+        var stringMinute = '';
+        var stringSecond = '';
+
+        if(diffMonths > 0)
+         stringMonth = diffMonths + ' mesi';
+
          
-         var db = fb.database();
-         var email = "walter.miani@gmail.com";
-         var password = email;
-         fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-        });
+        if(diffDays > 0)
+         stringDay = ', ' + diffDays + ' giorni';
 
+         
+        if(diffHours > 0)
+         stringHour = ', ' + diffHours + ' ore';
 
+         
+        if(diffMinutes > 0)
+         stringMinute = ', ' + diffMinutes + ' minuti';
 
+         
+        if(diffSeconds > 0)
+         stringSecond = ', ' + diffSeconds + ' secondi ';
 
-         db.ref().child('test/').push("prova");
+         var stringOut = stringMonth+stringDay+stringHour+stringMinute+stringSecond;
+        
+
+        return 'Mancano ' + stringOut + ' al nostro matrimonio!'; 
+
       }
     });
   </script>
