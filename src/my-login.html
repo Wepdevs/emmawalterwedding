@@ -76,36 +76,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       login: function(){
 
-           var trovato = false;
-           this.set("statusKnown", "UNKNOWN");
+          var trovato = false;
+          this.set("statusKnown", "UNKNOWN");
            
-
           for( var i = 0; i< this.invitati.length; i++){
             if(this.invitati[i].password == this.$.password.value){
                trovato = true;
 
-               this.nome = this.invitati[i].nome;
-               this.password = this.invitati[i].password;
-               this.$.loginDialog.close();
+              
+              this.password = this.invitati[i].password;
+              this.$.loginDialog.close();
                
-               
-
-               
-
               if(this.invitati[i].password.includes("asd"))
               {
                 setTimeout(function(){
                   this.set("statusKnown", "FULL");
                   this.$.password.value = ""; 
                   this.$.error.hidden = true;
+                  this.nome = this.invitati[i].nome;
                 
-              }.bind(this), 1000);
+              }.bind(this), 500);
               } else{
                 setTimeout(function(){
                   this.set("statusKnown", "PARTY");
                   this.$.password.value = ""; 
                   this.$.error.hidden = true;
-                }.bind(this), 1000);
+                  this.nome = this.invitati[i].nome;
+                }.bind(this), 500);
               }
               break;
             }
@@ -121,10 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.loginDialog.close();
 
         setTimeout(function(){ this.set("statusKnown", "UNKNOWN");
-        this.set("nome","");}.bind(this), 1000);
-
-       
-        
+        this.set("nome","");}.bind(this), 500);
       },
 
        calcString: function(campo, path, lingua){

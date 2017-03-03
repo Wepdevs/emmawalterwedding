@@ -32,37 +32,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div>{{calcString("saluto", langPath, lingua)}} {{nome}}!</div>
 
       <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
-      <div id="already" hidden$="{{!alreadyAnswered}}">
-        <div><h3>hai già risposto al form, vuoi modificare?</h3></div>
-        <paper-button raised on-tap="toggleEdit">Modifica!</paper-button>
+      <div hidden$="{{!alreadyAnswered}}">
+        <div><h3 >{{calcString("giarisposto", langPath, lingua)}}</h3></div>
+        <paper-button raised on-tap="toggleEdit">{{calcString("pulsantemodifica", langPath, lingua)}}</paper-button>
       </div>
       
       <div id="full" hidden$="{{!pranzoFormVisible}}">
-        <div>You’re invited to our wedding celebration! Please RSVP by xx June 2017.</div>
-
-        <div>Will you be attending?</div>
-        <div>{{calcString("domandapranzo", langPath, lingua)}}</div>
+        <div>{{calcString("invitofull", langPath, lingua)}}</div>
+        <div>{{calcString("confermare", langPath, lingua)}}</div>
          <paper-radio-group id="risposta" required selected="yes">
-            <paper-radio-button name="yes" disabled="{{alreadyAnswered}}">Yes</paper-radio-button>
-            <paper-radio-button name="no" disabled="{{alreadyAnswered}}">No</paper-radio-button>
+            <paper-radio-button name="yes" disabled="{{alreadyAnswered}}">{{calcString("si", langPath, lingua)}}</paper-radio-button>
+            <paper-radio-button name="no" disabled="{{alreadyAnswered}}">{{calcString("no", langPath, lingua)}}</paper-radio-button>
          </paper-radio-group>
          <paper-input hidden id="tipoform" value="FULL"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform" label="Full name of guest/s"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" id="hotelform" label="Accomodation/Hotel/B&B"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" id="ciboform" label="Dietary requirements/restrictions"></paper-input>
-         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform" label="Comments/Questions/Other"></paper-textarea>
-         <paper-button disabled="{{alreadyAnswered}}" raised on-tap="saveFullAnswer">SEND</paper-button>
+         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform" label="{{calcString('nomeospiti', langPath, lingua)}}"></paper-input>
+         <paper-input disabled="{{alreadyAnswered}}" id="hotelform" label="{{calcString('hotel', langPath, lingua)}}"></paper-input>
+         <paper-input disabled="{{alreadyAnswered}}" id="ciboform" label="{{calcString('cibo', langPath, lingua)}}"></paper-input>
+         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform" label="{{calcString('commenti', langPath, lingua)}}"></paper-textarea>
+         <paper-button disabled="{{alreadyAnswered}}" raised on-tap="saveFullAnswer">{{calcString('pulsanteinvia', langPath, lingua)}}</paper-button>
       </div>
       <div id="party" hidden$="{{!partyFormVisible}}">
-        <div>{{calcString("domandaparty", langPath, lingua)}}</div>
+        <div>{{calcString("invitoparty", langPath, lingua)}}</div>
+        <div>{{calcString("confermare", langPath, lingua)}}</div>
         <paper-radio-group disabled="{{alreadyAnswered}}" id="risposta2" selected="yes">
-            <paper-radio-button name="yes" disabled="{{alreadyAnswered}}">Yes</paper-radio-button>
-            <paper-radio-button name="no" disabled="{{alreadyAnswered}}">No</paper-radio-button>
+            <paper-radio-button name="yes" disabled="{{alreadyAnswered}}">{{calcString("si", langPath, lingua)}}</paper-radio-button>
+            <paper-radio-button name="no" disabled="{{alreadyAnswered}}">{{calcString("no", langPath, lingua)}}</paper-radio-button>
          </paper-radio-group>
          <paper-input hidden id="tipoform2" value="PARTY"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform2" label="Full name of guest/s"></paper-input>
-         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform2" label="Comments/Questions/Other"></paper-textarea>
-         <paper-button disabled="{{alreadyAnswered}}" raised on-tap="savePartyAnswer">SEND</paper-button>
+         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform2" label="{{calcString('nomeospiti', langPath, lingua)}}"></paper-input>
+         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform2" label="{{calcString('commenti', langPath, lingua)}}"></paper-textarea>
+         <paper-button disabled="{{alreadyAnswered}}" raised on-tap="savePartyAnswer">{{calcString('pulsanteinvia', langPath, lingua)}}</paper-button>
         </div>
     </div>
   </template>
@@ -121,7 +120,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         for(var i = 0; i< this.risposte.length; i++){
           if(this.risposte[i].password == this.password){
-            this.alreadyAnswered = true;
+            if(newValue != 'UNKNOWN')
+              this.alreadyAnswered = true;
             this.showAnswer(this.risposte[i], this.statusKnown);
             break;
           }

@@ -6,8 +6,6 @@
                  "saluto": "Ciao",
                  "entra": "Entra",
                  "invia": "Invia",
-                 "domandapranzo" : "Vieni al pranzo?",
-                 "domandaparty" : "Vieni al party?",
                  "nome" : "Nome",
                  "invito" : "Tipo Invito",
                  "lingua" : "Lingua",
@@ -75,7 +73,19 @@
                 "programmacont6":"Buffet serale, Open bar + DJ set",
                 "programmacontparty1":"Accoglienza ospiti & Drink di benvenuto",
                 "programmacontparty2":"Taglio della torta, frutta e dessert",
-                "programmacontparty3":"Buffet serale, Open bar + DJ set"
+                "programmacontparty3":"Buffet serale, Open bar + DJ set",
+                "invitofull":"Invito al nostro matrimonio! Si prega confermare o meno la propria presenza entro il xx giugno 2017.",
+                "invitoparty":"Invito ai feteggiamenti serali del nostro matrimonio! Si prega confermare o meno la propria presenza entro il xx giugno 2017.",
+                "confermare":"Confermi/confermate la presenza?",
+                "si":"Sì",
+                "no":"No",
+                "pulsanteinvia":"Invia",
+                "pulsantemodifica":"Modifica",
+                "nomeospiti":"Nome e cognome partecipanti",
+                "hotel":"Alloggio/Hotel/B&B",
+                "cibo":"Esigenze/ restrizioni alimentari",
+                "commenti":"Commenti/Domande/Altro",
+                "giarisposto":"Risposte già inserite, si vuole modificare?"
                  },
             "eng": {
                 "quando": "When",
@@ -154,7 +164,19 @@
                 "programmacont6":"Evening Buffet, Open bar + DJ set",
                 "programmacontparty1":"Guest arrivals & Welcome drinks",
                 "programmacontparty2":"Cutting of the Wedding cake, fruits and deserts",
-                "programmacontparty3":"Evening Buffet, Open bar + DJ set"
+                "programmacontparty3":"Evening Buffet, Open bar + DJ set",
+                "invitofull":"You’re invited to our wedding celebration! Please RSVP by xx June 2017.",
+                "invitoparty":"You’re invited to our evening wedding celebration! Please RSVP by xx June 2017.",
+                "confermare":"Will you be attending?",
+                "si":"Yes",
+                "no":"No",
+                "pulsanteinvia":"Send",
+                "pulsantemodifica":"Edit",
+                "nomeospiti":"Full name of guest/s",
+                "hotel":"Accomodation/Hotel/B&B",
+                "cibo":"Dietary requirements/restrictions",
+                "commenti":"Comments/Questions/Other",
+                "giarisposto":"Already sent, do you want to edit answers?"
                 }
 }
 
