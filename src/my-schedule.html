@@ -35,11 +35,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-
-      <div>ciao</div>
-
-
-
+      
+      <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div> 
       <div id="full" hidden$="{{!pranzoFormVisible}}">
         <h3>{{calcString("programmatitolo1", langPath, lingua)}}</h3>
         <div>

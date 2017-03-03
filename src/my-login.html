@@ -42,15 +42,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-dialog modal id="loginDialog" entry-animation="scale-up-animation"
               exit-animation="fade-out-animation">
-      <h2>Login</h2>
-      <div>{{calcString("richiestapassword", langPath, lingua)}}</div>
+      <div hidden$={{calcStatus(statusKnown)}}>{{calcString("richiestapassword", langPath, lingua)}}</div>
       <paper-dialog-scrollable>
-        <paper-input label="Password" id="password" value="02e20/2017asd7s18:04wPM"></paper-input>
+        <paper-input hidden$={{calcStatus(statusKnown)}} label="Password" id="password" value="02e20/2017asd7s18:04wPM"></paper-input>
         <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-dismiss>{{calcString("pulsantechiudi", langPath, lingua)}}</paper-button>
-        <paper-button autofocus on-tap="login">{{calcString("pulsanteok", langPath, lingua)}}</paper-button>
+        <paper-button hidden$={{calcStatus(statusKnown)}}  autofocus on-tap="login">{{calcString("pulsanteok", langPath, lingua)}}</paper-button>
+        <paper-button hidden$={{!calcStatus(statusKnown)}} autofocus on-tap="logout">Logout</paper-button>
       </div>
     </paper-dialog>
 
@@ -78,23 +78,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
            var trovato = false;
            this.set("statusKnown", "UNKNOWN");
+           
 
           for( var i = 0; i< this.invitati.length; i++){
             if(this.invitati[i].password == this.$.password.value){
-              trovato = true;
+               trovato = true;
+
                this.nome = this.invitati[i].nome;
                this.password = this.invitati[i].password;
-               this.$.error.hidden = true;
-               this.$.password.value = "";
                this.$.loginDialog.close();
+               
+               
+
+               
 
               if(this.invitati[i].password.includes("asd"))
               {
-                // this.statusKnown = "FULL";
-                this.set("statusKnown", "FULL");
+                setTimeout(function(){
+                  this.set("statusKnown", "FULL");
+                  this.$.password.value = ""; 
+                  this.$.error.hidden = true;
+                
+              }.bind(this), 1000);
               } else{
-                // this.statusKnown = "PARTY";
-                this.set("statusKnown", "PARTY");
+                setTimeout(function(){
+                  this.set("statusKnown", "PARTY");
+                  this.$.password.value = ""; 
+                  this.$.error.hidden = true;
+                }.bind(this), 1000);
               }
               break;
             }
@@ -106,12 +117,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         
       },
 
+      logout: function(){
+        this.$.loginDialog.close();
+
+        setTimeout(function(){ this.set("statusKnown", "UNKNOWN");
+        this.set("nome","");}.bind(this), 1000);
+
+       
+        
+      },
+
        calcString: function(campo, path, lingua){
 
         if(this.lingua[path][campo] == null)
           return "<no string>"
 
         return this.lingua[path][campo];
+      },
+
+      calcStatus: function(){
+        return this.statusKnown != 'UNKNOWN';
       },
 
       statusKnown: function(){
