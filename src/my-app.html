@@ -34,9 +34,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --app-primary-color: #4c1c24;
         --app-secondary-color: black;
 
+        height: 100vh;
+
         display: block;
 
-        /*background: url("../images/sfondo.jpg");  */
+        background: url("../images/sfondo3.jpg");
+        background-size: cover;
+      
       }
 
       #navigation{
@@ -49,20 +53,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       app-header {
-        color: #fff;
+        color: var(--app-primary-color);
         background-color: var(--app-primary-color);
+        background: transparent;
       }
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
 
       app-drawer {
-      --app-drawer-width: 180px;
+      --app-drawer-width: 200px;
       --app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
       --app-drawer-content-container: {
         background-color:  transparent;  /* #B0BEC5;  */
         padding-top: 256px;
+        font-size: 1.1rem;
+        /*transition: all ease 0.5s;*/
         }
+
+        
       }
 
       .drawer-list {
@@ -73,13 +82,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 0 16px;
         text-decoration: none;
-        color: var(--app-secondary-color);
+        color: #555;
         line-height: 40px;
+        font-weight: 900;
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: var(--app-primary-color);
         font-weight: bold;
+        font-size:1.2rem;
+        border-left: 7px solid var(--app-primary-color);
+        /*transition: all ease 0.8s;*/
       }
 
       .langBtn:hover{
