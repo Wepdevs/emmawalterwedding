@@ -1,0 +1,130 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">-->
+
+<dom-module id="my-schedule">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+      
+      .hour{
+        color: black;
+        font-weight: 900;
+      }
+
+      .text{
+        color: grey;
+        font-weight: 500;
+        font-style: italic;
+      }
+    </style>
+
+    <div class="card">
+
+      <div>ciao</div>
+
+
+
+      <div id="full" hidden$="{{!pranzoFormVisible}}">
+        <h3>{{calcString("programmatitolo1", langPath, lingua)}}</h3>
+        <div>
+          <span class="hour">{{calcString("programmaora1", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacont1", langPath, lingua)}}</span>
+        </div>
+      <div>
+          <span class="hour">{{calcString("programmaora2", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacont2", langPath, lingua)}}</span>
+      </div>
+      <div>
+          <span class="hour">{{calcString("programmaora3", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacont3", langPath, lingua)}}</span>
+        </div>
+      <div>
+          <span class="hour">{{calcString("programmaora4", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacont4", langPath, lingua)}}</span>
+        </div>
+      <div>
+          <span class="hour">{{calcString("programmaora5", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacont5", langPath, lingua)}}</span>
+      </div>
+      <div>
+          <span class="hour">{{calcString("programmaora6", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacont6", langPath, lingua)}}</span>
+        </div>
+      </div>
+      <div id="party" hidden$="{{!partyFormVisible}}">
+        <h3>{{calcString("programmatitolo2", langPath, lingua)}}</h3>
+        <div>
+          <span class="hour">{{calcString("programmaoraparty1", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacontparty1", langPath, lingua)}}</span>
+        </div>
+      <div>
+          <span class="hour">{{calcString("programmaoraparty2", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacontparty2", langPath, lingua)}}</span>
+        </div>
+      <div>
+          <span class="hour">{{calcString("programmaoraparty3", langPath, lingua)}}</span>
+          <span class="text">{{calcString("programmacontparty3", langPath, lingua)}}</span>
+        </div>
+      </div>
+      <!--<paper-button on-tap="validatePassword" id="button" hidden$="{{!loginBtnVisible}}">{{calcString("entra", langPath, lingua)}}</paper-button>
+      <paper-button on-tap="validatePassword" id="send" hidden$="{{!sendBtnVisible}}">{{calcString("invia", langPath, lingua)}}</paper-button>-->
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-schedule',
+
+      properties:{
+        invitati:{
+          type: Array
+        },
+
+        statusKnown: {type: String, observer: '_statusKnownHandler'},
+
+        nome: String,
+        pranzoFormVisible: {type: Boolean, value: false},
+        partyFormVisible: {type: Boolean, value: false}
+      },
+
+      calcString: function(campo, path, lingua){
+
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
+
+        return this.lingua[path][campo];
+      },
+
+      _statusKnownHandler: function(newValue, oldValue){
+
+          if(newValue == "FULL"){
+                this.pranzoFormVisible = true;
+                this.partyFormVisible = false;
+          } else if(newValue == "PARTY"){
+                this.partyFormVisible = true;
+                this.pranzoFormVisible = false;
+          }
+      },
+
+      calcStatus: function(){
+        return this.statusKnown != 'UNKNOWN';
+      }
+    });
+  </script>
+</dom-module>

@@ -54,19 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer({
       is: 'my-where',
 
-      properties:{
-        invitati:{
-          type: Array
-        },
-
-        statusKnown: {type: String, observer: '_statusKnownHandler'},
-
-        nome: String,
-        pranzoFormVisible: {type: Boolean, value: false},
-        partyFormVisible: {type: Boolean, value: false},
-        loginBtnVisible: {type: Boolean, value: true},
-        sendBtnVisible: {type: Boolean, value: false}
-      },
+      
 
       calcString: function(campo, path, lingua){
 
@@ -74,22 +62,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return "<no string>"
 
         return this.lingua[path][campo];
-      },
-
-      _statusKnownHandler: function(newValue, oldValue){
-
-          if(newValue == "FULL"){
-                this.pranzoFormVisible = true;
-                this.partyFormVisible = false;
-          } else if(newValue == "PARTY"){
-                this.partyFormVisible = true;
-                this.pranzoFormVisible = false;
-          }
-
-      },
-
-      prova2: function(){
-        console.log(this.statusKnown)
       }
     });
   </script>
