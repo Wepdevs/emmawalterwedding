@@ -29,6 +29,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-top: 30px;
         font-size: 1.2rem;
       }
+
+      .countdown2{
+        display: flex;
+        flex-wrap: wrap;
+        width: 400px;
+      }
+
+      .countdown2 div:not(.string){
+        font-weight: 900;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .number{
+        width: 28%;
+        margin: 1%;
+        background:black;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .dot ,.filler{
+        width: 3%;
+        margin: 1%;
+        background: transparent;
+        color: black;
+      }
+
+      .countdown2 .dot:after{
+        content: ":";
+      }
+
+      .countdown2 .string{
+        text-transform: capitalize;
+        width: 30%;
+        text-align: center;
+      }
     </style>
 
     <div class="card">
@@ -43,6 +80,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="text countdown">
         {{countDown(trigger)}}
         </div>
+
+        <div>
+          <div class="countdown2">
+            <div class="number">11</div>
+            <div class="dot"></div>
+            <div class="number">23</div>
+            <div class="dot"></div>
+            <div class="number">05</div>
+            <div class="string">Mesi</div>
+            <div class="filler"></div>
+            <div class="string">giorni</div>
+            <div class="filler"></div>
+            <div class="string">ore</div>
+           </div>
+        </div>
+
     </div>
   </template>
 
@@ -67,7 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         setInterval(function(){    
           this.trigger = moment(); 
         
-        }.bind(this), 1000);
+        }.bind(this), 60000);
 
         var weddingDate = moment('2017-09-23 13:00:00');
         var now = moment();
@@ -125,8 +178,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          stringMinute = ', ' + diffMinutes + ' minuti';
 
          
-        if(diffSeconds > 0)
-         stringSecond = ', ' + diffSeconds + ' secondi ';
+        // if(diffSeconds > 0)
+        //  stringSecond = ', ' + diffSeconds + ' secondi ';
 
          var stringOut = stringMonth+stringDay+stringHour+stringMinute+stringSecond;
         
