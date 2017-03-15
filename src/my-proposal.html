@@ -29,11 +29,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       .photo-container{
-        margin-top: 20px;
+        /*margin-top: 100px; */
         display:flex;
         flex-wrap: wrap;
         align-items: center;
-        background: #333;
+        background: #222;
+        justify-content: center;
       }
 
       .photo-container img{
@@ -41,34 +42,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 1%;
         height: 100%;
       }
+
+      
     </style>
 
-    <div class="card">
-      <h3>{{calcString("propostatitolo1", langPath, lingua)}}</h3>
-      <div>{{calcString("propostacont1", langPath, lingua)}}</div>
-      <div>{{calcString("propostacont2", langPath, lingua)}}</div>
-      <div>{{calcString("propostacont3", langPath, lingua)}}</div>
-      <div>{{calcString("propostacont4", langPath, lingua)}}</div>
-      <div>{{calcString("propostacont5", langPath, lingua)}}</div>
-      <div>{{calcString("propostacont6", langPath, lingua)}}</div>
-    
-    <div class="photo-container">
-      <img src="../images/klagenfurt/emma.jpg"/>
-      <img src="../images/klagenfurt/alberi1.jpg" />
-      <img src="../images/klagenfurt/noi.jpg" />
-      <img src="../images/klagenfurt/alberi1.jpg" />
-      <img src="../images/klagenfurt/bestie.jpg" />
+      <div class="card">
+        <h3>{{calcString("propostatitolo1", langPath, lingua)}}</h3>
+        <span>{{calcString("propostacont1", langPath, lingua)}}</span>
+        <span>{{calcString("propostacont2", langPath, lingua)}}</span>
+        <span>{{calcString("propostacont3", langPath, lingua)}}</span>
+        <span>{{calcString("propostacont4", langPath, lingua)}}</span>
+        <span>{{calcString("propostacont5", langPath, lingua)}}</span>
+        <span>{{calcString("propostacont6", langPath, lingua)}}</span>
+      
+      <div class="photo-container">
+        <img src="../images/klagenfurt/emma.jpg" on-tap="openDialog"/>
+        <img src="../images/klagenfurt/alberi1.jpg" on-tap="openDialog"/>
+        <img src="../images/klagenfurt/noi.jpg" on-tap="openDialog"/>
+        <img src="../images/klagenfurt/alberi1.jpg" on-tap="openDialog"/>
+        <img src="../images/klagenfurt/bestie.jpg" on-tap="openDialog"/>
+      </div>
     </div>
+        
 
-    </div>
+    <my-photo-dialog id="photoDialog" foto-src="{{fotoSrc}}"></my-photo-dialog>
+   
+
   </template>
-
-
-
 
   <script>
     Polymer({
       is: 'my-proposal',
+
+      properties:{
+        fotoSrc: { value: "", notify: true}
+      },
 
       calcString: function(campo, path, lingua){
 
@@ -76,6 +84,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return "<no string>"
 
         return this.lingua[path][campo];
+      },
+
+      openDialog: function(e){
+        this.fotoSrc = e.target.src;
+        this.$.photoDialog.openDialog();
+      },
+
+      closeDialog: function(){
+        this.$.photoDialog.closeDialog();
       }     
     });
   </script>
