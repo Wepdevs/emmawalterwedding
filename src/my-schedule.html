@@ -23,22 +23,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       
       .hour{
-        color: black;
+        color: white;
         font-weight: 900;
       }
 
       .text{
-        color: grey;
+        color: white;
         font-weight: 500;
-        font-style: italic;
+        /*font-style: italic; */
       }
     </style>
 
     <div class="card">
-      
       <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div> 
       <div id="full" hidden$="{{!pranzoFormVisible}}">
-        <h3>{{calcString("programmatitolo1", langPath, lingua)}}</h3>
+        <h3 class="page-title">{{calcString("programmatitolo1", langPath, lingua)}}</h3>
+        <div>{{calcString("programmatitoloorari", langPath, lingua)}}</div>
         <div>
           <span class="hour">{{calcString("programmaora1", langPath, lingua)}}</span>
           <span class="text">{{calcString("programmacont1", langPath, lingua)}}</span>
@@ -65,7 +65,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </div>
       <div id="party" hidden$="{{!partyFormVisible}}">
-        <h3>{{calcString("programmatitolo2", langPath, lingua)}}</h3>
+        <h3 class="page-title">{{calcString("programmatitolo2", langPath, lingua)}}</h3>
+        <div>{{calcString("programmatitoloorari", langPath, lingua)}}</div>
         <div>
           <span class="hour">{{calcString("programmaoraparty1", langPath, lingua)}}</span>
           <span class="text">{{calcString("programmacontparty1", langPath, lingua)}}</span>

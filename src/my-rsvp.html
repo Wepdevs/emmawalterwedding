@@ -44,17 +44,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-button{
         padding: 8px;
+        background: var(--app-primary-color);
+        color:white;
+        margin-top: 10px;
       }
 
       #edit-button{
         background:white;
+        color: var(--app-primary-color);
       }
 
     </style>
 
     <div class="card">
-      <h3>RSVP</h3>
-      <div>{{calcString("saluto", langPath, lingua)}} {{nome}}!</div>
+      <h3 class="page-title">RSVP</h3>
+      <h3>{{calcString("saluto", langPath, lingua)}} {{nome}}!</h3>
 
       <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
       <div hidden$="{{!alreadyAnswered}}">
