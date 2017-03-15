@@ -26,6 +26,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #error{
         color: red;
       }
+
+
+      .photo-container{
+        margin-top: 20px;
+        display:flex;
+        flex-wrap: wrap;
+        align-items: center;
+        background: #333;
+      }
+
+      .photo-container img{
+        width: 31%;
+        margin: 1%;
+        height: 100%;
+      }
     </style>
 
     <div class="card">
@@ -36,7 +51,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div>{{calcString("propostacont4", langPath, lingua)}}</div>
       <div>{{calcString("propostacont5", langPath, lingua)}}</div>
       <div>{{calcString("propostacont6", langPath, lingua)}}</div>
+    
+    <div class="photo-container">
+      <img src="../images/klagenfurt/emma.jpg"/>
+      <img src="../images/klagenfurt/alberi1.jpg" />
+      <img src="../images/klagenfurt/noi.jpg" />
+      <img src="../images/klagenfurt/alberi1.jpg" />
+      <img src="../images/klagenfurt/bestie.jpg" />
+    </div>
+
+    </div>
   </template>
+
+
+
 
   <script>
     Polymer({
