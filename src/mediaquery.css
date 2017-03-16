@@ -1,0 +1,20 @@
+/* Portrait and Landscape */
+/*
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+      .prova{
+          font-size: 50px;
+      }
+
+}  */
+
+
+
+.prova{
+    color: green;
+    font-size: 500px;
+}

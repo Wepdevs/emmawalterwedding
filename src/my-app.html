@@ -11,6 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="imports.html">
 <link rel="import" href="my-icons.html">
+<link rel="import" href="shared-styles.html">
+<link href="mediaquery.css" rel="stylesheet" type="text/css">
 
 
 
@@ -31,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #4c1c24;
+        --app-primary-color:  #4c1c24;  /*#780001;  */
         --app-secondary-color: black;
 
         height: 100vh;
@@ -104,6 +106,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-right: 30px;
       }
 
+      .drawer-list a:hover:not(.iron-selected) {
+        transition: border-right ease 0.4s, background ease 0.2s, margin-right ease 0.4s, color ease 0.2s;
+        background: rgba(55,55,55,0.69);
+      }
+
       .langBtn:hover{
         cursor: pointer;
       }
@@ -135,6 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
       }
 
+      
       .title h1{
         font-style: italic;
         color: var(--app-primary-color);
@@ -145,7 +153,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .title h2, .title h3{
           font-family: 'Colaborate Bold';
       }
-
     </style>
 
 
@@ -182,34 +189,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <div class="title">
             <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
-            <img id="logo-image" src="../images/cats_bottle_glass_bord.jpg" />
+            <img id="logo-image" src="../images/cats_bottle_glass_w.jpg" />
             <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
             <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
           </div>
-          
+<!--
+          <div class="prova">
+            asdasdasd
+          </div>-->
 
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="view1" href="/view1">Home</a>
           <a name="proposal" href="/proposal">{{calcString("proposta", langPath, lingua)}}</a>
+          <a name="view1" href="/view1">La Combriccola Matrimoniale</a>
+          <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
+          <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
+          <a name="rsvp" href="/rsvp">RSVP</a>
           <!--<a name="risposte" href="/risposte">risposte</a>-->
           <!--<a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>-->
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
-          <a name="rsvp" href="/rsvp">RSVP</a>
-          <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
-          <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
+          <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
+          <a name="view1" href="/view1">Contatti</a>
         </iron-selector>
       </app-drawer>
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
-        <!--<app-header condenses reveals effects="waterfall">
+        <app-header condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>Emma &amp Walter Wedding Site</div>
+            <!--<div main-title>Emma &amp Walter Wedding Site</div>
             <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="40px">
-            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="40px">
+            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="40px">-->
           </app-toolbar>
-        </app-header>-->
+        </app-header>
 
         
           <!--<h2>Emma &amp Walter Wedding Site</h2>-->
