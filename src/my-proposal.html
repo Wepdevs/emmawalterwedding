@@ -87,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       openDialog: function(e){
-        this.fotoSrc = e.target.src;
+        this.fotoSrc = e.target.src.replace(".jpg","_full.jpg"); 
         this.$.photoDialog.openDialog();
       },
 
