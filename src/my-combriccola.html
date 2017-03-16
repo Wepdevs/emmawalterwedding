@@ -1,0 +1,139 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">-->
+
+<dom-module id="my-combriccola">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+
+      #error{
+        color: red;
+      }
+
+
+      .photo-container{
+        /*margin-top: 100px; */
+        display:flex;
+        flex-wrap: wrap;
+        align-items: center;
+        background: #222;
+        justify-content: center;
+      }
+
+      .photo-container img{
+        width: 31%;
+        margin: 1%;
+        height: 100%;
+      }
+
+      img{
+        width: 100%;
+      }
+
+      
+    </style>
+
+      <div class="card">
+        <h3 class="page-title">{{calcString("combriccolatitolo", langPath, lingua)}}</h3>
+
+        <div>
+          <img src="../images/gruppo.jpg" />
+        </div>
+
+        <div>
+          <h2>{{calcString("combriccolanome1", langPath, lingua)}}</h2>
+          <h3>{{calcString("combriccolaruolo1", langPath, lingua)}}</h3>
+          <div>
+            <span>{{calcString("combriccolatestomonica1", langPath, lingua)}}</span>
+            <span>{{calcString("combriccolatestomonica2", langPath, lingua)}}</span>
+          </div>
+          <div>
+            <img src="../images/donnachebeve.jpg"/>
+          </div>
+        </div>
+        <div>
+          <h2>{{calcString("combriccolanome2", langPath, lingua)}}</h2>
+          <h3>{{calcString("combriccolaruolo1", langPath, lingua)}}</h3>
+          <div>
+            <span>{{calcString("combriccolatestoanna1", langPath, lingua)}}</span>
+            <span>{{calcString("combriccolatestoanna2", langPath, lingua)}}</span>
+          </div>
+          <div>
+            <img src="../images/donnachebeve.jpg"/>
+          </div>
+        </div>
+        <div>
+          <h2>{{calcString("combriccolanome3", langPath, lingua)}}</h2>
+          <h3>{{calcString("combriccolaruolo2", langPath, lingua)}}</h3>
+          <div>
+            <span>{{calcString("combriccolatestopaolo1", langPath, lingua)}}</span>
+            <span>{{calcString("combriccolatestopaolo2", langPath, lingua)}}</span>
+          </div>
+          <div>
+            <img src="../images/uomochebeve.jpg"/>
+          </div>
+        </div>
+        <div>
+          <h2>{{calcString("combriccolanome4", langPath, lingua)}}</h2>
+          <h3>{{calcString("combriccolaruolo2", langPath, lingua)}}</h3>
+          <div>
+            <span>{{calcString("combriccolatestosimone1", langPath, lingua)}}</span>
+            <span>{{calcString("combriccolatestosimone2", langPath, lingua)}}</span>
+          </div>
+          <div>
+            <img src="../images/uomochebeve.jpg"/>
+          </div>
+        </div>
+        
+    </div>
+        
+
+    <my-photo-dialog id="photoDialog" foto-src="{{fotoSrc}}"></my-photo-dialog>
+   
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-combriccola',
+
+      properties:{
+        fotoSrc: { value: "", notify: true}
+      },
+
+      calcString: function(campo, path, lingua){
+
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
+
+        return this.lingua[path][campo];
+      },
+
+      openDialog: function(e){
+        this.fotoSrc = e.target.src.replace(".jpg","_full.jpg"); 
+        this.$.photoDialog.openDialog();
+      },
+
+      closeDialog: function(){
+        this.$.photoDialog.closeDialog();
+      }     
+    });
+  </script>
+</dom-module>

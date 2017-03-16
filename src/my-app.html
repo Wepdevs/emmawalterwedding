@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-right: 7px solid var(--app-primary-color);
         transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
         background: rgba(200,200,200,0.7);
-        margin-right: 30px;
+        margin-right: 20px;
       }
 
       .drawer-list a:hover:not(.iron-selected) {
@@ -135,7 +135,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: fixed;
         top: 10px;
         right: 20px;
+        z-index: 999;
       }
+      
 
       .title{
         padding: 10px;
@@ -193,15 +195,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
             <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
           </div>
-<!--
-          <div class="prova">
-            asdasdasd
-          </div>-->
 
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="view1" href="/view1">Home</a>
           <a name="proposal" href="/proposal">{{calcString("proposta", langPath, lingua)}}</a>
-          <a name="view1" href="/view1">La Combriccola Matrimoniale</a>
+          <a name="combriccola" href="/combriccola">{{calcString("combriccola", langPath, lingua)}}</a>
           <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
@@ -209,26 +207,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!--<a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>-->
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
-          <a name="view1" href="/view1">Contatti</a>
+          <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
         </iron-selector>
       </app-drawer>
 
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
-        <app-header condenses reveals effects="waterfall">
+        <!--<app-header condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <!--<div main-title>Emma &amp Walter Wedding Site</div>
-            <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="40px">
-            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="40px">-->
           </app-toolbar>
-        </app-header>
+        </app-header> -->
 
-        
-          <!--<h2>Emma &amp Walter Wedding Site</h2>-->
           <div class="lang-container">
-            <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="30px">
-            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="30px">
+            <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="30px" />
+            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="30px" />
           </div>
         <iron-pages
             selected="[[page]]"
@@ -243,6 +236,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-list name="list" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-list>
           <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-risposte>
           <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-schedule>
+          <my-combriccola name="combriccola"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-combriccola>
+          <my-contatti name="contatti"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-contatti>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
