@@ -11,22 +11,71 @@
         
       }
 
-      h1, h2, h3, #text{
+      h1, h2, h3, .text{
+        text-align: center;
+      }
+
+      .countdown{
+        padding-top: 30px;
+        font-size: 1.2rem;
+      }
+
+      .countdown2{
+        display: flex;
+        flex-wrap: wrap;
+        width: 200px;
+        background: grey;
+        border-radius: 5px;
+      }
+
+      .countdown2 div:not(.string){
+        font-weight: 900;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .number{
+        width: 28%;
+        margin: 1%;
+        background:black;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .dot ,.filler{
+        width: 3%;
+        margin: 1%;
+        background: transparent;
+        color: black;
+      }
+
+      .countdown2 .dot:after{
+        content: ":";
+      }
+
+      .countdown2 .string{
+        text-transform: capitalize;
+        width: 30%;
         text-align: center;
       }
     </style>
 
     <div class="card">
-      <h1>Emma &amp; Walter</h1>
-      <h2>23rd September, 2017</h2>
-      <h2>Trivignano Udinese (UD), Italia</h2>
+      
 
-      <div id="text"> 
-“We are so grateful to have you all in our lives. Thank you for your love, friendship and support. 
-We are so excited about sharing our big day with you” – E&amp;W</div>
+      <div class="text">{{calcString("homecont1", langPath, lingua)}}</div>
+      <div class="text">{{calcString("homecont2", langPath, lingua)}}</div>
+
+
+        <div class="text countdown">
+        {{countDown(trigger)}}
+        </div>
+
+        
+
     </div>
   </template>
 
-  <script>Polymer({is:"my-view1",dbTest:function(){var a=fb.database(),i="walter.miani@gmail.com",e=i;fb.auth().signInWithEmailAndPassword(i,e).catch(function(a){a.code,a.message}),a.ref().child("test/").push("prova")}});</script>
+  <script>Polymer({is:"my-view1",properties:{trigger:{type:String,value:"asd",notify:!0}},calcString:function(t,r,n){return null==this.lingua[r][t]?"<no string>":this.lingua[r][t]},countDown:function(t){setInterval(function(){this.trigger=moment()}.bind(this),6e4);var r=moment("2017-09-23 13:00:00"),n=moment(),o=n.format("M"),i=n.format("D"),m=n.format("H"),a=n.format("m"),e=n.format("s"),f=r.format("M")-o,s=r.format("D")-i,u=r.format("H")-m,g=r.format("m")-a,l=r.format("s")-e;l<0&&(l=60+l,g--),g<0&&(g=60+g,u--),u<0&&(u=24+u,s--),s<0&&(s=31+s,f--);var c="",v="",h="",y="",p="";f>0&&(c=f+" mesi"),s>0&&(v=", "+s+" giorni"),u>0&&(h=", "+u+" ore"),g>0&&(y=", "+g+" minuti");var D=c+v+h+y+p;return"Mancano "+D+" al nostro matrimonio!"}});</script>
 </dom-module>
 </body></html>
