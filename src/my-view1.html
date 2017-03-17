@@ -88,15 +88,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .ringraziamento.text.mobile{
-        background: rgba(200,200,200,0.7);
+        background: transparent;
         padding: 10px;
         font-size: 25px;
       }
-
-      .title.mobile h3:first-of-type{
-        font-family: Pacifico;
-      }
-      
     </style>
 
     <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
@@ -105,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="asd" >
       <template is="dom-if" if="{{mobile}}">
         <div class="title mobile">
-                <h3>{{calcString("hometitolo1", langPath, lingua)}}</h3>
+                <h1>{{calcString("hometitolo1", langPath, lingua)}}</h3>
               <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
               <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
                <div class="text ringraziamento mobile">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}</div>
