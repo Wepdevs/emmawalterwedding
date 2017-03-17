@@ -35,24 +35,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         --app-primary-color:  #4c1c24;  /*#780001;  */
         --app-secondary-color: black;
-
+        --app-background:  url("../images/sfondo3.jpg");
         height: 100vh;
-
         display: block;
-
-        background: url("../images/sfondo3.jpg");
+        background:  var(--app-background);    /*url("../images/sfondo3.jpg");  */
         background-size: cover;
+      }
       
-      }
-
-      #navigation{
-        float: left;
-        /*background: red;*/
-        padding: 20px 20px 20px 0;
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
 
       app-header {
         color: var(--app-primary-color);
@@ -152,6 +141,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--app-primary-color);
       }
 
+      #menu-fab{
+        position: fixed;
+        top: 10px;
+        left: 20px;
+        background-color: var(--app-primary-color);
+      }
+
       #logo-image{
        /* position: fixed; */
         bottom:10px;
@@ -220,7 +216,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
-        <app-drawer id="drawer">
+        <app-drawer on-ready="drawerReady" id="drawer">
         <template is="dom-if" if="{{desktop}}">
           <div class="title">
             <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
@@ -280,6 +276,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="lang-container">
             <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="30px" />
             <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="30px" />
+            <!--<button on-tap="drawerToggle">NAVIGA</button>-->
+            <!--<paper-fab id="menu-fab" mini icon="my-icons:menu" on-tap="drawerToggle"></paper-fab>-->
           </div>
         <iron-pages
             selected="[[page]]"
@@ -345,7 +343,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         langPath:{value:"ita"},
 
-        statusKnown:{type: String}
+        statusKnown:{type: String},
+
+        mobile:{
+          observer:'_isMobile'
+        }
 
       },
 
@@ -353,12 +355,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         '_routePageChanged(routeData.page)',
       ],
 
+      _isMobile: function(newV, oldV){
+        if(newV == true){
+           this.customStyle['--app-background'] = 'url("../images/sfondo.jpg");';
+         this.updateStyles();
+        }else{
+           this.customStyle['--app-background'] = 'url("../images/sfondo3.jpg");';
+         this.updateStyles();
+        }
+
+      },
+
       _routePageChanged: function(page) {
         this.page = page || 'view1';
 
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
+
       },
 
       _pageChanged: function(page) {
@@ -393,6 +407,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       loginToggle: function(){
         this.$.login.openDialog();
+      },
+
+      drawerToggle: function(){
+        if(this.$.drawer.opened)
+        this.$.drawer.close();
+        else
+        this.$.drawer.open();
       }
     });
   </script>
