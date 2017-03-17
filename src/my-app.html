@@ -70,7 +70,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color:  transparent;  /* #B0BEC5;  */
         padding-top: 100px;
         font-size: 1.1rem;
-        /*transition: all ease 0.5s;*/
         }
 
         
@@ -86,10 +85,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-decoration: none;
         color: white;
         line-height: 40px;
-        /*font-weight: 900;  */
         background: rgba(8,6,6,0.69);
         margin: 5px 0px;
-        border-radius: 4px;
+        border-radius: 0px 5px 5px 0px;
         transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
         max-height: 40px;
         font-family: 'Bebas Neue';
@@ -99,7 +97,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .drawer-list a.iron-selected {
         color: var(--app-primary-color);
         font-weight: bold;
-        /*font-size:1.2rem; */
         border-right: 7px solid var(--app-primary-color);
         transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
         background: rgba(200,200,200,0.7);
@@ -109,6 +106,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .drawer-list a:hover:not(.iron-selected) {
         transition: border-right ease 0.4s, background ease 0.2s, margin-right ease 0.4s, color ease 0.2s;
         background: rgba(55,55,55,0.69);
+      }
+
+      .drawer-list-mobile a {
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: white;
+        line-height: 40px;
+        background: rgba(8,6,6,1);
+        margin: 5px 0px;
+        border-radius: 0px 5px 5px 0px;
+        transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
+        max-height: 40px;
+        font-family: 'Bebas Neue';
+        font-size: 24px;
+      }
+
+      .drawer-list-mobile{
+        /*padding: 20px;
+        background: black;*/
+      }
+
+       .drawer-list-mobile a:first-of-type{
+        margin-top: 60px;
+      }
+
+      .drawer-list-mobile a.iron-selected {
+        color: var(--app-primary-color);
+        font-weight: bold;
+        border-right: 7px solid var(--app-primary-color);
+        transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
+        background: rgba(200,200,200,0.7);
+        margin-right: 20px;
       }
 
       .langBtn:hover{
@@ -137,7 +167,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         right: 20px;
         z-index: 999;
       }
-      
 
       .title{
         padding: 10px;
@@ -155,6 +184,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .title h2, .title h3{
           font-family: 'Colaborate Bold';
       }
+      
     </style>
 
 
@@ -178,6 +208,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <iron-ajax auto url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
+    <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
+    <iron-media-query query="(min-width: 600px)" query-matches="{{desktop}}"></iron-media-query>
+
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
@@ -187,8 +220,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
-      <app-drawer id="drawer">
-
+        <app-drawer id="drawer">
+        <template is="dom-if" if="{{desktop}}">
           <div class="title">
             <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
             <img id="logo-image" src="../images/cats_bottle_glass_w.jpg" />
@@ -209,6 +242,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
         </iron-selector>
+        </template>
+
+        <template is="dom-if" if="{{mobile}}">
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list-mobile" role="navigation">
+          <a name="view1" href="/view1">Home</a>
+          <a name="proposal" href="/proposal">{{calcString("proposta", langPath, lingua)}}</a>
+          <a name="combriccola" href="/combriccola">{{calcString("combriccola", langPath, lingua)}}</a>
+          <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
+          <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
+          <a name="rsvp" href="/rsvp">RSVP</a>
+          <!--<a name="risposte" href="/risposte">risposte</a>-->
+          <!--<a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>-->
+          <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
+          <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
+          <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
+        </iron-selector>
+        </template>
       </app-drawer>
 
       <!-- Main content -->
@@ -218,6 +268,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
           </app-toolbar>
         </app-header> -->
+
+         
+           
+        
+
+          <div style="width: 40px;">
+             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
+           </div>
 
           <div class="lang-container">
             <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="30px" />
