@@ -185,6 +185,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .title h2, .title h3{
           font-family: 'Colaborate Bold';
       }
+
+      .wrapper{
+        height: 100%;
+        overflow: auto;
+      }
       
     </style>
 
@@ -222,7 +227,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
         <app-drawer on-ready="drawerReady" id="drawer">
-        <template is="dom-if" if="{{desktop}}">
+
+      <div class="wrapper">
+           <template is="dom-if" if="{{desktop}}">
           <div class="title">
             <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
             <img id="logo-image" src="../images/cats_bottle_glass_w.jpg" />
@@ -260,6 +267,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
         </iron-selector>
         </template>
+
+      </div>
       </app-drawer>
 
       <!-- Main content -->

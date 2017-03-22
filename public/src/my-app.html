@@ -1,34 +1,10 @@
-<html><head><link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
-<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
-<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="../bower_components/app-route/app-location.html">
-<link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/neon-animation/animations/scale-up-animation.html">
-<link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
-<link rel="import" href="../bower_components/paper-item/paper-item.html">
-<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
-<link rel="import" href="my-login.html">
-<script src="../bower_components/moment/moment.js"></script>
+<html><head><link rel="import" href="imports.html">
 <link rel="import" href="my-icons.html">
 
 
- <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
     <script>var config={apiKey:"AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc",authDomain:"emmawalterwedding.firebaseapp.com",databaseURL:"https://emmawalterwedding.firebaseio.com",storageBucket:"emmawalterwedding.appspot.com",messagingSenderId:"797809225052"},fb=firebase.initializeApp(config);</script>
+      
 
 </head><body><dom-module id="my-app">
   <template>
@@ -37,15 +13,44 @@
         --app-primary-color: #4c1c24;
         --app-secondary-color: black;
 
+        height: 100vh;
+
         display: block;
+
+        background: url("../images/sfondo3.jpg");
+        background-size: cover;
+      
+      }
+
+      #navigation{
+        float: left;
+        /*background: red;*/
+        padding: 20px 20px 20px 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
       }
 
       app-header {
-        color: #fff;
+        color: var(--app-primary-color);
         background-color: var(--app-primary-color);
+        background: transparent;
       }
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
+      }
+
+      app-drawer {
+      --app-drawer-width: 300px;
+      --app-drawer-scrim-background: rgba(8,6,6,0.69);
+      --app-drawer-content-container: {
+        background-color:  transparent;  /* #B0BEC5;  */
+        padding-top: 100px;
+        font-size: 1.1rem;
+        /*transition: all ease 0.5s;*/
+        }
+
+        
       }
 
       .drawer-list {
@@ -56,13 +61,26 @@
         display: block;
         padding: 0 16px;
         text-decoration: none;
-        color: var(--app-secondary-color);
+        color: white;
         line-height: 40px;
+        /*font-weight: 900;  */
+        background: rgba(8,6,6,0.69);
+        margin: 5px 0px;
+        border-radius: 4px;
+        transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
+        max-height: 40px;
+        font-family: 'Bebas Neue';
+        font-size: 24px;
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: var(--app-primary-color);
         font-weight: bold;
+        /*font-size:1.2rem; */
+        border-right: 7px solid var(--app-primary-color);
+        transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
+        background: rgba(200,200,200,0.7);
+        margin-right: 30px;
       }
 
       .langBtn:hover{
@@ -71,16 +89,50 @@
 
       #login-fab{
         position: fixed;
-        bottom: 20px;
+        bottom: 10px;
         right: 20px;
         background-color: var(--app-primary-color);
       }
+
+      #logo-image{
+       /* position: fixed; */
+        bottom:10px;
+        left: 20px;
+        width: 110px;
+        border-radius: 4px;
+        opacity: 0.9;
+      }
+
+      .lang-container{
+        position: fixed;
+        top: 10px;
+        right: 20px;
+      }
+
+      .title{
+        padding: 10px;
+        text-align: center;
+      }
+
+      .title h1{
+        font-style: italic;
+        color: var(--app-primary-color);
+        font-family: 'Pacifico';
+        font-size: 40px;
+      }
+
+      .title h2, .title h3{
+          font-family: 'Colaborate Bold';
+      }
+
     </style>
 
 
-        <firebase-app auth-domain="emmawalterwedding.firebaseapp.com" database-url="https://emmawalterwedding.firebaseio.com" api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc" name="invitati">
+    <firebase-app auth-domain="emmawalterwedding.firebaseapp.com" database-url="https://emmawalterwedding.firebaseio.com" api-key="AIzaSyBHvgsIFt0NQMTVn0Z8Zc_8vZcPAauejrc" name="invitati">
     </firebase-app>
      <firebase-query id="query" path="/invitati" data="{{invitati}}" app-name="invitati">
+    </firebase-query>
+    <firebase-query id="query" path="/risposte" data="{{risposte}}" app-name="invitati">
     </firebase-query>
 
 
@@ -93,33 +145,46 @@
     <app-drawer-layout fullbleed="">
       
       <app-drawer id="drawer">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+
+          <div class="title">
+            <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
+            <img id="logo-image" src="../images/cats_bottle_glass_bord.jpg">
+            <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
+            <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
+          </div>
+          
+
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="view1" href="/view1">Home</a>
-          <a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>
+          <a name="proposal" href="/proposal">{{calcString("proposta", langPath, lingua)}}</a>
+          
+          
+          <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
-          <a name="" href="" id="dove">{{calcString("dove", langPath, lingua)}}</a>
-          <a name="" href="">{{calcString("quando", langPath, lingua)}}</a>
-          <a name="" href="" on-tap="prova">Test</a>
+          <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
+          <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
         </iron-selector>
       </app-drawer>
 
       
       <app-header-layout has-scrolling-region="">
+        
 
-        <app-header condenses="" reveals="" effects="waterfall">
-          <app-toolbar>
-            <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
-            <div main-title="">Emma &amp; Walter Wedding Site</div>
-            <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="40px">
-            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="40px">
-          </app-toolbar>
-        </app-header>
-
+        
+          
+          <div class="lang-container">
+            <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="30px">
+            <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="30px">
+          </div>
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
-          <my-view1 name="view1"></my-view1>
+          <my-view1 name="view1" lingua="{{lingua}}" lang-path="{{langPath}}"></my-view1>
           <my-invitati name="invitati" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"></my-invitati>
-          <my-rsvp name="rsvp" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-rsvp>
+          <my-rsvp name="rsvp" invitati="{{invitati}}" risposte="{{risposte}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-rsvp>
+          <my-where name="where" lingua="{{lingua}}" lang-path="{{langPath}}"></my-where>
+          <my-proposal name="proposal" lingua="{{lingua}}" lang-path="{{langPath}}"></my-proposal>
+          <my-list name="list" lingua="{{lingua}}" lang-path="{{langPath}}"></my-list>
+          <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-risposte>
+          <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-schedule>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -128,7 +193,7 @@
 
     <paper-dialog modal="" id="loginDialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
       <h2>Login</h2>
-      <div>Please insert the password provided in the invitation email you received</div>
+      <div>{{calcString("richiestapassword", langPath, lingua)}}</div>
       <paper-dialog-scrollable>
         <paper-input label="Password"></paper-input>
       </paper-dialog-scrollable>
@@ -138,13 +203,13 @@
       </div>
     </paper-dialog>
 
-    <my-login id="login" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-login>
+    <my-login id="login" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-login>
 
-
+     
 
 
   </template>
 
-  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},langPath:{value:"ita"},statusKnown:{type:String}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var e=this.resolveUrl("my-"+t+".html");this.importHref(e,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log("observer da padre")},calcString:function(t,e,a){return this.lingua[e][t]},loginToggle:function(){this.$.login.openDialog()}});</script>
+  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},risposte:{type:Array},langPath:{value:"ita"},statusKnown:{type:String}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var e=this.resolveUrl("my-"+t+".html");this.importHref(e,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log("observer da padre")},calcString:function(t,e,n){return null==this.lingua[e][t]?"<no string>":this.lingua[e][t]},loginToggle:function(){this.$.login.openDialog()}});</script>
 </dom-module>
 </body></html>
