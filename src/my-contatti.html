@@ -43,6 +43,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 100%;
       }
 
+      iron-icon{
+        margin-right: 10px;
+      }
       
     </style>
 
@@ -51,9 +54,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div>
             <div>{{calcString("contattitesto1", langPath, lingua)}}</div>
-            <h3>Emma: emma.victoria.celotti@gmail.com - +39 3498650823</h3>
-            <h3>Walter: walter.miani@gmail.com - +39 3495203898</h3>
-            <h3>Margi: margaret_l_niven@hotmail.com - +39 3498650822</h3>
+            <div>
+              <h2>Emma</h2>
+              <div><iron-icon icon="mail"></iron-icon>emma.victoria.celotti@gmail.com</div>
+              <div><iron-icon icon="maps:local-phone"></iron-icon>+39 3498650823</div>
+            </div>
+            <div>
+              <h2>Walter</h2>
+              <div><iron-icon icon="mail"></iron-icon>walter.miani@gmail.com</div>
+              <div><iron-icon icon="maps:local-phone"></iron-icon>+39 3495203898</div>
+            </div>
+            <div>
+              <h2>Margi</h2>
+              <div><iron-icon icon="mail"></iron-icon>margaret_l_niven@hotmail.com</div>
+              <div><iron-icon icon="maps:local-phone"></iron-icon>+39 3498650822</div>
+            </div>
         </div>
         
     </div>
