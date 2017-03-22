@@ -249,6 +249,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
+          <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
         </iron-selector>
         </template>
 
@@ -260,11 +261,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
-          <!--<a name="risposte" href="/risposte">risposte</a>-->
-          <!--<a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>-->
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
+          <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
         </iron-selector>
         </template>
 
@@ -308,6 +308,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-schedule>
           <my-combriccola name="combriccola"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-combriccola>
           <my-contatti name="contatti"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-contatti>
+          <my-invito name="invito"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-invito>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -400,7 +401,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _pageChanged: function(page) {
-        // Load page import on demand. Show 404 page if fails
+        
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
