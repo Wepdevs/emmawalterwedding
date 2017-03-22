@@ -35,6 +35,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         --app-primary-color:  #4c1c24;  /*#780001;  */
         --app-secondary-color: black;
+        --app-card-background: rgba(8,6,6,0.69);
+        --app-card-color: white;
+        --app-card-margin: 24px 10%;
+        --app-card-padding: 16px;
+        --app-card-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         --app-background:  url("../images/sfondo3.jpg");
         height: 100vh;
         display: block;
@@ -202,7 +207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-    <iron-ajax auto url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
+    <iron-ajax auto url="./lingua-test.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
     <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
     <iron-media-query query="(min-width: 600px)" query-matches="{{desktop}}"></iron-media-query>
@@ -358,9 +363,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _isMobile: function(newV, oldV){
         if(newV == true){
            this.customStyle['--app-background'] = 'url("../images/sfondo.jpg");';
+           this.customStyle['--app-card-background'] = 'transparent;';
+           this.customStyle['--app-card-color'] = 'black;';
+           this.customStyle['--app-card-margin'] = '0px;';
+           this.customStyle['--app-card-padding'] = '0px;';
+            this.customStyle['--app-card-box-shadow'] = 'none;';
          this.updateStyles();
         }else{
            this.customStyle['--app-background'] = 'url("../images/sfondo3.jpg");';
+           this.customStyle['--app-card-background'] = 'rgba(8,6,6,0.69);';
+           this.customStyle['--app-card-color'] = 'white;';
+           this.customStyle['--app-card-margin'] = '24px 10%;';
+           this.customStyle['--app-card-padding'] = '16px;';
+           this.customStyle['--app-card-box-shadow'] = ' 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);';
          this.updateStyles();
         }
 

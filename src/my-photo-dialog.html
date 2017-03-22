@@ -92,7 +92,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       openDialog: function(){
 
         // this.$.overlay.hidden = false;
-        this.$.photoDialog.open();
+        setTimeout(function(){this.$.photoDialog.open();}.bind(this), 500)
+
+        
       },
 
       closeDialog: function(){
