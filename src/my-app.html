@@ -146,6 +146,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--app-primary-color);
       }
 
+      #login-fab:hover{
+        background-color: #722a36;
+      }
+
       #menu-fab{
         position: fixed;
         top: 10px;
@@ -170,7 +174,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .title{
-        padding: 10px;
+        /*padding: 10px;*/
         text-align: center;
       }
 
@@ -184,6 +188,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .title h2, .title h3{
           font-family: 'Colaborate Bold';
+          padding: 0px 10px;
       }
 
       .wrapper{
@@ -245,7 +250,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
           <!--<a name="risposte" href="/risposte">risposte</a>-->
-          <a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>
+          <!--<a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>-->
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
