@@ -23,14 +23,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       
       .hour{
-        color: white;
         font-weight: 900;
+      /*  font-size: 22px; */
       }
 
       .text{
-        color: white;
         font-weight: 500;
-        /*font-style: italic; */
+      /*  font-size: 25px; */
+      }
+
+      .details{
+        margin-bottom: 20px;
       }
     </style>
 
@@ -39,17 +42,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div id="full" hidden$="{{!pranzoFormVisible}}">
         <h3 class="page-title">{{calcString("programmatitolo1", langPath, lingua)}}</h3>
         <div>{{calcString("programmatitoloorari", langPath, lingua)}}</div>
+        <button on-tap="showDetail">Mostra Dettagli</button>
         <div>
           <span class="hour">{{calcString("programmaora1", langPath, lingua)}}</span>
           <span class="text">{{calcString("programmacont1", langPath, lingua)}}</span>
+          <div class="details" hidden$={{hiddenDetails}}>
+            <span>ecco il primo evento dell'evento, sarà una figata pazzesca, suonera sto cazzo</span>
+            <img src="../images/gruppo.jpg" />
+          </div>
         </div>
       <div>
           <span class="hour">{{calcString("programmaora2", langPath, lingua)}}</span>
           <span class="text">{{calcString("programmacont2", langPath, lingua)}}</span>
+          <div class="details" hidden$={{hiddenDetails}}>
+            <span>ecco il primo evento dell'evento, sarà una figata pazzesca, suonera sto cazzo</span>
+            <img src="../images/gruppo.jpg" />
+          </div>
       </div>
       <div>
           <span class="hour">{{calcString("programmaora3", langPath, lingua)}}</span>
           <span class="text">{{calcString("programmacont3", langPath, lingua)}}</span>
+          <div class="details" hidden$={{hiddenDetails}}>
+            <span>ecco il primo evento dell'evento, sarà una figata pazzesca, suonera sto cazzo</span>
+            <img src="../images/gruppo.jpg" />
+          </div>
         </div>
       <div>
           <span class="hour">{{calcString("programmaora4", langPath, lingua)}}</span>
@@ -98,7 +114,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         nome: String,
         pranzoFormVisible: {type: Boolean, value: false},
-        partyFormVisible: {type: Boolean, value: false}
+        partyFormVisible: {type: Boolean, value: false},
+        hiddenDetails: {type: Boolean, value: true}
       },
 
       calcString: function(campo, path, lingua){
@@ -122,6 +139,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       calcStatus: function(){
         return this.statusKnown != 'UNKNOWN';
+      },
+
+      showDetail: function(){
+        this.hiddenDetails = !this.hiddenDetails;
       }
     });
   </script>
