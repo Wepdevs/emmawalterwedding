@@ -58,18 +58,56 @@
         width: 30%;
         text-align: center;
       }
+
+      .ringraziamento{
+        font-size:30px;
+        font-family: Pacifico;
+        margin-top: 40px;
+        text-shadow: 4px 4px 15px #aaa;
+       /* position: fixed;  */
+        left: 0px;
+      }
+
+      .ringraziamento.text.desktop{
+        position: fixed;
+        left: 320px;
+        bottom: 50px;
+        right: 20px;
+        background: rgba(200,200,200,0.7);
+        padding: 10px;
+      }
+
+      .ringraziamento.text.mobile{
+        background: transparent;
+        padding: 10px;
+        font-size: 25px;
+      }
     </style>
 
-    <div class="card">
+    <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
+    <iron-media-query query="(min-width: 600px)" query-matches="{{desktop}}"></iron-media-query>
+
+    <div class="asd">
+      <template is="dom-if" if="{{mobile}}">
+        <div class="title mobile">
+                <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
+              <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
+              <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
+               <div class="text ringraziamento mobile">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}</div>
+               
+        </div>
+      </template>
+
+      <template is="dom-if" if="{{desktop}}">
+        <div class="title ringraziamento">
+              <div class="text ringraziamento desktop">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}</div>
+        </div>
+      </template>
+      
       
 
-      <div class="text">{{calcString("homecont1", langPath, lingua)}}</div>
-      <div class="text">{{calcString("homecont2", langPath, lingua)}}</div>
 
-
-        <div class="text countdown">
-        {{countDown(trigger)}}
-        </div>
+        
 
         
 

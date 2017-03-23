@@ -1,5 +1,7 @@
 <html><head><link rel="import" href="imports.html">
 <link rel="import" href="my-icons.html">
+<link rel="import" href="shared-styles.html">
+<link href="mediaquery.css" rel="stylesheet" type="text/css">
 
 
 
@@ -10,26 +12,20 @@
   <template>
     <style>
       :host {
-        --app-primary-color: #4c1c24;
+        --app-primary-color:  #4c1c24;  /*#780001;  */
         --app-secondary-color: black;
-
+        --app-card-background: rgba(8,6,6,0.69);
+        --app-card-color: white;
+        --app-card-margin: 24px 10%;
+        --app-card-padding: 16px;
+        --app-card-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        --app-background:  url("../images/sfondo3.jpg");
         height: 100vh;
-
         display: block;
-
-        background: url("../images/sfondo3.jpg");
+        background:  var(--app-background);    /*url("../images/sfondo3.jpg");  */
         background-size: cover;
+      }
       
-      }
-
-      #navigation{
-        float: left;
-        /*background: red;*/
-        padding: 20px 20px 20px 0;
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
 
       app-header {
         color: var(--app-primary-color);
@@ -47,7 +43,6 @@
         background-color:  transparent;  /* #B0BEC5;  */
         padding-top: 100px;
         font-size: 1.1rem;
-        /*transition: all ease 0.5s;*/
         }
 
         
@@ -63,10 +58,9 @@
         text-decoration: none;
         color: white;
         line-height: 40px;
-        /*font-weight: 900;  */
         background: rgba(8,6,6,0.69);
         margin: 5px 0px;
-        border-radius: 4px;
+        border-radius: 0px 5px 5px 0px;
         transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
         max-height: 40px;
         font-family: 'Bebas Neue';
@@ -76,11 +70,48 @@
       .drawer-list a.iron-selected {
         color: var(--app-primary-color);
         font-weight: bold;
-        /*font-size:1.2rem; */
         border-right: 7px solid var(--app-primary-color);
         transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
         background: rgba(200,200,200,0.7);
-        margin-right: 30px;
+        margin-right: 20px;
+      }
+
+      .drawer-list a:hover:not(.iron-selected) {
+        transition: border-right ease 0.4s, background ease 0.2s, margin-right ease 0.4s, color ease 0.2s;
+        background: rgba(55,55,55,0.69);
+      }
+
+      .drawer-list-mobile a {
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: white;
+        line-height: 40px;
+        background: rgba(8,6,6,1);
+        margin: 5px 0px;
+        border-radius: 0px 5px 5px 0px;
+        transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
+        max-height: 40px;
+        font-family: 'Bebas Neue';
+        font-size: 24px;
+      }
+
+      .drawer-list-mobile{
+        /*padding: 20px;
+        background: black;*/
+      }
+
+       .drawer-list-mobile a:first-of-type{
+        margin-top: 60px;
+      }
+
+      .drawer-list-mobile a.iron-selected {
+        color: var(--app-primary-color);
+        font-weight: bold;
+        border-right: 7px solid var(--app-primary-color);
+        transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
+        background: rgba(200,200,200,0.7);
+        margin-right: 20px;
       }
 
       .langBtn:hover{
@@ -91,6 +122,17 @@
         position: fixed;
         bottom: 10px;
         right: 20px;
+        background-color: var(--app-primary-color);
+      }
+
+      #login-fab:hover{
+        background-color: #722a36;
+      }
+
+      #menu-fab{
+        position: fixed;
+        top: 10px;
+        left: 20px;
         background-color: var(--app-primary-color);
       }
 
@@ -107,13 +149,15 @@
         position: fixed;
         top: 10px;
         right: 20px;
+        z-index: 999;
       }
 
       .title{
-        padding: 10px;
+        /*padding: 10px;*/
         text-align: center;
       }
 
+      
       .title h1{
         font-style: italic;
         color: var(--app-primary-color);
@@ -123,8 +167,14 @@
 
       .title h2, .title h3{
           font-family: 'Colaborate Bold';
+          padding: 0px 10px;
       }
 
+      .wrapper{
+        height: 100%;
+        overflow: auto;
+      }
+      
     </style>
 
 
@@ -137,44 +187,78 @@
 
 
 
-    <iron-ajax auto="" url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
+    <iron-ajax auto="" url="./lingua-test.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
+
+    <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
+    <iron-media-query query="(min-width: 600px)" query-matches="{{desktop}}"></iron-media-query>
 
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
 
     <app-drawer-layout fullbleed="">
       
-      <app-drawer id="drawer">
+        <app-drawer on-ready="drawerReady" id="drawer">
 
+      <div class="wrapper">
+           <template is="dom-if" if="{{desktop}}">
           <div class="title">
             <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
-            <img id="logo-image" src="../images/cats_bottle_glass_bord.jpg">
+            <img id="logo-image" src="../images/cats_bottle_glass_w.jpg">
             <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
             <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
           </div>
-          
 
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="view1" href="/view1">Home</a>
           <a name="proposal" href="/proposal">{{calcString("proposta", langPath, lingua)}}</a>
+          <a name="combriccola" href="/combriccola">{{calcString("combriccola", langPath, lingua)}}</a>
+          <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
+          <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
+          <a name="rsvp" href="/rsvp">RSVP</a>
           
           
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
-          <a name="rsvp" href="/rsvp">RSVP</a>
+          <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
+          <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
+          <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
+        </iron-selector>
+        </template>
+
+        <template is="dom-if" if="{{mobile}}">
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list-mobile" role="navigation">
+          <a name="view1" href="/view1">Home</a>
+          <a name="proposal" href="/proposal">{{calcString("proposta", langPath, lingua)}}</a>
+          <a name="combriccola" href="/combriccola">{{calcString("combriccola", langPath, lingua)}}</a>
           <a name="where" href="/where" id="dove">{{calcString("dove", langPath, lingua)}}</a>
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
+          <a name="rsvp" href="/rsvp">RSVP</a>
+          <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
+          <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
+          <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
+          <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
         </iron-selector>
+        </template>
+
+      </div>
       </app-drawer>
 
       
       <app-header-layout has-scrolling-region="">
         
 
+         
+           
         
-          
+
+          <div style="width: 40px">
+             <paper-icon-button icon="my-icons:menu" drawer-toggle=""></paper-icon-button>
+           </div>
+
           <div class="lang-container">
             <img class="langBtn" on-tap="toIta" src="../images/italy_flag.ico" width="30px">
             <img class="langBtn" on-tap="toEng" src="../images/united_kingdom_flag.ico" width="30px">
+            
+            
           </div>
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
           <my-view1 name="view1" lingua="{{lingua}}" lang-path="{{langPath}}"></my-view1>
@@ -185,6 +269,9 @@
           <my-list name="list" lingua="{{lingua}}" lang-path="{{langPath}}"></my-list>
           <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-risposte>
           <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-schedule>
+          <my-combriccola name="combriccola" lingua="{{lingua}}" lang-path="{{langPath}}"></my-combriccola>
+          <my-contatti name="contatti" lingua="{{lingua}}" lang-path="{{langPath}}"></my-contatti>
+          <my-invito name="invito" lingua="{{lingua}}" lang-path="{{langPath}}"></my-invito>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -210,6 +297,6 @@
 
   </template>
 
-  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},risposte:{type:Array},langPath:{value:"ita"},statusKnown:{type:String}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var e=this.resolveUrl("my-"+t+".html");this.importHref(e,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log("observer da padre")},calcString:function(t,e,n){return null==this.lingua[e][t]?"<no string>":this.lingua[e][t]},loginToggle:function(){this.$.login.openDialog()}});</script>
+  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},risposte:{type:Array},langPath:{value:"ita"},statusKnown:{type:String},mobile:{observer:"_isMobile"}},observers:["_routePageChanged(routeData.page)"],_isMobile:function(t,a){1==t?(this.customStyle["--app-background"]='url("../images/sfondo.jpg");',this.customStyle["--app-card-background"]="transparent;",this.customStyle["--app-card-color"]="black;",this.customStyle["--app-card-margin"]="0px;",this.customStyle["--app-card-padding"]="0px;",this.customStyle["--app-card-box-shadow"]="none;",this.updateStyles()):(this.customStyle["--app-background"]='url("../images/sfondo3.jpg");',this.customStyle["--app-card-background"]="rgba(8,6,6,0.69);",this.customStyle["--app-card-color"]="white;",this.customStyle["--app-card-margin"]="24px 10%;",this.customStyle["--app-card-padding"]="16px;",this.customStyle["--app-card-box-shadow"]=" 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);",this.updateStyles())},_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var a=this.resolveUrl("my-"+t+".html");this.importHref(a,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log("observer da padre")},calcString:function(t,a,e){return null==this.lingua[a][t]?"<no string>":this.lingua[a][t]},loginToggle:function(){this.$.login.openDialog()},drawerToggle:function(){this.$.drawer.opened?this.$.drawer.close():this.$.drawer.open()}});</script>
 </dom-module>
 </body></html>

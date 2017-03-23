@@ -5,12 +5,12 @@
   <template>
     <style>
       .card {
-        margin: 24px 10%;
-        padding: 16px;
-        color: white;
+        margin:  var(--app-card-margin); /* 24px 10%;  */
+        padding:  var(--app-card-padding) ; /*   16px;  */
+        color: var(--app-card-color);
         border-radius: 5px;
-        background-color: rgba(8,6,6,0.69);
-        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        background-color: var(--app-card-background);
+        box-shadow: var(--app-card-box-shadow); /*  0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);  */
         font-size: 17px;
         line-height: 1.8;
         /*font-style: italic; */
@@ -48,9 +48,27 @@
          border-left: 7px solid;
          border-color: var(--app-primary-color);
          border-radius: 4px;
-         width: 400px;
+         width: 87%;
          padding-left: 20px; 
       }
+
+      .title.mobile{
+        padding: 10px;
+        text-align: center;
+      }
+
+      
+      .title h1{
+        font-style: italic;
+        color: black;
+        font-family: 'Pacifico';
+        font-size: 40px;
+      }
+
+      .title h2, .title h3{
+          font-family: 'Colaborate Bold';
+      }
+
 
     </style>
   </template>
