@@ -43,15 +43,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-dialog modal id="loginDialog" entry-animation="scale-up-animation"
               exit-animation="fade-out-animation">
-      <div hidden$={{calcStatus(statusKnown)}}>{{calcString("richiestapassword", langPath, lingua)}}</div>
+      <div hidden$={{calcStatus(status.invite)}}>{{calcString("richiestapassword", langPath, lingua)}}</div>
       <paper-dialog-scrollable>
-        <paper-input hidden$={{calcStatus(statusKnown)}} label="Password" id="password" value="02e20/2017asd7s18:04wPM"></paper-input>
+        <paper-input hidden$={{calcStatus(status.invite)}} label="Password" id="password" value="02e20/2017asd7s18:04wPM"></paper-input>
         <div id="error" hidden>{{calcString("passworderror", langPath, lingua)}}</div>
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-dismiss>{{calcString("pulsantechiudi", langPath, lingua)}}</paper-button>
-        <paper-button hidden$={{calcStatus(statusKnown)}}  autofocus on-tap="login">{{calcString("pulsanteok", langPath, lingua)}}</paper-button>
-        <paper-button hidden$={{!calcStatus(statusKnown)}} autofocus on-tap="logout">Logout</paper-button>
+        <paper-button hidden$={{calcStatus(status.invite)}}  autofocus on-tap="login">{{calcString("pulsanteok", langPath, lingua)}}</paper-button>
+        <paper-button hidden$={{!calcStatus(status.invite)}} autofocus on-tap="logout">Logout</paper-button>
       </div>
     </paper-dialog>
 
@@ -64,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
           invitati: {type: Array},
-          statusKnown: {type: String, value: "UNKNOWN", notify: true},
+          status: {value: {invite: "UNKNOWN", lang: "UNKNOWN"}, notify: true},
           nome: {type: String, notify: true},
           password: {type: String, notify: true}
         },
@@ -77,13 +77,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       login: function(){
 
-          var trovato = false;
-          this.set("statusKnown", "UNKNOWN");
+         var trovato = false;
+         this.set('status.invite', "UNKNOWN");
            
           for( var i = 0; i< this.invitati.length; i++){
             if(this.invitati[i].password == this.$.password.value){
                trovato = true;
-
+               this.status.lang = this.invitati[i].lingua;
               
               this.password = this.invitati[i].password;
               this.$.loginDialog.close();
@@ -91,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               if(this.invitati[i].password.indexOf("asd") != -1)
               {
                 setTimeout(function(){
-                  this.set("statusKnown", "FULL");
+                  this.set('status.invite', "FULL");
                   this.$.password.value = ""; 
                   this.$.error.hidden = true;
                   this.nome = this.invitati[i].nome;
@@ -99,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               }.bind(this), 500);
               } else{
                 setTimeout(function(){
-                  this.set("statusKnown", "PARTY");
+                  this.set('status.invite', "PARTY");
                   this.$.password.value = ""; 
                   this.$.error.hidden = true;
                   this.nome = this.invitati[i].nome;
@@ -118,24 +118,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       logout: function(){
         this.$.loginDialog.close();
 
-        setTimeout(function(){ this.set("statusKnown", "UNKNOWN");
-        this.set("nome","");}.bind(this), 500);
+        setTimeout(function(){ 
+        this.set('status.invite', "UNKNOWN");
+        this.set('status.lang', "UNKNOWN");  
+        this.set("nome","");
+        }.bind(this), 500);
+
+
+        this.notifyPath('status.invite');
       },
 
        calcString: function(campo, path, lingua){
 
         if(this.lingua[path][campo] == null)
-          return "<no string>"
+          return "<no string>";
 
         return this.lingua[path][campo];
       },
 
       calcStatus: function(){
-        return this.statusKnown != 'UNKNOWN';
-      },
-
-      statusKnown: function(){
-        return this.statusKnown;
+         return this.status.invite != 'UNKNOWN';
       }
       
     });

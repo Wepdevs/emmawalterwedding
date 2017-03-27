@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div> 
+      <div hidden$="{{calcStatus(status.invite)}}">{{calcString("farelogin", langPath, lingua)}}</div> 
       <div id="full" hidden$="{{!pranzoFormVisible}}">
         <h3 class="page-title">{{calcString("programmatitolo1", langPath, lingua)}}</h3>
         <div>{{calcString("programmatitoloorari", langPath, lingua)}}</div>
@@ -110,13 +110,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array
         },
 
-        statusKnown: {type: String, observer: '_statusKnownHandler'},
+        status: {type: Object, value: function(){return{};}},
 
         nome: String,
         pranzoFormVisible: {type: Boolean, value: false},
         partyFormVisible: {type: Boolean, value: false},
         hiddenDetails: {type: Boolean, value: true}
       },
+
+      observers:[
+        '_statusHandler(status.invite)'
+      ],
 
       calcString: function(campo, path, lingua){
 
@@ -126,19 +130,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.lingua[path][campo];
       },
 
-      _statusKnownHandler: function(newValue, oldValue){
+      _statusHandler: function(invite){
 
-          if(newValue == "FULL"){
+       if(invite == "FULL"){
                 this.pranzoFormVisible = true;
                 this.partyFormVisible = false;
-          } else if(newValue == "PARTY"){
+          } else if(invite == "PARTY"){
                 this.partyFormVisible = true;
+                this.pranzoFormVisible = false;
+          } else if(invite == "UNKNOWN"){
+                this.partyFormVisible = false;
                 this.pranzoFormVisible = false;
           }
       },
 
       calcStatus: function(){
-        return this.statusKnown != 'UNKNOWN';
+        return this.status.invite != 'UNKNOWN';
       },
 
       showDetail: function(){

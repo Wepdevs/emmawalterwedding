@@ -240,6 +240,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <img id="logo-image" src="../images/cats_bottle_glass_w.jpg" />
             <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
             <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
+            <div on-tap="prova2">prova</div>
           </div>
 
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
@@ -250,7 +251,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
           <!--<a name="risposte" href="/risposte">risposte</a>-->
-          <!--<a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>-->
+          <a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
@@ -270,6 +271,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
+          
         </iron-selector>
         </template>
 
@@ -305,15 +307,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             role="main">
           <my-view1 name="view1" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-view1>
           <my-invitati name="invitati" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-invitati>
-          <my-rsvp name="rsvp"  invitati="{{invitati}}" risposte="{{risposte}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-rsvp>
+          <my-rsvp name="rsvp"  invitati="{{invitati}}" risposte="{{risposte}}" lingua="{{lingua}}" lang-path="{{langPath}}"  status="{{status}}" nome="{{nome}}" password="{{password}}"></my-rsvp>
           <my-where name="where"  lingua="{{lingua}}" lang-path="{{langPath}}"></my-where>
           <my-proposal name="proposal" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-proposal>
           <my-list name="list" lingua="{{lingua}}" lang-path="{{langPath}}" ></my-list>
-          <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-risposte>
-          <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-schedule>
+          <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"  status="{{status}}" nome="{{nome}}"></my-risposte>
+          <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status="{{status}}" nome="{{nome}}" password="{{password}}"></my-schedule>
           <my-combriccola name="combriccola"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-combriccola>
           <my-contatti name="contatti"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-contatti>
-          <my-invito name="invito"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-invito>
+          <my-invito name="invito"  lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}" ></my-invito>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -337,12 +339,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      invitati="{{invitati}}"
      lingua="{{lingua}}"
      lang-path="{{langPath}}"
-     status-known="{{statusKnown}}"
      nome="{{nome}}"
-     password="{{password}}"></my-login>
-
-     
-
+     password="{{password}}"
+     status="{{status}}"></my-login>
 
   </template>
 
@@ -363,7 +362,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         langPath:{value:"ita"},
 
-        statusKnown:{type: String},
+        status: {type: Object},
 
         mobile:{
           observer:'_isMobile'
@@ -423,8 +422,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.langPath= "eng";
       },
 
-      prova: function(){
-        console.log("observer da padre");
+      prova2: function(){
+        console.log(this.status);
       },
 
      calcString: function(campo, path, lingua){

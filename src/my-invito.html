@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="cards">
-      <iframe src="../src/my-compositori.pdf"></iframe>
+      <iframe hidden$={{!calcStatus(status.invite)}} src="{{calcPath(status.invite)}}"></iframe>
     </div>
   </template>
 
@@ -54,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array
         },
 
-        statusKnown: {type: String, observer: '_statusKnownHandler'},
+        status: {type: Object, value: function(){return{};}},
 
         nome: String,
         pranzoFormVisible: {type: Boolean, value: false},
@@ -81,7 +81,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       calcStatus: function(){
-        return this.statusKnown != 'UNKNOWN';
+        return this.status.invite != 'UNKNOWN';
+      },
+
+      calcPath: function(invite){
+
+        if(invite== 'UNKNOWN')
+          return "";
+
+        var path = "../src/my-invite-" + this.status.lang + '-' + invite + '.pdf';
+
+        console.log(path);
+
+        return path;
       }
     });
   </script>

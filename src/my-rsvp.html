@@ -60,7 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3 class="page-title">RSVP</h3>
       <h3>{{calcString("saluto", langPath, lingua)}} {{nome}}!</h3>
 
-      <div hidden$="{{calcStatus(statusKnown)}}">{{calcString("farelogin", langPath, lingua)}}</div>
+      <div hidden$="{{calcStatus(status.invite)}}">{{calcString("farelogin", langPath, lingua)}}</div>
       <div hidden$="{{!alreadyAnswered}}">
         <div><h3 >{{calcString("giarisposto", langPath, lingua)}}</h3></div>
         <paper-button id="edit-button" raised on-tap="toggleEdit">{{calcString("pulsantemodifica", langPath, lingua)}}</paper-button>
@@ -104,7 +104,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array
         },
 
-        statusKnown: {type: String, observer: '_statusKnownHandler'},
+
+        status: {type: Object, value: function(){return{};}},
 
         nome: String,
         pranzoFormVisible: {type: Boolean, value: false},
@@ -115,6 +116,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         rispostaKey: String,
         onEdit: {type: Boolean, value: false}
       },
+
+      observers:[
+        '_statusHandler(status.invite)'
+      ],
 
       calcString: function(campo, path, lingua){
 
@@ -129,16 +134,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.onEdit = true;
       },
 
-      _statusKnownHandler: function(newValue, oldValue){
+      _statusHandler: function(invite){
 
         this.alreadyAnswered = false;
         this.resetForm();
 
 
-          if(newValue == "FULL"){
+          if(invite == "FULL"){
                 this.pranzoFormVisible = true;
                 this.partyFormVisible = false;
-          } else if(newValue == "PARTY"){
+          } else if(invite == "PARTY"){
                 this.partyFormVisible = true;
                 this.pranzoFormVisible = false;
           } else {
@@ -149,9 +154,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         for(var i = 0; i< this.risposte.length; i++){
           if(this.risposte[i].password == this.password){
-            if(newValue != 'UNKNOWN')
+            if(invite != 'UNKNOWN')
               this.alreadyAnswered = true;
-            this.showAnswer(this.risposte[i], this.statusKnown);
+            this.showAnswer(this.risposte[i], this.status);
             break;
           }
         } 
@@ -162,14 +167,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         this.rispostaKey = risposta.$key;
 
-        if(status == "FULL"){
-          
+        if(status.invite == "FULL"){
             this.$.risposta.selected = risposta.risposta;
             this.$.nomeform.value = risposta.nome;
             this.$.ciboform.value = risposta.cibo;
             this.$.hotelform.value = risposta.hotel;
             this.$.altroform.value = risposta.altro;
-        } else if(status == "PARTY"){
+        } else if(status.invite == "PARTY"){
             this.$.risposta2.selected = risposta.risposta;
             this.$.nomeform2.value = risposta.nome;
             this.$.altroform2.value = risposta.altro;
@@ -238,12 +242,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       calcStatus: function(){
-        return this.statusKnown != 'UNKNOWN';
+        return this.status.invite != 'UNKNOWN';
       },
 
       prova2: function(){
-        console.log(this.password);
-        
+        console.log(this.status);
       }
     });
   </script>
