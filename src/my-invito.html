@@ -91,10 +91,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var path = "../src/my-invite-" + this.status.lang + '-' + invite + '.pdf';
 
-        console.log(path);
+        // console.log(this.UrlExists(path)); 
 
         return path;
-      }
+      },
+
+
+      // UrlExists:  function(url){
+      //   var req = new XMLHttpRequest();
+      //   req.open('GET', url, false);
+      //   req.send();
+      //   return req;
+      // }
     });
   </script>
 </dom-module>
