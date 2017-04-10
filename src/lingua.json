@@ -19,7 +19,7 @@
                  "farelogin" : "Per loggarsi cliccare sul pulsante in basso a destra e inserire la password",
                  "dovetitolo1" : "La Location",
                 "dovetitolo1cont1" : "La cerimonia e I festeggiamenti si terranno presso Villa Elodia, Dimora storica a Trivignano Udinese (UD).",
-                "dovetitolo1cont2" : "Please see RSVP section for further details",
+                "dovetitolo1cont2" : "Prego guardare la sezione RSVP per maggiori dettagli",
                 "dovetitolo2":"Come raggiungere Villa Elodia",
                 "dovetitolo2cont1":"Via Roma 74, Trivignano Udinese.",
                 "dovetitolo2cont2":"Seguire l’autostradae A4 e prendere l’uscita in direzione Palmanova.",
@@ -105,7 +105,20 @@
                 "combriccolatestosimone1":"Conosciuto in una corriera, diventato amico su un treno.",
                 "combriccolatestosimone2":"Grande scopritore di musica che spacca e guru del pensiero libero, YOLO.",
                 "contattitesto1":"Per ulteriori informazioni non esitate a contattarci",
-                "invitomenu":"Invito"
+                "invitomenu":"Invito",
+                "hoteltesto1":"Qualora desideriate dormire in loco, di seguito vi proponiamo alcuni hotel/b&b, che si trovano vicino alla villa:",
+                "hoteltesto2":"Potete trovare tutti i luoghi citati su Booking.com",
+                "hoteltesto3":"Ci sono in ogni caso anche molti altri posti splendidi in cui alloggiare nelle aree limitrofe.",
+                "hotel1":"B&B Alla Piazzetta – Trivignano Udinese",
+                "hotel1link":"http://www.allapiazzetta.it/",
+                "hotel2":"Casa Barnaba-Manin – Clauiano",
+                "hotel2link":"https://www.booking.com/hotel/it/casa-barnaba-manin.it.html",
+                "hotel3":"Hotel Dogana Vecchia – Località Dogana Vecchia Trivignano Udinese",
+                "hotel3link":"http://www.doganavecchia.it/",
+                "hotel4":"Hotel ai Dogi – Palmanova",
+                "hotel4link":"http://www.hotelaidogi.it/hotel.php?lang=it",
+                "hotel5":"Agriturismo al Gelso – Pavia di Udine",
+                "hotel5link":"http://www.agriturismoalgelso.it/"
                  },
             "eng": {
                 "quando": "When",
@@ -197,7 +210,20 @@
                 "hotel":"Accomodation/Hotel/B&B",
                 "cibo":"Dietary requirements/restrictions",
                 "commenti":"Comments/Questions/Other",
-                "giarisposto":"Already sent, do you want to edit answers?"
+                "giarisposto":"Already sent, do you want to edit answers?",
+                "hoteltesto1":"Here is a short list of hotels/B&B’s which are relatively close to the venue:",
+                "hoteltesto2":"You can find all of the above on Booking.com",
+                "hoteltesto3":"There are of course many other and wonderful places to stay in Friuli.",
+                "hotel1":"B&B Alla Piazzetta – Trivignano Udinese",
+                "hotel1link":"http://www.allapiazzetta.it/",
+                "hotel2":"Casa Barnaba-Manin – Clauiano",
+                "hotel2link":"https://www.booking.com/hotel/it/casa-barnaba-manin.it.html",
+                "hotel3":"Hotel Dogana Vecchia – Località Dogana Vecchia Trivignano Udinese",
+                "hotel3link":"http://www.doganavecchia.it/",
+                "hotel4":"Hotel ai Dogi – Palmanova",
+                "hotel4link":"http://www.hotelaidogi.it/hotel.php?lang=it",
+                "hotel5":"Agriturismo al Gelso – Pavia di Udine",
+                "hotel5link":"http://www.agriturismoalgelso.it/"
                 }
 }
 

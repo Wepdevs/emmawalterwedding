@@ -1,0 +1,87 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">-->
+
+<dom-module id="my-hotel">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+
+      #error{
+        color: red;
+      }
+
+      .mappagoogle{
+        height: 400px;
+      }
+
+      .nome-hotel:after{
+        content:":"; 
+      }
+
+      a, a:visited{
+        color: white;
+      }
+
+    </style>
+
+    <div class="card">
+      <h3 class="page-title">{{calcString("hotel", langPath, lingua)}}</h3>
+      <div>{{calcString("hoteltesto1", langPath, lingua)}}</div>
+      <div>
+        <span class="nome-hotel">{{calcString("hotel1", langPath, lingua)}}</span>
+        <span><a href="{{calcString('hotel1link', langPath, lingua)}}">{{calcString("hotel1link", langPath, lingua)}}</a></span>
+      </div>
+      <div>
+        <span class="nome-hotel">{{calcString("hotel2", langPath, lingua)}}</span>
+        <span><a href="{{calcString('hotel2link', langPath, lingua)}}">{{calcString("hotel2link", langPath, lingua)}}</a></span>
+      </div>
+      <div>
+        <span class="nome-hotel">{{calcString("hotel3", langPath, lingua)}}</span>
+        <span><a href="{{calcString('hotel3link', langPath, lingua)}}">{{calcString("hotel3link", langPath, lingua)}}</a></span>
+      </div>
+      <div>
+        <span class="nome-hotel">{{calcString("hotel4", langPath, lingua)}}</span>
+        <span><a href="{{calcString('hotel4link', langPath, lingua)}}">{{calcString("hotel4link", langPath, lingua)}}</a></span>
+      </div>
+      <div>
+        <span class="nome-hotel">{{calcString("hotel5", langPath, lingua)}}</span>
+        <span><a href="{{calcString('hotel5link', langPath, lingua)}}">{{calcString("hotel5link", langPath, lingua)}}</a></span>
+      </div>
+      <div>{{calcString("hoteltesto2", langPath, lingua)}}</div>
+      <div>{{calcString("hoteltesto3", langPath, lingua)}}</div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-hotel',
+
+      
+
+      calcString: function(campo, path, lingua){
+
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
+
+        return this.lingua[path][campo];
+      }
+    });
+  </script>
+</dom-module>

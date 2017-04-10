@@ -32,7 +32,8 @@
     "paper-radio-group": "PolymerElements/paper-radio-group#^1.2.1",
     "time-elements": "github/time-elements#^0.6.1",
     "iron-image": "PolymerElements/iron-image#^1.2.5",
-    "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.7"
+    "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.7",
+    "google-map": "GoogleWebComponents/google-map#^1.2.0"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"

@@ -26,6 +26,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #error{
         color: red;
       }
+
+      .mappagoogle{
+        height: 400px;
+      }
     </style>
 
     <div class="card">
@@ -38,6 +42,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span>{{calcString("dovetitolo2cont3", langPath, lingua)}}</span>
       <span>{{calcString("dovetitolo2cont4", langPath, lingua)}}</span>
       <span>{{calcString("dovetitolo2cont5", langPath, lingua)}}</span>
+
+      <div class="mappagoogle">
+        <google-map fit-to-marker api-key="AIzaSyD1tuboXVJ_R7V1VjUEqhXJ6oNWEDN_1Uo" latitude="45.945155" longitude="13.339242" zoom="10">
+          <google-map-marker latitude="45.945155" longitude="13.339242" ></google-map-marker>
+        </google-map>
+      </div>
+
+
       <h3>{{calcString("dovetitolo3", langPath, lingua)}}</h3>
       <span>{{calcString("dovetitolo3cont1", langPath, lingua)}}</span>
       <span>{{calcString("dovetitolo3cont2", langPath, lingua)}}</span>
