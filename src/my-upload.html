@@ -50,20 +50,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-button{
         background: white;
       }
+
+      .prova{
+        width: 100px;
+      }
+
+      .error{
+        background: white;
+        color: red;
+      }
       
     </style>
+
+
+      <firebase-query id="query"
+      path="/foto"
+      data="{{listaFile}}"
+      app-name="invitati">
+    </firebase-query>
 
       <div class="card">
 
 
         <paper-input type="file" name="picField" id="picField" size="24" on-change="caricaFile"  alt=""></paper-input>
+        <div id="testoerrore" class="error"></div>
 
         <paper-button raised on-tap="salva">CARICA</paper-button>
 
         <paper-button raised on-tap="prova">TAP</paper-button>
+        <div id="imagelist">
+            <img id="myimage" height="200" src="{{uploadSrc}}">
+        </div>
 
-        <img id="myimage" height="200" src="{{uploadSrc}}">
-        
+        <template is="dom-repeat" items="{{listaFile}}" as="foto">
+            <img src="[[calcSrc(foto)]]">
+        </template> 
     </div>
         
 
@@ -77,7 +98,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties:{
         uploadSrc: { value: "", notify: true},
-        selectedFile: {type: Object}
+        selectedFile: {type: Object},
+        listaFile: {type: Array}
+      },
+
+      attached: function(){
+        console.log(this.listaFile);
       },
 
       calcString: function(campo, path, lingua){
@@ -94,29 +120,78 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           console.log(this.selectedFile);
 
-          // var file =
+         var db = fb.database();
+         var email = "walter.miani@gmail.com";
+         var password = email;
+         fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+         });
 
           storageRef.child('images/' + this.selectedFile.name).put(this.selectedFile).then(function(snapshot) {
               console.log('Uploaded a blob or file!');
-          });
+
+              db.ref().child('foto/').push(this.selectedFile.name);
+
+          }.bind(this));
+
+          storageRef.child('images/' + this.selectedFile.name).getDownloadURL().then(function(url) {
+              console.log(url);
+
+              var node = document.createElement("img");
+              node.src = url;
+              node.classList.add('prova');
+              this.$.imagelist.appendChild(node);
+            }.bind(this));
       },
 
       caricaFile: function(e){
 
         if(e.target.inputElement.files[0] != null){
-          this.selectedFile = e.target.inputElement.files[0];
+
+          var estensione =  e.target.inputElement.files[0].name.split(".")[1];
+
+
+          if(estensione != "jpeg" && estensione != "jpg" && estensione != "png"){
+            
+            this.$.testoerrore.innerHTML = "estensione non valida!";
+          } else if(e.target.inputElement.files[0].name.split(" ").length > 1){
+            this.$.testoerrore.innerHTML = "scegliere un file senza spazi nel nome";
+          } else{
+            this.selectedFile = e.target.inputElement.files[0];
+          }
         }
+      },
+
+      calcSrc: function(foto){
+
+        var name = foto.$val;
+        var storageRef = fb.storage().ref();
+        var retval = "asd";
+        storageRef.child('images/' + name).getDownloadURL().then(function(url){
+            return url;
+        });
       },
 
       prova: function(){
 
         var storageRef = fb.storage().ref();
 
+        for(var i = 0; i< this.listaFile.length; i++){
 
-        storageRef.child('images/donnachebeve.jpg').getDownloadURL().then(function(url) {
-          console.log(url);
-          this.uploadSrc = url;
-        }.bind(this));
+              storageRef.child('images/' + this.listaFile[i].$val).getDownloadURL().then(function(url) {
+              console.log(url);
+
+              var node = document.createElement("img");
+              node.src = url;
+              node.classList.add('prova');
+              this.$.imagelist.appendChild(node);
+            }.bind(this));
+        }
+
+        
 
 
     }
