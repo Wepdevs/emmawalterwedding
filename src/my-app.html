@@ -255,6 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="hotel" href="/hotel">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
+          <a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>
         </iron-selector>
         </template>
 
@@ -270,6 +271,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="hotel" href="/hotel">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
+          <a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>
           
         </iron-selector>
         </template>
@@ -315,7 +317,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-combriccola name="combriccola"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-combriccola>
           <my-contatti name="contatti"  lingua="{{lingua}}" lang-path="{{langPath}}" ></my-contatti>
           <my-invito name="invito"  lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}" ></my-invito>
-          <my-hotel name="hotel"  lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}" ></my-invito>
+          <my-hotel name="hotel"  lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}" ></my-hotel>
+          <my-upload name="upload"  lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}" ></my-upload>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>

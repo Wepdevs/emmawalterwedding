@@ -1,0 +1,126 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">-->
+
+<dom-module id="my-upload">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+
+      #error{
+        color: red;
+      }
+
+
+      .photo-container{
+        /*margin-top: 100px; */
+        display:flex;
+        flex-wrap: wrap;
+        align-items: center;
+        background: #222;
+        justify-content: center;
+      }
+
+      .photo-container img{
+        width: 31%;
+        margin: 1%;
+        height: 100%;
+      }
+
+      iron-icon{
+        margin-right: 10px;
+      }
+
+      paper-button{
+        background: white;
+      }
+      
+    </style>
+
+      <div class="card">
+
+
+        <paper-input type="file" name="picField" id="picField" size="24" on-change="caricaFile"  alt=""></paper-input>
+
+        <paper-button raised on-tap="salva">CARICA</paper-button>
+
+        <paper-button raised on-tap="prova">TAP</paper-button>
+
+        <img id="myimage" height="200" src="{{uploadSrc}}">
+        
+    </div>
+        
+
+   
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-upload',
+
+      properties:{
+        uploadSrc: { value: "", notify: true},
+        selectedFile: {type: Object}
+      },
+
+      calcString: function(campo, path, lingua){
+
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
+
+        return this.lingua[path][campo];
+      },
+
+
+      salva: function(){
+          var storageRef = fb.storage().ref();
+
+          console.log(this.selectedFile);
+
+          // var file =
+
+          storageRef.child('images/' + this.selectedFile.name).put(this.selectedFile).then(function(snapshot) {
+              console.log('Uploaded a blob or file!');
+          });
+      },
+
+      caricaFile: function(e){
+
+        if(e.target.inputElement.files[0] != null){
+          this.selectedFile = e.target.inputElement.files[0];
+        }
+      },
+
+      prova: function(){
+
+        var storageRef = fb.storage().ref();
+
+
+        storageRef.child('images/donnachebeve.jpg').getDownloadURL().then(function(url) {
+          console.log(url);
+          this.uploadSrc = url;
+        }.bind(this));
+
+
+    }
+         
+    });
+  </script>
+</dom-module>
