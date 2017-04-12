@@ -1,0 +1,118 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--<link rel="import" href="../bower_components/polymer/polymer.html">-->
+<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">-->
+
+<dom-module id="my-saluti">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+
+      paper-button{
+        background:white;
+        color: var(--app-primary-color);
+      }
+
+      .form{
+        width: 95%;
+        background: white;
+        padding: 10px;
+        border-radius: 4px;
+        border: 4px dotted;
+        border-color: var(--app-primary-color);
+        color: black;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      #dialogok{
+        border-radius: 5px;
+        border: solid 2px #4caf50;
+        background: #f1f8e9;
+        color: #4caf50;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      
+    </style>
+
+      <div class="card">
+        <h3 class="page-title">Lascia un saluto agli sposi</h3>
+        <div class="form">
+          <paper-textarea label="Messaggio" id="messaggio"></paper-textarea>
+          <paper-input label="Firma" id="firma"></paper-input>
+        </div>
+        <paper-button raised label="Firma" on-tap="salvamessaggio">Invia</paper-button>
+      </div>
+
+      <paper-dialog id="dialogok">
+        <div>INVIATO</div>
+      </paper-dialog>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-saluti',
+
+      properties:{
+        fotoSrc: { value: "", notify: true}
+      },
+
+      calcString: function(campo, path, lingua){
+
+        if(this.lingua[path][campo] == null)
+          return "<no string>"
+
+        return this.lingua[path][campo];
+      },
+
+
+      salvamessaggio: function(){
+
+         var db = fb.database();
+         var email = "walter.miani@gmail.com";
+         var password = email;
+         fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+         });
+
+         var messaggio = this.$.messaggio.value;
+         var firma = this.$.firma.value;
+
+         var saluto = {messaggio: messaggio, firma: firma}
+
+         db.ref().child('saluti/').push(saluto);
+
+         this.$.dialogok.open();
+
+         setTimeout(function(){
+           this.$.dialogok.close()
+         }.bind(this), 2000);
+
+
+         this.$.messaggio.value = "";
+         this.$.firma.value = "";
+      }
+    });
+  </script>
+</dom-module>
