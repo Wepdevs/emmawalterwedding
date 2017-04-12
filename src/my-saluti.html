@@ -55,8 +55,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="card">
         <h3 class="page-title">Lascia un saluto agli sposi</h3>
         <div class="form">
-          <paper-textarea label="Messaggio" id="messaggio"></paper-textarea>
-          <paper-input label="Firma" id="firma"></paper-input>
+          <paper-textarea label="Messaggio" id="messaggio" required error-message="Required input!"></paper-textarea>
+          <paper-input label="Firma" id="firma" required  error-message="Required input!"></paper-input>
         </div>
         <paper-button raised label="Firma" on-tap="salvamessaggio">Invia</paper-button>
       </div>
@@ -64,7 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-dialog id="dialogok">
         <div>INVIATO</div>
       </paper-dialog>
-
   </template>
 
   <script>
@@ -86,7 +85,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       salvamessaggio: function(){
 
-         var db = fb.database();
+        console.log(this.$.messaggio.validate());
+        console.log(this.$.firma.validate());
+
+        if(this.$.messaggio.validate() && this.$.firma.validate()){
+          var db = fb.database();
          var email = "walter.miani@gmail.com";
          var password = email;
          fb.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -112,6 +115,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
          this.$.messaggio.value = "";
          this.$.firma.value = "";
+        } 
       }
     });
   </script>
