@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       --app-drawer-width: 300px;
       --app-drawer-scrim-background: rgba(8,6,6,0.69);
       --app-drawer-content-container: {
-        background-color:  transparent;  /* #B0BEC5;  */
+        background-color:  rgba(255,255,255,0.3);  /* #B0BEC5;  */
         padding-top: 100px;
         font-size: 1.1rem;
         }
@@ -217,7 +217,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-    <iron-ajax auto url="./lingua-test.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
+    <iron-ajax auto url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
     <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
     <iron-media-query query="(min-width: 600px)" query-matches="{{desktop}}"></iron-media-query>
