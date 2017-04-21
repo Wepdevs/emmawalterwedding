@@ -86,6 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         max-height: 40px;
         font-family: 'Bebas Neue';
         font-size: 24px;
+        margin-right: 10px;
       }
 
       .drawer-list a.iron-selected {
@@ -94,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-right: 7px solid var(--app-primary-color);
         transition: border-right ease 0.4s, background ease 0.8s, margin-right ease 0.4s, color ease 0.2s;
         background: rgba(200,200,200,0.7);
-        margin-right: 20px;
+        margin-right: 30px;
       }
 
       .drawer-list a:hover:not(.iron-selected) {
@@ -194,7 +195,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .wrapper{
         height: 100%;
         overflow: auto;
+        /*overflow-y:hidden;*/
+        /*overflow-y: scroll hidden;*/
       }
+
+      .wrapperchild{
+        overflow-y: scroll;
+      }
+
+     /* scrollbar x chrome */
+    ::-webkit-scrollbar {
+        width: 8px;
+        padding: 0px 4px;
+    }
+ 
+    /* Track */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+ 
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: rgba(76,28,36,0.6); 
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+      background: rgba(76,28,36,0.4); 
+    }
       
     </style>
 
