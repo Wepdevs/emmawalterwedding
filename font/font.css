@@ -1,36 +1,36 @@
 
 @font-face {
     font-family: 'Pacifico';
-    src: url('../font/Pacifico.ttf') format("truetype");
+    src: url('Pacifico.ttf') format("truetype");
 }
 
 
 @font-face {
     font-family: 'Bebas Neue';
-    src: url("../font/BebasNeue.otf") format("opentype");
+    src: url( "BebasNeue.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'Colaborate Thin';
-    src: url("../font/ColabThi.otf") format("opentype");
+    src: url( "ColabThi.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'Colaborate Light';
-    src: url("../font/ColabLig.otf") format("opentype");
+    src: url( "ColabLig.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'Colaborate Regular';
-    src: url("../font/ColabReg.otf") format("opentype");
+    src: url( "ColabReg.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'Colaborate Medium';
-    src: url("../font/ColabMed.otf") format("opentype");
+    src: url( "ColabMed.otf") format("opentype");
 }
 
 @font-face {
     font-family: 'Colaborate Bold';
-    src: url("../font/ColabBol.otf") format("opentype");
+    src: url( "ColabBol.otf") format("opentype");
 }
