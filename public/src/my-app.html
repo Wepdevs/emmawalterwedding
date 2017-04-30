@@ -19,7 +19,7 @@
         --app-card-margin: 24px 10%;
         --app-card-padding: 16px;
         --app-card-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-        --app-background:  url("../images/sfondo3.jpg");
+        --app-background:  url("../images/sfondo_pasqua.jpg");
         height: 100vh;
         display: block;
         background:  var(--app-background);    /*url("../images/sfondo3.jpg");  */
@@ -40,7 +40,7 @@
       --app-drawer-width: 300px;
       --app-drawer-scrim-background: rgba(8,6,6,0.69);
       --app-drawer-content-container: {
-        background-color:  transparent;  /* #B0BEC5;  */
+        background-color:  rgba(255,255,255,0.3);  /* #B0BEC5;  */
         padding-top: 100px;
         font-size: 1.1rem;
         }
@@ -187,7 +187,7 @@
 
 
 
-    <iron-ajax auto="" url="./lingua-test.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
+    <iron-ajax auto="" url="./lingua.json" handle-as="json" last-response="{{lingua}}"></iron-ajax>
 
     <iron-media-query query="(max-width: 600px)" query-matches="{{mobile}}"></iron-media-query>
     <iron-media-query query="(min-width: 600px)" query-matches="{{desktop}}"></iron-media-query>
@@ -216,11 +216,13 @@
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
           
-          
+          <a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
-          <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
+          <a name="hotel" href="/hotel">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
+          <a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>
+          <a name="saluti" href="/saluti">{{calcString("saluti", langPath, lingua)}}</a>
         </iron-selector>
         </template>
 
@@ -233,9 +235,11 @@
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
-          <a name="view1" href="/view1">Alloggi/Hotel/BNB</a>
+          <a name="hotel" href="/hotel">Alloggi/Hotel/BNB</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
+          <a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>
+          <a name="saluti" href="/saluti">{{calcString("saluti", langPath, lingua)}}</a>
         </iron-selector>
         </template>
 
@@ -263,15 +267,18 @@
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
           <my-view1 name="view1" lingua="{{lingua}}" lang-path="{{langPath}}"></my-view1>
           <my-invitati name="invitati" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}"></my-invitati>
-          <my-rsvp name="rsvp" invitati="{{invitati}}" risposte="{{risposte}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-rsvp>
+          <my-rsvp name="rsvp" invitati="{{invitati}}" risposte="{{risposte}}" lingua="{{lingua}}" lang-path="{{langPath}}" status="{{status}}" nome="{{nome}}" password="{{password}}"></my-rsvp>
           <my-where name="where" lingua="{{lingua}}" lang-path="{{langPath}}"></my-where>
           <my-proposal name="proposal" lingua="{{lingua}}" lang-path="{{langPath}}"></my-proposal>
           <my-list name="list" lingua="{{lingua}}" lang-path="{{langPath}}"></my-list>
-          <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}"></my-risposte>
-          <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-schedule>
+          <my-risposte name="risposte" risposte="{{risposte}}" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status="{{status}}" nome="{{nome}}"></my-risposte>
+          <my-schedule name="schedule" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status="{{status}}" nome="{{nome}}" password="{{password}}"></my-schedule>
           <my-combriccola name="combriccola" lingua="{{lingua}}" lang-path="{{langPath}}"></my-combriccola>
           <my-contatti name="contatti" lingua="{{lingua}}" lang-path="{{langPath}}"></my-contatti>
-          <my-invito name="invito" lingua="{{lingua}}" lang-path="{{langPath}}"></my-invito>
+          <my-invito name="invito" lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}"></my-invito>
+          <my-hotel name="hotel" lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}"></my-hotel>
+          <my-upload name="upload" lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}"></my-upload>
+          <my-saluti name="saluti" lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}"></my-saluti>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
@@ -290,13 +297,10 @@
       </div>
     </paper-dialog>
 
-    <my-login id="login" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" status-known="{{statusKnown}}" nome="{{nome}}" password="{{password}}"></my-login>
-
-     
-
+    <my-login id="login" invitati="{{invitati}}" lingua="{{lingua}}" lang-path="{{langPath}}" nome="{{nome}}" password="{{password}}" status="{{status}}"></my-login>
 
   </template>
 
-  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},risposte:{type:Array},langPath:{value:"ita"},statusKnown:{type:String},mobile:{observer:"_isMobile"}},observers:["_routePageChanged(routeData.page)"],_isMobile:function(t,a){1==t?(this.customStyle["--app-background"]='url("../images/sfondo.jpg");',this.customStyle["--app-card-background"]="transparent;",this.customStyle["--app-card-color"]="black;",this.customStyle["--app-card-margin"]="0px;",this.customStyle["--app-card-padding"]="0px;",this.customStyle["--app-card-box-shadow"]="none;",this.updateStyles()):(this.customStyle["--app-background"]='url("../images/sfondo3.jpg");',this.customStyle["--app-card-background"]="rgba(8,6,6,0.69);",this.customStyle["--app-card-color"]="white;",this.customStyle["--app-card-margin"]="24px 10%;",this.customStyle["--app-card-padding"]="16px;",this.customStyle["--app-card-box-shadow"]=" 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);",this.updateStyles())},_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var a=this.resolveUrl("my-"+t+".html");this.importHref(a,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova:function(){console.log("observer da padre")},calcString:function(t,a,e){return null==this.lingua[a][t]?"<no string>":this.lingua[a][t]},loginToggle:function(){this.$.login.openDialog()},drawerToggle:function(){this.$.drawer.opened?this.$.drawer.close():this.$.drawer.open()}});</script>
+  <script>Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},invitati:{type:Array},risposte:{type:Array},langPath:{value:"ita"},status:{type:Object},mobile:{observer:"_isMobile"}},observers:["_routePageChanged(routeData.page)"],_isMobile:function(t,a){1==t?(this.customStyle["--app-background"]='url("../images/sfondo.jpg");',this.customStyle["--app-card-background"]="transparent;",this.customStyle["--app-card-color"]="black;",this.customStyle["--app-card-margin"]="0px;",this.customStyle["--app-card-padding"]="0px;",this.customStyle["--app-card-box-shadow"]="none;",this.updateStyles()):(this.customStyle["--app-background"]='url("../images/sfondo_pasqua.jpg");',this.customStyle["--app-card-background"]="rgba(8,6,6,0.69);",this.customStyle["--app-card-color"]="white;",this.customStyle["--app-card-margin"]="24px 10%;",this.customStyle["--app-card-padding"]="16px;",this.customStyle["--app-card-box-shadow"]=" 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);",this.updateStyles())},_routePageChanged:function(t){this.page=t||"view1",this.$.drawer.persistent||this.$.drawer.close()},_pageChanged:function(t){var a=this.resolveUrl("my-"+t+".html");this.importHref(a,null,this._showPage404,!0)},_showPage404:function(){this.page="view404"},toIta:function(){this.langPath="ita"},toEng:function(){this.langPath="eng"},prova2:function(){console.log(this.status)},calcString:function(t,a,e){return null==this.lingua[a][t]?"<no string>":this.lingua[a][t]},loginToggle:function(){this.$.login.openDialog()},drawerToggle:function(){this.$.drawer.opened?this.$.drawer.close():this.$.drawer.open()}});</script>
 </dom-module>
 </body></html>

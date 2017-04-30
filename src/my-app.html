@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       };
       var fb = firebase.initializeApp(config);
     </script>
-      
+
 
 <dom-module id="my-app">
   <template>
@@ -46,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background:  var(--app-background);    /*url("../images/sfondo3.jpg");  */
         background-size: cover;
       }
-      
+
 
       app-header {
         color: var(--app-primary-color);
@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 1.1rem;
         }
 
-        
+
       }
 
       .drawer-list {
@@ -179,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: center;
       }
 
-      
+
       .title h1{
         font-style: italic;
         color: var(--app-primary-color);
@@ -208,25 +208,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 8px;
         padding: 0px 4px;
     }
- 
+
     /* Track */
     ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         -webkit-border-radius: 10px;
         border-radius: 10px;
     }
- 
+
     /* Handle */
     ::-webkit-scrollbar-thumb {
         -webkit-border-radius: 10px;
         border-radius: 10px;
-        background: rgba(76,28,36,0.6); 
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+        background: rgba(76,28,36,0.6);
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     }
     ::-webkit-scrollbar-thumb:window-inactive {
-      background: rgba(76,28,36,0.4); 
+      background: rgba(76,28,36,0.4);
     }
-      
+
     </style>
 
 
@@ -270,7 +270,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
             <img id="logo-image" src="../images/cats_bottle_glass_w.jpg" />
             <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
-            <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
+            <h2>
+              <div>{{calcString("hometitolo3", langPath, lingua)}}</div>
+              <div>{{calcString("hometitolo5", langPath, lingua)}}</div>
+
+              </h2>
           </div>
 
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
@@ -283,10 +287,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <!--<a name="risposte" href="/risposte">risposte</a>-->
           <a name="invitati" href="/invitati">{{calcString("invitati", langPath, lingua)}}</a>
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
-          <a name="hotel" href="/hotel">Alloggi/Hotel/BNB</a>
+          <a name="hotel" href="/hotel">{{calcString("hotel", langPath, lingua)}}</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
-          <a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>
+          <!--<a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>-->
           <a name="saluti" href="/saluti">{{calcString("saluti", langPath, lingua)}}</a>
         </iron-selector>
         </template>
@@ -300,10 +304,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="schedule" href="/schedule">{{calcString("programma", langPath, lingua)}}</a>
           <a name="rsvp" href="/rsvp">RSVP</a>
           <a name="list" href="/list">{{calcString("lista", langPath, lingua)}}</a>
-          <a name="hotel" href="/hotel">Alloggi/Hotel/BNB</a>
+          <a name="hotel" href="/hotel">{{calcString("hotel", langPath, lingua)}}</a>
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <a name="invito" href="/invito">{{calcString("invitomenu", langPath, lingua)}}</a>
-          <a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>
+          <!--<a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>-->
           <a name="saluti" href="/saluti">{{calcString("saluti", langPath, lingua)}}</a>
         </iron-selector>
         </template>
@@ -319,9 +323,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </app-toolbar>
         </app-header> -->
 
-         
-           
-        
+
+
+
 
           <div style="width: 40px;">
              <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
@@ -441,7 +445,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _pageChanged: function(page) {
-        
+
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
