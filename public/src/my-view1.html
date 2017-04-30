@@ -71,9 +71,9 @@
       .ringraziamento.text.desktop{
         position: fixed;
         left: 320px;
-        bottom: 50px;
+        top: 5px;
         right: 20px;
-        background: rgba(200,200,200,0.7);
+        background: rgba(200,200,200,0.0);
         padding: 10px;
       }
 
@@ -93,14 +93,20 @@
                 <h1>{{calcString("hometitolo1", langPath, lingua)}}</h1>
               <h3>{{calcString("hometitolo2", langPath, lingua)}}</h3>
               <h2>{{calcString("hometitolo3", langPath, lingua)}}</h2>
-               <div class="text ringraziamento mobile">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}</div>
+               <div class="text ringraziamento mobile">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}} 
+                 <div>{{calcString("homecont3", langPath, lingua)}}</div>
+               </div>
+               
                
         </div>
       </template>
 
       <template is="dom-if" if="{{desktop}}">
         <div class="title ringraziamento">
-              <div class="text ringraziamento desktop">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}</div>
+              <div class="text ringraziamento desktop">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}
+                <div>{{calcString("homecont3", langPath, lingua)}}</div>
+              </div>
+              
         </div>
       </template>
       
