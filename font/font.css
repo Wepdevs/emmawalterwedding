@@ -11,23 +11,8 @@
 }
 
 @font-face {
-    font-family: 'Colaborate Thin';
-    src: url( "ColabThi.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'Colaborate Light';
-    src: url( "ColabLig.otf") format("opentype");
-}
-
-@font-face {
     font-family: 'Colaborate Regular';
     src: url( "ColabReg.otf") format("opentype");
-}
-
-@font-face {
-    font-family: 'Colaborate Medium';
-    src: url( "ColabMed.otf") format("opentype");
 }
 
 @font-face {
