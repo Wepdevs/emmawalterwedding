@@ -35,32 +35,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         content:":"; 
       }
 
+      a span{
+        color: var(--app-card-color);
+      }
+
     </style>
 
     <div class="card">
       <h3 class="page-title">{{calcString("hotel", langPath, lingua)}}</h3>
       <div>{{calcString("hoteltesto1", langPath, lingua)}}</div>
+      </br>
       <div>
         <span class="nome-hotel">{{calcString("hotel1", langPath, lingua)}}</span>
-        <span><a href="{{calcString('hotel1link', langPath, lingua)}}">{{calcString("hotel1link", langPath, lingua)}}</a></span>
+        <span><a href="{{calcString('hotel1link', langPath, lingua)}}" target="_blank"><span>{{calcString("hotel1link", langPath, lingua)}}</span></a></span>
       </div>
       <div>
         <span class="nome-hotel">{{calcString("hotel2", langPath, lingua)}}</span>
-        <span><a href="{{calcString('hotel2link', langPath, lingua)}}">{{calcString("hotel2link", langPath, lingua)}}</a></span>
+        <span><a href="{{calcString('hotel2link', langPath, lingua)}}" target="_blank"><span>{{calcString("hotel2link", langPath, lingua)}}</span></a></span>
       </div>
       <div>
         <span class="nome-hotel">{{calcString("hotel3", langPath, lingua)}}</span>
-        <span><a href="{{calcString('hotel3link', langPath, lingua)}}">{{calcString("hotel3link", langPath, lingua)}}</a></span>
+        <span><a href="{{calcString('hotel3link', langPath, lingua)}}" target="_blank"><span>{{calcString("hotel3link", langPath, lingua)}}</span></a></span>
       </div>
       <div>
         <span class="nome-hotel">{{calcString("hotel4", langPath, lingua)}}</span>
-        <span><a href="{{calcString('hotel4link', langPath, lingua)}}">{{calcString("hotel4link", langPath, lingua)}}</a></span>
+        <span><a href="{{calcString('hotel4link', langPath, lingua)}}" target="_blank"><span>{{calcString("hotel4link", langPath, lingua)}}</span></a></span>
       </div>
       <div>
         <span class="nome-hotel">{{calcString("hotel5", langPath, lingua)}}</span>
-        <span><a href="{{calcString('hotel5link', langPath, lingua)}}">{{calcString("hotel5link", langPath, lingua)}}</a></span>
+        <span><a href="{{calcString('hotel5link', langPath, lingua)}}" target="_blank"><span>{{calcString("hotel5link", langPath, lingua)}}</span></a></span>
       </div>
-      <div>{{calcString("hoteltesto2", langPath, lingua)}}</div>
+      </br>
       <div>{{calcString("hoteltesto3", langPath, lingua)}}</div>
     </div>
   </template>

@@ -41,6 +41,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --app-card-padding: 16px;
         --app-card-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         --app-background:  url("../images/sfondo_pasqua.jpg");
+        --firma-desktop-visibility: visible;
+        --firma-mobile-visibility: hidden;
         height: 100vh;
         display: block;
         background:  var(--app-background);    /*url("../images/sfondo3.jpg");  */
@@ -146,6 +148,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         right: 20px;
         background-color: var(--app-primary-color);
       }
+
+      #firmadesktop{
+        font-size: 15px;
+      }
+
+       #firmamobile{
+        background: rgba(8,6,6,1);
+        color:white;
+         font-size: 13px;
+      }
+
+       #firmadesktop, #firmamobile{
+         padding: 10px;
+         font-family: 'Pacifico';
+        
+       }
 
       #login-fab:hover{
         background-color: #722a36;
@@ -292,6 +310,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <!--<a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>-->
           <a name="saluti" href="/saluti">{{calcString("saluti", langPath, lingua)}}</a>
+          <div id="firmadesktop">{{calcString("firma1", langPath, lingua)}}<span class="heart" style="color:red;">&hearts;</span>{{calcString("firma2", langPath, lingua)}}</div>
         </iron-selector>
         </template>
 
@@ -309,6 +328,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="contatti" href="/contatti">{{calcString("contattititolo", langPath, lingua)}}</a>
           <!--<a name="upload" href="/upload">{{calcString("uploadmenu", langPath, lingua)}}</a>-->
           <a name="saluti" href="/saluti">{{calcString("saluti", langPath, lingua)}}</a>
+          <div id="firmamobile">{{calcString("firma1", langPath, lingua)}}<span class="heart" style="color:red;">&hearts;</span>{{calcString("firma2", langPath, lingua)}}</div>
         </iron-selector>
         </template>
 
@@ -358,6 +378,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <my-saluti name="saluti"  lingua="{{lingua}}" status="{{status}}" lang-path="{{langPath}}" ></my-saluti>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
+
+
+    
+
       </app-header-layout>
       <paper-fab id="login-fab" mini icon="account-box" on-tap="loginToggle"></paper-fab>
     </app-drawer-layout>
@@ -382,6 +406,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      nome="{{nome}}"
      password="{{password}}"
      status="{{status}}"></my-login>
+
+     <!--<div id="firmadesktop">{{calcString("firma1", langPath, lingua)}}<span class="heart" style="color:red;">&hearts;</span>{{calcString("firma2", langPath, lingua)}}</div>-->
+     <!--<div id="firmamobile">{{calcString("firma1", langPath, lingua)}}<span class="heart" style="color:red;">&hearts;</span>{{calcString("firma2", langPath, lingua)}}</div>-->
+     <!--<div id="heart" class="heart" style="color:red;">&hearts;</div>-->
+
 
   </template>
 
@@ -421,8 +450,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            this.customStyle['--app-card-color'] = 'black;';
            this.customStyle['--app-card-margin'] = '0px;';
            this.customStyle['--app-card-padding'] = '0px;';
-            this.customStyle['--app-card-box-shadow'] = 'none;';
-         this.updateStyles();
+           this.customStyle['--app-card-box-shadow'] = 'none;';
+           this.customStyle['--firma-desktop-visibility'] = 'hidden;';
+           this.customStyle['--firma-mobile-visibility'] = 'visible;';
+           this.updateStyles();
         }else{
            this.customStyle['--app-background'] = 'url("../images/sfondo_pasqua.jpg");';
            this.customStyle['--app-card-background'] = 'rgba(8,6,6,0.69);';
@@ -430,7 +461,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
            this.customStyle['--app-card-margin'] = '24px 10%;';
            this.customStyle['--app-card-padding'] = '16px;';
            this.customStyle['--app-card-box-shadow'] = ' 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);';
-         this.updateStyles();
+           this.customStyle['--firma-desktop-visibility'] = 'visible;';
+           this.customStyle['--firma-mobile-visibility'] = 'hidden;';
+           this.updateStyles();
         }
 
       },

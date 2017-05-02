@@ -53,16 +53,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
       <div class="card">
-        <h3 class="page-title">Lascia un saluto agli sposi</h3>
+        <h3 class="page-title">{{calcString("salutitesto1", langPath, lingua)}}</h3>
         <div class="form">
-          <paper-textarea label="Messaggio" id="messaggio" required error-message="Required input!"></paper-textarea>
-          <paper-input label="Nome" id="firma" required  error-message="Required input!"></paper-input>
+          <paper-textarea label="{{calcString('salutilabel1', langPath, lingua)}}" id="messaggio" required error-message="Required input!"></paper-textarea>
+          <paper-input label="{{calcString('salutilabel2', langPath, lingua)}}" id="firma" required  error-message="Required input!"></paper-input>
         </div>
-        <paper-button raised label="Firma" on-tap="salvamessaggio">Invia</paper-button>
+        <paper-button raised label="Firma" on-tap="salvamessaggio">{{calcString("salutiinvia", langPath, lingua)}}</paper-button>
       </div>
 
       <paper-dialog id="dialogok">
-        <div>INVIATO</div>
+        <div>{{calcString("salutiinviato", langPath, lingua)}}</div>
       </paper-dialog>
   </template>
 
