@@ -18,6 +18,8 @@
       .countdown{
         padding-top: 30px;
         font-size: 1.2rem;
+        position: fixed;
+        bottom: 10px;
       }
 
       .countdown2{
@@ -61,7 +63,7 @@
 
       .ringraziamento{
         font-size:30px;
-        font-family: Pacifico;
+        font-family: 'Pacifico','Bebas Neue','Impact';
         margin-top: 40px;
         text-shadow: 4px 4px 15px #aaa;
        /* position: fixed;  */
@@ -105,15 +107,21 @@
         <div class="title ringraziamento">
               <div class="text ringraziamento desktop">{{calcString("homecont1", langPath, lingua)}} {{calcString("homecont2", langPath, lingua)}}
                 <div>{{calcString("homecont3", langPath, lingua)}}</div>
+
+                 
               </div>
-              
         </div>
+
+
+        <div class="text countdown">
+                {{countDown(trigger)}}
+         </div>
+
+
+
       </template>
       
       
-
-
-        
 
         
 
