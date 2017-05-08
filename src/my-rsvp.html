@@ -58,7 +58,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <h3 class="page-title">RSVP</h3>
-      <h3>{{calcString("saluto", langPath, lingua)}} {{nome}}!</h3>
+      <h3>{{calcSaluto(nome, langPath, lingua)}}</h3>
 
       <div hidden$="{{calcStatus(status.invite)}}">{{calcString("farelogin", langPath, lingua)}}</div>
       <div hidden$="{{!alreadyAnswered}}">
@@ -245,8 +245,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.status.invite != 'UNKNOWN';
       },
 
-      prova2: function(){
-        console.log(this.status);
+      calcSaluto: function(){
+
+        console.log('calc saluto');
+
+        if(typeof(this.nome) == "undefined"){
+          return "";
+        } else {
+         if(this.nome != ""){
+           return this.calcString("saluto", this.langPath, this.lingua) + ' ' + this.nome;
+         } else{
+           return "";
+         }
+        }
+
       }
     });
   </script>
