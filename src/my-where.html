@@ -30,12 +30,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .mappagoogle{
         height: 400px;
       }
+
+      a:visited, a{
+        color: var(--app-card-color);
+      }
     </style>
 
     <div class="card">
       <h3 class="page-title">{{calcString("dovetitolo1", langPath, lingua)}}</h3>
       <span>{{calcString("dovetitolo1cont1", langPath, lingua)}}</span>
       <span>{{calcString("dovetitolo1cont2", langPath, lingua)}}</span>
+
+      <div>
+        <a href="http://villaelodia.it/" target="_blank">{{calcString("sitoweb", langPath, lingua)}}</a>
+      </div>
+
       <h3>{{calcString("dovetitolo2", langPath, lingua)}}</h3>
       <span>{{calcString("dovetitolo2cont1", langPath, lingua)}}</span>
       <span>{{calcString("dovetitolo2cont2", langPath, lingua)}}</span>

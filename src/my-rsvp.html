@@ -68,27 +68,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <div class="form" id="full" hidden$="{{!pranzoFormVisible}}">
         <div>{{calcString("invitofull", langPath, lingua)}}</div>
-        <div>{{calcString("confermare", langPath, lingua)}}</div>
+        <!--<div>{{calcString("confermare", langPath, lingua)}}</div>-->
          <paper-radio-group id="risposta" required selected="yes">
             <paper-radio-button name="yes" disabled="{{alreadyAnswered}}">{{calcString("si", langPath, lingua)}}</paper-radio-button>
             <paper-radio-button name="no" disabled="{{alreadyAnswered}}">{{calcString("no", langPath, lingua)}}</paper-radio-button>
          </paper-radio-group>
-         <paper-input hidden id="tipoform" value="FULL"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform" label="{{calcString('nomeospiti', langPath, lingua)}}"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" id="hotelform" label="{{calcString('hotel', langPath, lingua)}}"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" id="ciboform" label="{{calcString('cibo', langPath, lingua)}}"></paper-input>
-         <paper-textarea disabled="{{alreadyAnswered}}" id="altroform" label="{{calcString('commenti', langPath, lingua)}}"></paper-textarea>
+         <paper-input always-float-label hidden id="tipoform" value="FULL"></paper-input>
+         <paper-input always-float-label disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform" label="{{calcString('nomeospiti', langPath, lingua)}}"></paper-input>
+         <paper-input always-float-label disabled="{{alreadyAnswered}}" id="hotelform" label="{{calcString('hotel', langPath, lingua)}}" placeholder="{{calcString('hotelplaceholder', langPath, lingua)}}"></paper-input>
+         <paper-input always-float-label disabled="{{alreadyAnswered}}" id="ciboform" label="{{calcString('cibo', langPath, lingua)}}"></paper-input>
+         <paper-textarea always-float-label disabled="{{alreadyAnswered}}" id="altroform" label="{{calcString('commenti', langPath, lingua)}}"></paper-textarea>
          <paper-button disabled="{{alreadyAnswered}}" raised on-tap="saveFullAnswer">{{calcString('pulsanteinvia', langPath, lingua)}}</paper-button>
       </div>
       <div class="form" id="party" hidden$="{{!partyFormVisible}}">
         <div>{{calcString("invitoparty", langPath, lingua)}}</div>
-        <div>{{calcString("confermare", langPath, lingua)}}</div>
+        <!--<div>{{calcString("confermare", langPath, lingua)}}</div>-->
         <paper-radio-group disabled="{{alreadyAnswered}}" id="risposta2" selected="yes">
             <paper-radio-button name="yes" disabled="{{alreadyAnswered}}">{{calcString("si", langPath, lingua)}}</paper-radio-button>
             <paper-radio-button name="no" disabled="{{alreadyAnswered}}">{{calcString("no", langPath, lingua)}}</paper-radio-button>
          </paper-radio-group>
-         <paper-input hidden id="tipoform2" value="PARTY"></paper-input>
-         <paper-input disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform2" label="{{calcString('nomeospiti', langPath, lingua)}}"></paper-input>
+         <paper-input always-float-label hidden id="tipoform2" value="PARTY"></paper-input>
+         <paper-input always-float-label disabled="{{alreadyAnswered}}" error-message="{{calcString('campoobbligatorio', langPath, lingua)}}" required id="nomeform2" label="{{calcString('nomeospiti', langPath, lingua)}}"></paper-input>
          <paper-textarea disabled="{{alreadyAnswered}}" id="altroform2" label="{{calcString('commenti', langPath, lingua)}}"></paper-textarea>
          <paper-button disabled="{{alreadyAnswered}}" raised on-tap="savePartyAnswer">{{calcString('pulsanteinvia', langPath, lingua)}}</paper-button>
         </div>
