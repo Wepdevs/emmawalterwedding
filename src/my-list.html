@@ -26,6 +26,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #error{
         color: red;
       }
+
+      a:visited, a{
+        color: var(--app-card-color);
+      }
     </style>
 
     <div class="card">
@@ -34,8 +38,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span>{{calcString("listacont2", langPath, lingua)}}</span>
       <span>{{calcString("listacont3", langPath, lingua)}}</span>
 
+      </br> </br> 
+
       <div>
-        <a href="http://www.cividin.it/it/viaggi-di-nozze-agenzia-cividin-viaggi">Link</a>
+        {{calcString("listacont4", langPath, lingua)}}
+      </div>
+
+      </br>
+      <div>
+        <a href="http://www.cividin.it/it/viaggi-di-nozze-agenzia-cividin-viaggi">Lista On Line</a>
+      </div>
+
+       </br>
+      <div>
+       {{calcString("listacont5", langPath, lingua)}}
+      </div>
+ 
+        </br> 
+
+         <div>
+        <a href="coordinate-cividin.html" target="_blank">Coordinate</a>
       </div>
     </div>
   </template>

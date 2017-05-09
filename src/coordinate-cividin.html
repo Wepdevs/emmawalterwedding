@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+
+
+      <style>
+        .main{
+          padding: 100px 50px;
+          border: orange 1px solid;
+        }
+
+      .langBtn:hover{
+        cursor: pointer;
+      }
+
+      #eng{
+        display: none;
+      }
+
+      div{
+        padding: 10px 0px;
+      }
+
+        
+      </style>
+    </head>
+    <body>
+      <div class="main">
+
+        <img class="langBtn" onclick="toIta()" src="../images/italy_flag.ico" width="30px" />
+        <img class="langBtn" onclick="toEng()" src="../images/united_kingdom_flag.ico" width="30px" />
+
+        <div id="ita">
+          
+          <div>Banca Appoggio della Cividin Viaggi: UNICREDIT</div>
+          <div>Codice IBAN: IT 85 X 02008 02230 000030026406</div>
+          <div>Codice SWIFT-BIC: UNCRITM10PA (per bonifici esteri)</div>
+          <div>Intestato a: CIVIDIN VIAGGI SRL</div>
+          <div>Causale obbligatoria: Lista nozze n. 2017/793 MIANI/CELOTTI</div>
+        </div>
+        <div id="eng">
+          <div>Bank name: UNICREDIT</div>
+          <div>International Bank Account Number (IBAN): IT 85 X 02008 02230 000030026406</div>
+          <div>SWIFT/BIC code: UNCRITM10PA</div>
+          <div>Account holder’s name: CIVIDIN VIAGGI SRL</div>
+          <div>Payment description/reason (compulsory): Lista nozze n. 2017/793 MIANI/CELOTTI</div>
+        </div>
+        
+        
+      </div>
+      
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+  
+
+         <script>
+            function toIta(){
+              document.getElementById('ita').style.display = 'block';
+              document.getElementById('eng').style.display = 'none';
+            }
+
+            function toEng(){
+              document.getElementById('eng').style.display = 'block';
+              document.getElementById('ita').style.display = 'none';
+             
+            }
+       </script>
+    </body>
+</html>
