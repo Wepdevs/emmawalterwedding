@@ -57,7 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </br> 
 
          <div>
-        <a href="coordinate-cividin.html" target="_blank">{{calcString("listalink2", langPath, lingua)}}</a>
+        <a href="../src/coordinate-cividin-{{langPath}}.html" target="_blank">{{calcString("listalink2", langPath, lingua)}}</a>
       </div>
     </div>
   </template>
@@ -72,6 +72,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return "<no string>"
 
         return this.lingua[path][campo];
+      },
+
+
+      calcPath: function(){
+
+          if(this.langPath== "ita")
+          return "../src/coordinate-cividin-ita.html";
+          return "../src/coordinate-cividin-eng.html";
       }     
     });
   </script>
