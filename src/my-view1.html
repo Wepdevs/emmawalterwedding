@@ -36,22 +36,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
         flex-wrap: wrap;
         width: 200px;
-        background: grey;
+        /*background: rgba(255,255,255,0.3);*/
         border-radius: 5px;
+        margin: 300px;
       }
 
       .countdown2 div:not(.string){
         font-weight: 900;
-        font-size: 30px;
+        font-size: 35px;
         text-align: center;
       }
 
       .number{
         width: 28%;
         margin: 1%;
-        background:black;
         color: white;
         border-radius: 5px;
+        background: linear-gradient(to bottom, 
+	                              rgb(77,77,77) 0%, 
+	                              rgb(22,22,22) calc(50% - 0.81px), 
+	                              white calc(50% - 0.8px), 
+	                              white calc(50% + 0.8px), 
+	                              rgb(22,22,22) calc(50% + 0.81px), 
+	                              black 100%); 
       }
 
       .dot ,.filler{
@@ -62,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .countdown2 .dot:after{
-        content: ":";
+        /*content: ":";*/
       }
 
       .countdown2 .string{
@@ -123,9 +130,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
 
 
-        <div class="text countdown">
+        <!--<div class="text countdown">
                 {{countDown(trigger)}}
-         </div>
+         </div>-->
 
 
 
@@ -135,11 +142,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!--<div>
           <div class="countdown2">
-            <div class="number">11</div>
+            <div class="number">{{countDown(trigger, "mesi")}}</div>
             <div class="dot"></div>
-            <div class="number">23</div>
+            <div class="number">{{countDown(trigger, "giorni")}}</div>
             <div class="dot"></div>
-            <div class="number">05</div>
+            <div class="number">{{countDown(trigger, "ore")}}</div>
             <div class="string">Mesi</div>
             <div class="filler"></div>
             <div class="string">giorni</div>
@@ -167,7 +174,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return this.lingua[path][campo];
       },
 
-      countDown: function(momento){
+      countDown: function(momento, parte){
 
         setInterval(function(){    
           this.trigger = moment(); 
@@ -235,6 +242,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
          var stringOut = stringMonth+stringDay+stringHour+stringMinute+stringSecond;
         
+         if(parte =="mesi")
+          return diffMonths;
+        if(parte=="giorni")
+        return diffDays;
+        if(parte=="ore")
+        return diffHours;
+
 
         return 'Mancano ' + stringOut + ' al nostro matrimonio!'; 
 
