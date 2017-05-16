@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+
+
+      <style>
+        .main{
+          padding: 100px 50px;
+          border: orange 1px solid;
+        }
+
+      .langBtn:hover{
+        cursor: pointer;
+      }
+
+      /*#eng{
+        display: none;
+      }*/
+
+      div{
+        padding: 10px 0px;
+      }
+
+        
+      </style>
+    </head>
+    <body>
+       <div class="main">
+        <div id="eng">
+          <h3>Istruzioni per l'uso della lista online</h3>
+          <ol>
+              <li>Cliccare su Partecipa alla lista nozze</li>
+              <li>Nella pagina che si apre compilare i campi in questo modo: Utente: ewospiti, Password: ewospiti, Area: Area Invitati</li>
+              <li>Cliccare sul tab 'cosa si può regalare'</li>
+              <li>Cliccare su regala</li>
+              <li>Inserire un importo e cliccare su Aggiungi al Carrello</li>
+              <li>Se l'importo è ok cliccare su Procedi alla Fasi di Acquisto (oppure modificare con Modifica e poi procedere)</li>
+              <li>Se non già precedentemente fatto registrarsi cliccando su Registrati</li>
+              <li>Inserire i propri dati personali (la password deve essere breve, ad esempio 4 caratteri), Acconsentire al trattamento dei dati e </li>cliccare Invia </li>
+              <li>Scegliere 'Tramite bonifico bancario', lasciare un messaggio opzionale e cliccare su Invia</li>
+              <li>Riceverete un'email all'indirizzo segnato al momento dell'inserimento dei dati personali con le istruzioni per effettuare il bonifico.</li>
+          </ol>
+          <div>Dalla pagina della lista online si può anche scaricare una descrizione del nostro viaggio in formato PDF.</div>
+          <div>Il nome utente e la password scelti possono essere utilizzati se si vuole utilizzare nuovamente la  lista online: al punto 7 entrare da <em>Utenti Registrati Liste Nozze Online.</em></div>
+      </div>
+      
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+  
+
+         <script>
+            function toIta(){
+              document.getElementById('ita').style.display = 'block';
+              document.getElementById('eng').style.display = 'none';
+            }
+
+            function toEng(){
+              document.getElementById('eng').style.display = 'block';
+              document.getElementById('ita').style.display = 'none';
+             
+            }
+       </script>
+    </body>
+</html>
