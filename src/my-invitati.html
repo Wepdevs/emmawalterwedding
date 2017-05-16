@@ -40,6 +40,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         margin-top: 20px;
       }
+
+      #emailDialog{
+        position: absolute;
+        width: 800px;
+        top: 10px;
+      }
+
     </style>
 
 
@@ -114,13 +121,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-dialog  id="emailDialog" entry-animation="scale-up-animation"
               exit-animation="fade-out-animation">
       <div>
-        <span>Oggetto: </span><span id="oggetto"></span>
+        <div id="destinatario"></div>
+      </div>     
+      <hr>         
+      <div>
+        <div id="oggetto"></div>
       </div>
+      <hr>
        <div>
-        <span>Email: </span><span id="testoemail"></span>
-      </div>
-       <div>
-        <span>Password: </span><input type="text" id="testopassword" readonly="readonly"></span>
+        <div id="testoemail"></div>
       </div>
       <div class="buttons">
         <paper-button dialog-dismiss>{{calcString("pulsantechiudi", langPath, lingua)}}</paper-button>
@@ -158,7 +167,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var passwordType = "";
 
-        if(this.$.invito.selectedItem.innerHTML == 'Full'){
+        if(this.$.invito.selectedItem.innerText == 'Full'){
           passwordType = 'asd';
         } else{
           passwordType = 'dsa';
@@ -167,8 +176,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var invitato = {nome : this.$.nome.value,
                         email : this.$.email.value,
-                        lingua: this.$.lingua.selectedItem.innerHTML,
-                        invito:  this.$.invito.selectedItem.innerHTML,
+                        lingua: this.$.lingua.selectedItem.innerText,
+                        invito:  this.$.invito.selectedItem.innerText,
                         password: password}
 
          db.ref().child('invitati/').push(invitato);
@@ -185,28 +194,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           var isPlural = e.model.invitato.nome.indexOf('&') != -1;
 
-          this.$.oggetto.innerHTML = 'A ' + e.model.invitato.nome;
+          this.$.destinatario.innerText = e.model.invitato.email;
+
+          if(e.model.invitato.lingua == "ITA")
+            this.$.oggetto.innerText = 'A ' + e.model.invitato.nome;
+          else
+            this.$.oggetto.innerText = 'To ' + e.model.invitato.nome;
+
           if(!isPlural){
-            this.$.testoemail.innerHTML = "Ciao sei mega invitato!";
+            if(e.model.invitato.lingua == "ITA")
+              this.$.testoemail.innerText = this.getSingolarEmailIta(e.model.invitato);
+            else
+              this.$.testoemail.innerText = this.getEmailEng(e.model.invitato);
           } else{
-            this.$.testoemail.innerHTML = "Ciao siete mega invitati!";
+             if(e.model.invitato.lingua == "ITA")
+              this.$.testoemail.innerText = this.getPluralEmailIta(e.model.invitato);
+            else
+              this.$.testoemail.innerText = this.getEmailEng(e.model.invitato);
           }
-          
-          this.$.testopassword.value =e.model.invitato.password;
 
           this.$.emailDialog.open();
 
       },
 
-      copyPsw: function(){
+      getSingolarEmailIta: function(invitato){
+        var testoemail = "Ciao " + invitato.nome + "," + "\n\nAbbiamo il piacere di invitarti al nostro matrimonio che si terrà presso Villa Elodia, a Trivignano Udinese (UD) il 23 settembre 2017.\n\nIn allegato trovi il tuo invito.\n\nAbbiamo preparato un sito web per l’evento, raggiungibile cliccando a questo link:\n\nemmawalterwedding.firebaseapp.com.\n\nTroverai molte informazioni utili per l’evento  e ti preghiamo di confermare la presenza attraverso la sezione RSVP.\n\nQuesta sezione, come altre, è accessibile solamente utilizzando la password a te dedicata, che va inserita cliccando sul pulsante che si trova nella parte bassa dello schermo, sulla destra.\n\nLa tua password è: " + invitato.password + ".\n\nIn caso di problemi non esitare a contattarci rispondendo direttamente a questa email.\n\nEmma & Walter";
+        return testoemail; 
+      },
 
-        // console.log('copying password');
+      getPluralEmailIta: function(invitato){
 
-        // console.log(this.$$('#testopassword'));
+        var testoemail = "Ciao " + invitato.nome + "," + "\n\nAbbiamo il piacere di invitarvi al nostro matrimonio che si terrà presso Villa Elodia, a Trivignano Udinese (UD) il 23 settembre 2017..\n\nIn allegato trovi il vostro invito.\n\nAbbiamo preparato un sito web per l’evento, raggiungibile cliccando a questo link:\n\nemmawalterwedding.firebaseapp.com.\n\nTroverete molte informazioni utili per l’evento  e vi preghiamo di confermare la presenza attraverso la sezione RSVP.\n\nQuesta sezione, come altre, è accessibile solamente utilizzando la password a voi dedicata, che va inserita cliccando sul pulsante che si trova nella parte bassa dello schermo, sulla destra.\n\nLa vostra password è: " + invitato.password + ".\n\nIn caso di problemi non esitate a contattarci rispondendo direttamente a questa email.\n\nEmma & Walter";
+        return testoemail;
+      },
 
-        // this.$$('#testopassword').focus();
-        // this.$$('#testopassword').select();
-        // document.execCommand('copy', true, 'asd');
+      getEmailEng: function(invitato){
+
+       var testoemail = "Dear " + invitato.nome + "," + "\n\nIt is with great pleasure that we would like to invite you to our wedding, which will take place in Villa Elodia, in Trivignano Udinese (Italy), on 23rd September 2017.\n\nAttached to this email is your invitation.\n\nWe have prepared a website for the event, which can be accessed at the following link:\n\nemmawalterwedding.firebaseapp.com.\n\nYou will find useful information about the event, and we kindly ask you to confirm your attendance in the RSVP section.\n\nThis section of the website, together with others, is accessible only with your dedicated password (login button, bottom right of each section).\n\nYour password is: " + invitato.password + ".\n\nIn case of any problems, please do contact us via email.\n\nEmma & Walter";
+       return testoemail;
       },
 
     calcString: function(campo, path, lingua){
@@ -222,7 +247,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       prova: function(){
-        console.log(this.$.lingua.selectedItem.innerHTML);
+        console.log(this.$.lingua.selectedItem.innerText);
       },
 
       computeFilter: function(string) {
