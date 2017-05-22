@@ -54,11 +54,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: var(--app-primary-color);
       }
 
+      .saluto{
+        font-size: 1.8em;
+      }
+
     </style>
 
     <div class="card">
       <h3 class="page-title">RSVP</h3>
-      <h3>{{calcSaluto(nome, langPath, lingua)}}</h3>
+      <h3 class="saluto">{{calcSaluto(nome, langPath, lingua)}}</h3>
 
       <div hidden$="{{calcStatus(status.invite)}}">{{calcString("farelogin", langPath, lingua)}}</div>
       <div hidden$="{{!alreadyAnswered}}">
