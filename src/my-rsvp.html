@@ -213,7 +213,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform, password: password}
 
             if(!this.onEdit)
-              fb.database().ref().child('risposte/').push(risposta);
+              this.rispostaKey = fb.database().ref().child('risposte/').push(risposta).key;
             else
               fb.database().ref().child('risposte/' + this.rispostaKey).update(risposta);
 
@@ -237,7 +237,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var risposta = {nome: nomeform, tipo: tipoform, risposta: risposta, cibo: ciboform, hotel: hotelform, altro: altroform, password: password}
 
           if(!this.onEdit)
-              fb.database().ref().child('risposte/').push(risposta);
+              this.rispostaKey = fb.database().ref().child('risposte/').push(risposta).key;
             else
               fb.database().ref().child('risposte/' + this.rispostaKey).update(risposta);
 
